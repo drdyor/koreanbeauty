@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - Main Screen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --pink-50: #fdf4ff;
+      --pink-100: #fae8ff;
+      --pink-200: #f5d0fe;
+      --neutral-50: #fafafa;
+      --neutral-100: #f5f5f5;
+      --neutral-200: #e5e5e5;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 50%, var(--purple-100) 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--neutral-900);
+      transition: background 0.5s ease;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .app-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 4px;
+    }
+
+    .app-subtitle {
+      font-size: 14px;
+      color: var(--neutral-400);
+    }
+
+    /* Discreet Cycle Status Bar */
+    .cycle-status-bar {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid rgba(147, 51, 234, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .cycle-status-bar:hover {
+      background: rgba(255, 255, 255, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .cycle-mini-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--neutral-600);
+    }
+
+    .mini-day-bubble {
+      background: var(--purple-100);
+      color: var(--purple-600);
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .mini-phase-text {
+      color: var(--neutral-400);
+      font-weight: 400;
+    }
+
+    .dropdown-arrow {
+      font-size: 10px;
+      color: var(--neutral-400);
+      transition: transform 0.3s ease;
+    }
+
+    .cycle-status-bar.active .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Dropdown Details */
+    .cycle-details-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 0;
+      opacity: 0;
+    }
+
+    .cycle-details-dropdown.active {
+      max-height: 400px;
+      margin-bottom: 24px;
+      opacity: 1;
+    }
+
+    .cycle-card-inner {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .thread-label {
+      font-size: 11px;
+      color: var(--neutral-400);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .thread-visual {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .thread-segment {
+      flex: 1;
+      height: 12px;
+      background: var(--purple-100);
+      border-radius: 6px;
+      transition: all 0.6s ease;
+    }
+
+    .thread-segment.filled {
+      background: linear-gradient(90deg, var(--purple-400) 0%, var(--purple-600) 100%);
+      box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
+    }
+
+    .cycle-description {
+      font-size: 13px;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    .info-trigger {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--purple-200);
+      color: white;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .info-trigger:hover {
+      background: var(--purple-400);
+    }
+
+    /* Insight Modal */
+    .insight-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .insight-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .insight-panel {
+      width: 100%;
+      background: white;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      padding: 32px 24px;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .insight-overlay.active .insight-panel {
+      transform: translateY(0);
+    }
+
+    .insight-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .insight-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--purple-600);
+    }
+
+    .insight-close {
+      font-size: 24px;
+      color: var(--neutral-400);
+      cursor: pointer;
+    }
+
+    .insight-content {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--neutral-600);
+    }
+
+    .insight-biology-tag {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--purple-400);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .insight-quote {
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--purple-50);
+      border-radius: 16px;
+      font-style: italic;
+      border-left: 4px solid var(--purple-200);
+    }
+
+    /* Guardian Card */
+    .guardian-card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guardian-container {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Guardian SVG & Animations */
+    .guardian-svg {
+      width: 120px;
+      height: 120px;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    .guardian-svg.close { transform: scale(1.2) translateY(-10px); }
+    .guardian-svg.distant { transform: scale(0.8) translateY(10px); opacity: 0.6; }
+    .guardian-svg.alert { transform: scale(1.1) rotate(5deg); }
+    .guardian-svg.worried {
+      filter: grayscale(0.5) sepia(0.2);
+      animation: shiver 0.5s ease infinite;
+    }
+
+    /* Yoga Poses */
+    .guardian-svg.yoga-ready { transform: scaleY(0.95) translateY(5px); opacity: 0.9; }
+    .guardian-svg.downward-dog { transform: rotate(30deg) translateY(15px) scaleX(1.1); }
+    .guardian-svg.plank { transform: scaleY(0.6) scaleX(1.3) translateY(10px); }
+    .guardian-svg.bridge { transform: scaleY(1.3) translateY(-25px) rotate(-5deg); }
+
+    .yoga-btn {
+      margin-top: 12px;
+      padding: 10px 20px;
+      background: var(--purple-600);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .yoga-btn:hover { background: var(--purple-500); transform: translateY(-2px); }
+
+    @keyframes shiver {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, -1px); }
+    }
+
+    /* Sparkles for rewards */
+    .sparkle {
+      position: absolute;
+      font-size: 20px;
+      pointer-events: none;
+      animation: float-up 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes float-up {
+      0% { transform: translateY(0) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-50px) scale(1.2); opacity: 0; }
+    }
+
+    .guardian-state {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .guardian-message {
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.6;
+      max-width: 320px;
+      margin: 0 auto 16px;
+    }
+
+    /* Feedback Mechanism */
+    .guardian-feedback {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .feedback-btn {
+      background: var(--neutral-50);
+      border: 1px solid var(--purple-100);
+      border-radius: 12px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .feedback-btn:hover {
+      background: var(--purple-50);
+      border-color: var(--purple-300);
+      transform: translateY(-2px);
+    }
+
+    .feedback-btn.selected {
+      background: var(--purple-600);
+      color: white;
+      border-color: var(--purple-600);
+    }
+
+    .feeling-selector {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--purple-50);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feeling-title {
+      font-size: 13px;
+      color: var(--neutral-400);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    /* Initial Check-in Styles */
+    .checkin-prompt {
+      padding: 16px 0;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .checkin-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 8px;
+    }
+
+    .whisper-text {
+      font-size: 14px;
+      color: var(--neutral-600);
+      font-style: italic;
+      margin-bottom: 20px;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+
+    .feeling-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .feeling-btn {
+      padding: 12px 8px;
+      border: 1px solid var(--purple-100);
+      background: white;
+      border-radius: 12px;
+      font-size: 11px;
+      color: var(--neutral-600);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .feeling-emoji {
+      font-size: 20px;
+    }
+
+    .feeling-btn:hover {
+      background: var(--purple-50);
+      border-color: var(--purple-300);
+      transform: translateY(-2px);
+    }
+
+    .feeling-btn.selected {
+      background: var(--purple-100);
+      color: var(--purple-600);
+      border-color: var(--purple-600);
+      font-weight: 600;
+    }
+
+    .feeling-btn.predicted {
+      border-color: var(--purple-400);
+      background: var(--purple-50);
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+      animation: pulse-purple 2s infinite;
+    }
+
+    @keyframes pulse-purple {
+      0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+    }
+
+    /* Ritual Cards */
+    .ritual-section {
+      margin-bottom: 24px;
+    }
+
+    .ritual-card {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.05);
+      border: 1px solid var(--purple-50);
+      transition: all 0.3s ease;
+    }
+
+    .ritual-icon {
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--purple-50);
+      border-radius: 12px;
+    }
+
+    .ritual-content {
+      flex: 1;
+    }
+
+    .ritual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .ritual-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-900);
+    }
+
+    .ritual-streak {
+      font-size: 11px;
+      color: var(--neutral-400);
+    }
+
+    .ritual-week {
+      display: flex;
+      gap: 4px;
+    }
+
+    .day-dot {
+      width: 12px;
+      height: 6px;
+      background: var(--neutral-100);
+      border-radius: 3px;
+    }
+
+    .day-dot.completed {
+      background: var(--purple-400);
+    }
+
+    .day-dot.today {
+      border: 1px solid var(--purple-300);
+    }
+
+    .ritual-check {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 2px solid var(--purple-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ritual-check.checked {
+      background: var(--purple-600);
+      border-color: var(--purple-600);
+      color: white;
+    }
+
+    /* Accessibility Overlay */
+    .access-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .access-modal {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+    }
+
+    .access-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 12px;
+    }
+
+    .access-option {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--purple-100);
+      border-radius: 12px;
+      background: var(--purple-50);
+      color: var(--neutral-600);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .access-option:hover {
+      background: var(--purple-100);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Atmosphere Section */
+    .section {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .section-label {
+      font-size: 12px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .option-btn {
+      flex: 1;
+      padding: 16px 12px;
+      border: 2px solid var(--purple-200);
+      background: white;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.15);
+    }
+
+    .option-btn.selected {
+      border-color: var(--purple-600);
+      background: var(--purple-50);
+    }
+
+    /* Routine Flow Styles */
+    .routine-section {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .routine-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .routine-timer-info {
+      text-align: right;
+    }
+
+    .estimated-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--neutral-900);
+    }
+
+    .estimated-label {
+      font-size: 11px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+    }
+
+    .routine-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .routine-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--purple-50);
+    }
+
+    .routine-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-time {
+      font-size: 12px;
+      color: var(--neutral-400);
+      width: 40px;
+    }
+
+    .item-icon {
+      font-size: 20px;
+      width: 32px;
+      height: 32px;
+      background: var(--purple-50);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-900);
+    }
+
+    .item-duration {
+      font-size: 11px;
+      color: var(--neutral-400);
+    }
+
+    .play-btn-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--neutral-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .play-btn-circle:hover {
+      background: var(--purple-100);
+      color: var(--purple-600);
+    }
+
+    .play-btn-circle.active {
+      background: var(--purple-600);
+      color: white;
+      animation: pulse-small 2s infinite;
+    }
+
+    @keyframes pulse-small {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .routine-footer {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .drift-info {
+      font-size: 14px;
+      color: var(--purple-600);
+      font-weight: 600;
+    }
+
+    .rearrange-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--neutral-900);
+      color: white;
+      border-radius: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Digital Shield Section */
+    .shield-section {
+      background: linear-gradient(135deg, var(--neutral-900) 0%, #262626 100%);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shield-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .shield-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .shield-status {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--purple-400);
+    }
+
+    .shield-desc {
+      font-size: 13px;
+      opacity: 0.8;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .shield-toggle {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .shield-toggle.active {
+      background: var(--purple-600);
+      border-color: var(--purple-600);
+      box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+    }
+
+    .guardian-svg.shield-mode {
+      filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8));
+    }
+
+    /* Hypnosis CTA */
+    .hypnosis-cta {
+      background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .hypnosis-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .hypnosis-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .hypnosis-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hypnosis-subtitle {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      color: var(--neutral-400);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active {
+      color: var(--purple-600);
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="app-title">Guardian</div>
+      <div class="app-subtitle">Your cycle-aware wellness companion</div>
+    </div>
+
+    <!-- Compact Cycle Header -->
+    <div class="cycle-status-bar" onclick="toggleCycleDetails()">
+      <div class="cycle-mini-info" id="cycleMiniInfo">
+        <span class="mini-day-bubble">Day 18/28</span>
+        <span class="mini-phase-text">Luteal Phase</span>
+      </div>
+      <div class="dropdown-arrow">▼</div>
+      </div>
+
+    <!-- Cycle Details Dropdown -->
+    <div class="cycle-details-dropdown" id="cycleDetails">
+      <div class="cycle-card-inner">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <div class="thread-label">Thread Progress</div>
+          <div class="info-trigger" onclick="toggleInsight()">?</div>
+        </div>
+      <div class="thread-visual">
+        <div class="thread-segment filled"></div>
+        <div class="thread-segment filled"></div>
+        <div class="thread-segment filled"></div>
+        <div class="thread-segment filled"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+      </div>
+        <div class="cycle-description" id="cycleDescription">
+        Your body is in its inward phase. Energy naturally turns toward detail work and rest.
+        </div>
+      </div>
+    </div>
+
+    <!-- Guardian -->
+    <div class="guardian-card" id="guardianCard">
+      <div class="guardian-container">
+        <!-- Interactive SVG Guardian -->
+        <svg class="guardian-svg" id="guardianSvg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cat ears -->
+          <path d="M30 35 L25 20 L40 30 Z" fill="#e9d5ff" stroke="#c084fc" stroke-width="2"/>
+          <path d="M90 35 L95 20 L80 30 Z" fill="#e9d5ff" stroke="#c084fc" stroke-width="2"/>
+
+          <!-- Cat face -->
+          <circle cx="60" cy="60" r="35" fill="#f5f3ff" stroke="#c084fc" stroke-width="3"/>
+
+          <!-- Eyes -->
+          <circle cx="50" cy="55" r="4" fill="#6b21a8" id="leftEye">
+            <animate attributeName="r" values="4;4;1;4" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="70" cy="55" r="4" fill="#6b21a8" id="rightEye">
+            <animate attributeName="r" values="4;4;1;4" dur="4s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Eye sparkles -->
+          <circle cx="48" cy="53" r="1.5" fill="white"/>
+          <circle cx="68" cy="53" r="1.5" fill="white"/>
+
+          <!-- Nose -->
+          <path d="M60 62 L57 67 L63 67 Z" fill="#c084fc"/>
+
+          <!-- Whiskers -->
+          <line x1="30" y1="60" x2="20" y2="58" stroke="#c084fc" stroke-width="1.5"/>
+          <line x1="30" y1="65" x2="20" y2="67" stroke="#c084fc" stroke-width="1.5"/>
+          <line x1="90" y1="60" x2="100" y2="58" stroke="#c084fc" stroke-width="1.5"/>
+          <line x1="90" y1="65" x2="100" y2="67" stroke="#c084fc" stroke-width="1.5"/>
+
+          <!-- Mouth -->
+          <path d="M60 67 Q55 72 50 70" stroke="#c084fc" stroke-width="2" fill="none"/>
+          <path d="M60 67 Q65 72 70 70" stroke="#c084fc" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <div class="guardian-state" id="guardianState">Nearby, Observing</div>
+      
+      <!-- Initial Check-in UI -->
+      <div class="checkin-prompt" id="checkinPrompt">
+        <div class="checkin-title">Sensing your rhythm...</div>
+        <div class="whisper-text" id="whisperText">
+          I'm sensing some Low Battery or Hidden energy today. Does that feel right?
+        </div>
+        <div class="feeling-grid">
+          <button class="feeling-btn checkin-feeling" data-state="regulated">☀️ Regulated</button>
+          <button class="feeling-btn checkin-feeling" data-state="foggy">☁️ Foggy</button>
+          <button class="feeling-btn checkin-feeling" data-state="overwhelmed">🌧️ Overwhelmed</button>
+          <button class="feeling-btn checkin-feeling" data-state="blocked">🐟 Blocked</button>
+          <button class="feeling-btn checkin-feeling" data-state="low-battery">😴 Low Battery</button>
+          <button class="feeling-btn checkin-feeling" data-state="hidden">🐚 Hidden</button>
+          <button class="feeling-btn checkin-feeling" data-state="spark">✨ Spark</button>
+          <button class="feeling-btn checkin-feeling" data-state="clingy">🧲 Clingy</button>
+          <button class="feeling-btn checkin-feeling" data-state="order">🧼 Order</button>
+      </div>
+    </div>
+
+      <!-- Main Guardian Interaction -->
+      <div class="hidden" id="guardianMain">
+        <div class="guardian-message" id="guardianMessage">
+          Listening to your rhythm...
+      </div>
+        
+        <div id="yogaAction" class="hidden" style="margin-bottom: 16px;">
+          <button class="yoga-btn" onclick="startYogaFlow()">Let's play 🧘‍♀️</button>
+    </div>
+
+        <div class="guardian-feedback" id="feedbackControls">
+          <button class="feedback-btn" id="thumbsUp">👍</button>
+          <button class="feedback-btn" id="thumbsDown">👎</button>
+        </div>
+
+        <div class="feeling-selector hidden" id="feelingSelector">
+          <div class="feeling-title">Correcting state...</div>
+          <div class="feeling-grid">
+            <button class="feeling-btn pattern-feeling" data-state="regulated">☀️</button>
+            <button class="feeling-btn pattern-feeling" data-state="foggy">☁️</button>
+            <button class="feeling-btn pattern-feeling" data-state="overwhelmed">🌧️</button>
+            <button class="feeling-btn pattern-feeling" data-state="blocked">🐟</button>
+            <button class="feeling-btn pattern-feeling" data-state="low-battery">😴</button>
+            <button class="feeling-btn pattern-feeling" data-state="hidden">🐚</button>
+            <button class="feeling-btn pattern-feeling" data-state="spark">✨</button>
+            <button class="feeling-btn pattern-feeling" data-state="clingy">🧲</button>
+            <button class="feeling-btn pattern-feeling" data-state="order">🧼</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily Rituals -->
+    <div class="ritual-section">
+      <div class="section-label">Daily Rituals</div>
+      
+      <!-- Steps Ritual -->
+      <div class="ritual-card" id="ritualSteps">
+        <div class="ritual-icon">🚶‍♀️</div>
+        <div class="ritual-content">
+          <div class="ritual-header">
+            <span class="ritual-title">Daily Movement</span>
+            <span class="ritual-streak">5 day streak</span>
+          </div>
+          <div class="ritual-week">
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot today" id="dotSteps"></div>
+            <div class="day-dot"></div>
+            <div class="day-dot"></div>
+          </div>
+        </div>
+        <div class="ritual-check" onclick="checkRitual('steps')">
+          <span class="check-icon">✓</span>
+        </div>
+      </div>
+
+      <!-- Mood Ritual -->
+      <div class="ritual-card" id="ritualMood">
+        <div class="ritual-icon">🧠</div>
+        <div class="ritual-content">
+          <div class="ritual-header">
+            <span class="ritual-title">Mood Log</span>
+            <span class="ritual-streak">12 day streak</span>
+          </div>
+          <div class="ritual-week">
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot today" id="dotMood"></div>
+            <div class="day-dot"></div>
+            <div class="day-dot"></div>
+          </div>
+        </div>
+        <div class="ritual-check" onclick="checkRitual('mood')">
+          <span class="check-icon">✓</span>
+        </div>
+      </div>
+
+      <!-- Main Habit Ritual -->
+      <div class="ritual-card" id="ritualHabit">
+        <div class="ritual-icon">🧶</div>
+        <div class="ritual-content">
+          <div class="ritual-header">
+            <span class="ritual-title">Primary Habit</span>
+            <span class="ritual-streak" id="habitStreakText">8 day streak</span>
+        </div>
+          <div class="ritual-week">
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot completed"></div>
+            <div class="day-dot today" id="dotHabit"></div>
+            <div class="day-dot"></div>
+            <div class="day-dot"></div>
+          </div>
+        </div>
+        <div class="ritual-check" onclick="checkRitual('habit')">
+          <span class="check-icon">✓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility Overlay -->
+    <div class="access-overlay" id="accessOverlay">
+      <div class="access-modal">
+        <div class="access-title">Is movement difficult today?</div>
+        <p style="font-size: 13px; color: var(--neutral-400); margin-bottom: 20px;">The Guardian wants to adapt to your body's needs.</p>
+        <button class="access-option" onclick="handleAccess('disabled')">I have a physical limitation</button>
+        <button class="access-option" onclick="handleAccess('exhausted')">I am just very exhausted</button>
+        <button class="access-option" onclick="handleAccess('later')">I'll try again later</button>
+      </div>
+    </div>
+
+    <!-- Daily Flow (Routine) -->
+    <div class="routine-section">
+      <div class="routine-header">
+        <div class="section-label">Morning Flow</div>
+        <div class="routine-timer-info">
+          <div class="estimated-time" id="estEndTime">8:23 am</div>
+          <div class="estimated-label">Estimated end time</div>
+        </div>
+      </div>
+
+      <div class="routine-list" id="routineList">
+        <!-- Items will be rendered by JS -->
+      </div>
+
+      <div class="routine-footer">
+        <div class="drift-info" id="driftInfo">- 1m 54s</div>
+        <button class="rearrange-btn" onclick="rearrangeRoutine()">Rearrange</button>
+      </div>
+    </div>
+
+    <!-- Digital Shield (Anti-Doomscroll) -->
+    <div class="shield-section">
+      <div class="shield-header">
+        <div class="shield-title">🛡️ Guardian Shield</div>
+        <div class="shield-status" id="shieldStatus">Inactive</div>
+      </div>
+      <div class="shield-desc">
+        Activates a "Peace Boundary." While active, the Guardian sits as an overlay (on mobile) to remind you: *Noise is loud, but peace is yours.*
+      </div>
+      <button class="shield-toggle" id="shieldToggle" onclick="toggleShield()">Activate Digital Peace</button>
+    </div>
+
+    <!-- Hypnosis CTA -->
+    <div class="hypnosis-cta">
+      <div class="hypnosis-icon">🎧</div>
+      <div class="hypnosis-title">7-Minute Grounding Session</div>
+      <div class="hypnosis-subtitle">Your luteal phase responds well to body awareness</div>
+    </div>
+
+    <!-- Insight Overlay -->
+    <div class="insight-overlay" id="insightOverlay" onclick="toggleInsight()">
+      <div class="insight-panel" onclick="event.stopPropagation()">
+        <div class="insight-header">
+          <div class="insight-title">The Hormonal Secret</div>
+          <div class="insight-close" onclick="toggleInsight()">×</div>
+        </div>
+        <div class="insight-content" id="insightContent"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="window.location.href='01-main-screen.html'">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='07-cat-hangout.html'">
+        <div class="nav-icon">🐱</div>
+        <div class="nav-label">The Nest</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='03-progress-screen.html'">
+        <div class="nav-icon">📊</div>
+        <div class="nav-label">Progress</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='04-settings-screen.html'">
+        <div class="nav-icon">⚙️</div>
+        <div class="nav-label">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SETTINGS_KEY = 'guardian_settings';
+    const STATE_KEY = 'guardian_state';
+    
+    let state = {
+      rituals: { steps: false, mood: false, habit: false },
+      isDisabled: false,
+      feedback: null,
+      feeling: null,
+      checkInComplete: false,
+      shieldActive: false,
+      activeTimerIdx: null,
+      routine: [
+        { name: 'Skincare', duration: 5, icon: '🧴', time: '17:57' },
+        { name: 'Get dressed', duration: 3, icon: '👕', time: '18:02' },
+        { name: 'Eat breakfast', duration: 10, icon: '🥣', time: '18:05' },
+        { name: 'Clean dishes', duration: 3, icon: '🧼', time: '18:15' },
+        { name: 'Create to-do list', duration: 5, icon: '📝', time: '18:18' },
+        { name: 'Stretch', duration: 2, icon: '🧘‍♀️', time: '18:23' }
+      ]
+    };
+
+    function loadState() {
+      const cycleDay = localStorage.getItem('guardian_cycleDay') || 18;
+      updateCycleUI(parseInt(cycleDay));
+      const saved = localStorage.getItem(STATE_KEY);
+      if (saved) state = { ...state, ...JSON.parse(saved) };
+      applyStateToUI();
+      renderRoutine();
+    }
+
+    function renderRoutine() {
+      const list = document.getElementById('routineList');
+      list.innerHTML = '';
+      state.routine.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'routine-item';
+        div.innerHTML = `
+          <div class="item-time">${item.time}</div>
+          <div class="item-icon">${item.icon}</div>
+          <div class="item-info">
+            <div class="item-name">${item.name}</div>
+            <div class="item-duration">${item.duration}m</div>
+          </div>
+          <button class="play-btn-circle ${state.activeTimerIdx === idx ? 'active' : ''}" onclick="toggleTimer(${idx})">
+            ${state.activeTimerIdx === idx ? '⏸' : '▶'}
+          </button>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    let routineInterval;
+    function toggleTimer(idx) {
+      if (state.activeTimerIdx === idx) {
+        state.activeTimerIdx = null;
+        clearInterval(routineInterval);
+      } else {
+        state.activeTimerIdx = idx;
+        // Start a countdown simulation
+        let timeLeft = state.routine[idx].duration * 60;
+        clearInterval(routineInterval);
+        
+        // Guardian react to timer start
+        const msg = document.getElementById('guardianMessage');
+        msg.textContent = `Okay, let's focus on ${state.routine[idx].name}. I'm timing you! 🛡️`;
+        
+        routineInterval = setInterval(() => {
+          timeLeft--;
+          if (timeLeft <= 0) {
+            clearInterval(routineInterval);
+            state.activeTimerIdx = null;
+            renderRoutine();
+            // Timer "goes off" logic
+            alert(`${state.routine[idx].name} complete!`);
+            createSparkles();
+          }
+        }, 1000);
+      }
+      renderRoutine();
+    }
+
+    function rearrangeRoutine() {
+      alert("Rearrange feature coming soon! You'll be able to drag and drop your flow.");
+    }
+
+    function saveState() {
+      localStorage.setItem(STATE_KEY, JSON.stringify(state));
+    }
+
+    function toggleCycleDetails() {
+      document.getElementById('cycleDetails').classList.toggle('active');
+      document.querySelector('.cycle-status-bar').classList.toggle('active');
+    }
+
+    function updateCycleUI(day) {
+      const miniDay = document.querySelector('.mini-day-bubble');
+      const miniPhase = document.querySelector('.mini-phase-text');
+      let phase = 'Follicular Phase';
+      if (day <= 5) phase = 'Menstrual Phase';
+      else if (day >= 14 && day <= 16) phase = 'Ovulation Phase';
+      else if (day > 16) phase = 'Luteal Phase';
+      if (miniDay) miniDay.textContent = `Day ${day}/28`;
+      if (miniPhase) miniPhase.textContent = phase;
+      
+      const segments = document.querySelectorAll('.thread-segment');
+      const progress = (day % 7) || 7;
+      segments.forEach((seg, i) => seg.classList.toggle('filled', i < progress));
+    }
+
+    function getGuardianMessage(day, feeling) {
+      if (state.shieldActive) {
+        return "The Shield is active. I'm guarding your attention from the noise. Deep breaths... stay here with me.";
+      }
+      if (!state.rituals.steps && !state.isDisabled && state.checkInComplete) {
+        return "I'm feeling a bit stiff... let's do some poses!";
+      }
+      let phase = day <= 5 ? 'Menstrual' : (day <= 16 && day >= 14 ? 'Ovulation' : (day > 16 ? 'Luteal' : 'Follicular'));
+      const contexts = {
+        'Menstrual': { 'low-battery': "Energy is offline. baseline hormones—it's okay to rest.", 'hidden': "Okay to stay unseen. Deep renewal phase.", 'default': "Listen to the silence." },
+        'Follicular': { 'spark': "Rising estrogen—play with ideas.", 'regulated': "Building momentum!", 'default': "Energy is rising." },
+        'Ovulation': { 'spark': "Peak creative energy!", 'regulated': "In your power.", 'default': "Shine bright." },
+        'Luteal': { 'order': "Precision feels grounding. Nesting instinct.", 'foggy': "Brain fog is common—simplify.", 'low-battery': "Metabolic rate is up—rest is work.", 'default': "Energy turns inward." }
+      };
+      const key = feeling ? feeling.toLowerCase().replace(' ', '-') : 'default';
+      return (contexts[phase] && contexts[phase][key]) || (contexts[phase] && contexts[phase]['default']) || "Observing your rhythm.";
+    }
+
+    function applyStateToUI() {
+      const day = parseInt(localStorage.getItem('guardian_cycleDay') || 18);
+      const guardianSvg = document.getElementById('guardianSvg');
+      const guardianState = document.getElementById('guardianState');
+      
+      // Rituals
+      document.getElementById('ritualSteps').querySelector('.ritual-check').classList.toggle('checked', state.rituals.steps);
+      document.getElementById('ritualMood').querySelector('.ritual-check').classList.toggle('checked', state.rituals.mood);
+      document.getElementById('ritualHabit').querySelector('.ritual-check').classList.toggle('checked', state.rituals.habit);
+      document.getElementById('dotSteps').classList.toggle('completed', state.rituals.steps);
+      document.getElementById('dotMood').classList.toggle('completed', state.rituals.mood);
+      document.getElementById('dotHabit').classList.toggle('completed', state.rituals.habit);
+
+      if (state.isDisabled) {
+        document.getElementById('ritualSteps').style.opacity = '0.5';
+        document.querySelector('#ritualSteps .ritual-title').textContent = "Gentle Flow (Adapted)";
+      }
+
+      // Predictions
+      const whisperText = document.getElementById('whisperText');
+      let predictions = day <= 5 ? ['low-battery', 'hidden'] : (day <= 13 ? ['regulated', 'spark'] : (day <= 16 ? ['spark', 'overwhelmed'] : ['order', 'low-battery', 'foggy']));
+      document.querySelectorAll('.checkin-feeling').forEach(btn => btn.classList.toggle('predicted', predictions.includes(btn.getAttribute('data-state'))));
+      if (whisperText) whisperText.textContent = `I'm sensing some ${predictions.join(' or ')} energy today. Does that feel right?`;
+
+      // Guardian state
+      let pos = '';
+      const stateKey = state.feeling ? state.feeling.toLowerCase().replace(' ', '-') : '';
+      if (!state.rituals.steps && !state.isDisabled && state.checkInComplete) {
+        pos = 'yoga-ready';
+        guardianState.textContent = "Ready to Play";
+      } else if (state.atmosphere === 'Storm' || ['overwhelmed', 'clingy'].includes(stateKey)) {
+        pos = 'close';
+        guardianState.textContent = "Close, Supporting";
+      } else if (stateKey === 'hidden' || day > 16) {
+        pos = 'distant';
+        guardianState.textContent = "Stepped Back, Respecting Space";
+      } else if (stateKey === 'spark' || (day >= 14 && day <= 16)) {
+        pos = 'alert';
+        guardianState.textContent = "Bright, Attentive";
+      } else {
+        guardianState.textContent = "Nearby, Observing";
+      }
+      guardianSvg.setAttribute('class', `guardian-svg ${pos} ${state.shieldActive ? 'shield-mode' : ''}`);
+
+      if (state.checkInComplete) {
+        document.getElementById('checkinPrompt').classList.add('hidden');
+        document.getElementById('guardianMain').classList.remove('hidden');
+        const msg = getGuardianMessage(day, state.feeling);
+        document.getElementById('guardianMessage').textContent = msg;
+        
+        // Show yoga action if sluggish message
+        const isSluggish = msg.includes('sluggish');
+        document.getElementById('yogaAction').classList.toggle('hidden', !isSluggish);
+        document.getElementById('feedbackControls').classList.toggle('hidden', isSluggish);
+      } else {
+        document.getElementById('checkinPrompt').classList.remove('hidden');
+        document.getElementById('guardianMain').classList.add('hidden');
+      }
+
+      // Shield UI
+      const shieldBtn = document.getElementById('shieldToggle');
+      const shieldStatus = document.getElementById('shieldStatus');
+      if (state.shieldActive) {
+        shieldBtn.classList.add('active');
+        shieldBtn.textContent = 'Shield Active (Restoring Peace)';
+        shieldStatus.textContent = 'Active & Guarding';
+        shieldStatus.style.color = 'var(--purple-400)';
+      } else {
+        shieldBtn.classList.remove('active');
+        shieldBtn.textContent = 'Activate Digital Peace';
+        shieldStatus.textContent = 'Inactive';
+        shieldStatus.style.color = 'var(--neutral-400)';
+      }
+
+      const upBtn = document.getElementById('thumbsUp'), downBtn = document.getElementById('thumbsDown');
+      upBtn.classList.toggle('selected', state.feedback === 'up');
+      downBtn.classList.toggle('selected', state.feedback === 'down');
+      document.getElementById('feelingSelector').classList.toggle('hidden', state.feedback !== 'down');
+    }
+
+    function checkRitual(type) {
+      if (type === 'steps' && !state.rituals.steps && !state.isDisabled) {
+        document.getElementById('accessOverlay').style.display = 'flex';
+        return;
+      }
+      state.rituals[type] = !state.rituals[type];
+      saveState();
+      if (state.rituals[type]) {
+        createSparkles();
+        document.getElementById('guardianSvg').style.transform = 'scale(1.3) translateY(-20px)';
+        setTimeout(() => applyStateToUI(), 1000);
+      } else applyStateToUI();
+    }
+
+    function handleAccess(choice) {
+      document.getElementById('accessOverlay').style.display = 'none';
+      if (choice === 'disabled') { state.isDisabled = true; state.rituals.steps = true; }
+      saveState();
+      applyStateToUI();
+    }
+
+    function createSparkles() {
+      const container = document.getElementById('guardianCard');
+      for (let i = 0; i < 8; i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        s.textContent = ['✨', '⭐', '💜'][Math.floor(Math.random() * 3)];
+        s.style.left = Math.random() * 80 + 10 + '%';
+        s.style.top = Math.random() * 50 + 20 + '%';
+        container.appendChild(s);
+        setTimeout(() => s.remove(), 2000);
+      }
+    }
+
+    document.querySelectorAll('.checkin-feeling').forEach(btn => {
+      btn.addEventListener('click', function() {
+        state.feeling = this.getAttribute('data-state');
+        state.checkInComplete = true;
+        state.feedback = 'up';
+        saveState();
+        applyStateToUI();
+      });
+    });
+
+    document.getElementById('thumbsUp').addEventListener('click', () => { state.feedback = 'up'; saveState(); applyStateToUI(); });
+    document.getElementById('thumbsDown').addEventListener('click', () => { state.feedback = 'down'; applyStateToUI(); });
+    document.querySelectorAll('.pattern-feeling').forEach(btn => {
+      btn.addEventListener('click', function() {
+        state.feeling = this.getAttribute('data-state');
+        saveState();
+        applyStateToUI();
+      });
+    });
+
+    function toggleInsight() {
+      const overlay = document.getElementById('insightOverlay');
+      if (!overlay.classList.contains('active')) updateInsightContent();
+      overlay.classList.toggle('active');
+    }
+
+    function updateInsightContent() {
+      const day = parseInt(localStorage.getItem('guardian_cycleDay') || 18);
+      const content = document.getElementById('insightContent');
+      let phase = day <= 5 ? 'Menstrual' : (day <= 16 && day >= 14 ? 'Ovulation' : (day > 16 ? 'Luteal' : 'Follicular'));
+      const bio = {
+        'Menstrual': { bio: 'Estrogen & Progesterone baseline', text: "Internal work reset." },
+        'Follicular': { bio: 'Estrogen Rising', text: "Communication and creativity peaks." },
+        'Ovulation': { bio: 'Peak resonance', text: "Surge of confidence." },
+        'Luteal': { bio: 'Progesterone Surge', text: "The great calmer." }
+      };
+      content.innerHTML = `<div class="insight-biology-tag">${bio[phase].bio}</div><p>${bio[phase].text}</p>`;
+    }
+
+    function startYogaFlow() {
+      const svg = document.getElementById('guardianSvg');
+      const msg = document.getElementById('guardianMessage');
+      const btn = document.querySelector('.yoga-btn');
+      
+      btn.style.display = 'none';
+      
+      // 1. Downward Dog
+      msg.textContent = "Downward Dog... feel that stretch in your back!";
+      svg.setAttribute('class', 'guardian-svg downward-dog');
+      
+      setTimeout(() => {
+        // 2. Plank
+        msg.textContent = "And hold a Plank... building strength!";
+        svg.setAttribute('class', 'guardian-svg plank');
+        
+        setTimeout(() => {
+          // 3. Bridge
+          msg.textContent = "Last one, a Bridge! Reach for the sky.";
+          svg.setAttribute('class', 'guardian-svg bridge');
+          
+          setTimeout(() => {
+            // Finish
+            msg.textContent = "That felt amazing! I'm feeling much better now.";
+            svg.setAttribute('class', 'guardian-svg alert');
+            state.rituals.steps = true;
+            saveState();
+            setTimeout(() => {
+              applyStateToUI();
+              createSparkles();
+            }, 2000);
+          }, 3000);
+        }, 3000);
+      }, 3000);
+    }
+
+    function toggleShield() {
+      state.shieldActive = !state.shieldActive;
+      saveState();
+      applyStateToUI();
+    }
+
+    window.addEventListener('DOMContentLoaded', loadState);
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wellness Tracker</title>
+    <meta name="description" content="Comprehensive wellness and symptom tracking for better health insights" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <style>
+      body {
+        background: linear-gradient(180deg, #fdf2f8 0%, #faf5ff 50%, #ffffff 100%) !important;
+        font-family: Inter, system-ui, sans-serif !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #374151 !important;
+        min-height: 100vh !important;
+      }
+      h1 {
+        font-size: 2.5rem !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        margin-bottom: 1rem !important;
+        background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+      }
+      .card {
+        background: white !important;
+        border: 1px solid #E5E7EB !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        text-align: center !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+        margin: 1rem !important;
+      }
+      .grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 1rem !important;
+        margin-bottom: 2rem !important;
+      }
+      .text-center { text-align: center !important; }
+      .text-pink-600 { color: #FF6FAE !important; }
+      .text-purple-600 { color: #C084FC !important; }
+      .text-blue-600 { color: #60A5FA !important; }
+      .text-green-600 { color: #34D399 !important; }
+      .text-gray-600 { color: #6B7280 !important; }
+      .text-3xl { font-size: 2rem !important; }
+      .mb-2 { margin-bottom: 0.5rem !important; }
+
+      /* Tailwind classes used in dashboard */
+      .min-h-screen { min-height: 100vh !important; }
+      .bg-gradient-to-br { background: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important; }
+      .from-pink-50 { --tw-gradient-from: #fdf2f8 !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(253, 242, 248, 0)) !important; }
+      .via-purple-50 { --tw-gradient-via: #faf5ff !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, rgba(250, 245, 255, 0)) !important; }
+      .to-indigo-50 { --tw-gradient-to: #eef2ff !important; }
+      .max-w-7xl { max-width: 80rem !important; margin: 0 auto !important; }
+      .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
+      .py-8 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+      .text-center { text-align: center !important; }
+      .mb-12 { margin-bottom: 3rem !important; }
+      .gap-6 { gap: 1.5rem !important; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+      .bg-white\/90 { background-color: rgba(255, 255, 255, 0.9) !important; }
+      .backdrop-blur-sm { backdrop-filter: blur(4px) !important; }
+      .border { border: 1px solid #e5e7eb !important; }
+      .border-gray-200\/50 { border-color: rgba(229, 231, 235, 0.5) !important; }
+      .rounded-xl { border-radius: 0.75rem !important; }
+      .p-6 { padding: 1.5rem !important; }
+      .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
+      .font-bold { font-weight: 700 !important; }
+      .text-transparent { color: transparent !important; }
+      .bg-clip-text { background-clip: text !important; }
+      .mb-4 { margin-bottom: 1rem !important; }
+      .text-lg { font-size: 1.125rem !important; line-height: 1.75rem !important; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

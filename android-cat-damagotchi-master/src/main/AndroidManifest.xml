@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.foxboard.foxwidget" >
+    <uses-sdk android:targetSdkVersion="29"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/introimg"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name="com.foxboard.foxwidget.Application">
+        <activity android:name="com.foxboard.foxwidget.introActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.foxboard.foxwidget.MainActivity"/>
+        <activity android:name="License"
+            android:theme="@style/Theme.AppCompat"/>
+        <service
+            android:name=".petService"
+            android:enabled="true" />
+        <service
+            android:name=".update"
+            android:label="@string/update">
+            <intent-filter>
+                <action android:name="com.foxboard.foxwidget.UPDATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+</manifest>

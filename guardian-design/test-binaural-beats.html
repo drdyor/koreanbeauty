@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Binaural Beats - Glowchi</title>
+  <style>
+    /* Google Font: Fredoka - Soft, rounded terminals for Glowchi aesthetic */
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --text: #4c1d95; 
+      --muted: #8b839a;
+      --accent: #a591ff;
+      --bone-cream: #fff7ed;
+      --paper-lavender: #e9d5ff;
+      --paper-pink: #fce7f3;
+      --slab-bg: rgba(243, 232, 255, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      /* Soft mesh gradient background */
+      background: 
+        radial-gradient(circle at 15% 20%, #fbcfe8 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, #d8b4fe 0%, transparent 50%),
+        radial-gradient(circle at 50% 85%, #fdf2f8 0%, transparent 60%),
+        linear-gradient(180deg, #fce7f3 0%, #e9d5ff 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 1. THE 'RESUME PAPER' BASE (Grainy Texture Overlay) */
+    .paper-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      mix-blend-mode: overlay;
+      opacity: 0.15;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .page {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 25px 16px 200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 2. THICK ACRYLIC SLABS (The Containers) */
+    .acrylic-slab {
+      background: var(--slab-bg);
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border-radius: 24px;
+      /* Delicate physical beveling */
+      border-top: 1.2px solid rgba(255, 255, 255, 0.7);
+      border-left: 1.2px solid rgba(255, 255, 255, 0.7);
+      border-bottom: 1.5px solid rgba(76, 29, 149, 0.06);
+      border-right: 1.5px solid rgba(76, 29, 149, 0.06);
+      box-shadow: 0 15px 35px -8px rgba(76, 29, 149, 0.08);
+      margin-bottom: 15px;
+      padding: 15px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #a591ff;
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .section-label {
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 25px 0 12px;
+      color: var(--text);
+      opacity: 0.6;
+    }
+
+    /* 3. MECHANICAL BRAIN ROW - Compact 5 Column Grid */
+    .brain-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 5px;
+      flex: 1;
+    }
+
+    .pill-card {
+      width: 19%; 
+      aspect-ratio: 0.78;
+      border-radius: 14px;
+      padding: 6px 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .target-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 7px;
+      font-weight: 800;
+      padding: 2px 5px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 4px rgba(165, 145, 255, 0.2);
+      z-index: 5;
+    }
+
+    .section-cat-box {
+      width: 65px;
+      height: 55px;
+      position: relative;
+      align-self: flex-end;
+    }
+
+    .mini-cat {
+      width: 95px;
+      position: absolute;
+      bottom: -6px;
+      right: -8px;
+      z-index: 10;
+      filter: drop-shadow(0 6px 12px rgba(139, 92, 246, 0.12));
+      pointer-events: none;
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    }
+
+    .mini-cat.changing {
+      opacity: 0;
+      transform: scale(0.9) translateY(5px);
+    }
+
+    .pill-raised {
+      background: var(--bone-cream);
+      border-top: 1px solid rgba(255, 255, 255, 0.95);
+      border-left: 1px solid rgba(255, 255, 255, 0.95);
+      border-bottom: 1.2px solid rgba(0, 0, 0, 0.04);
+      border-right: 1.2px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 10px rgba(76, 29, 149, 0.03);
+    }
+
+    .pill-pressed {
+      background: linear-gradient(135deg, #a591ff, #7c3aed);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        inset 2px 3px 8px rgba(0, 0, 0, 0.2),
+        0 5px 10px rgba(165, 145, 255, 0.15);
+      color: white;
+    }
+
+    .pill-card.clicking { transform: translateY(2px) scale(0.97); }
+
+    .tile-title { font-weight: 600; font-size: 10px; text-align: center; margin-top: 1px; }
+    .tile-hz { font-size: 8.5px; opacity: 0.8; font-weight: 600; margin-top: 1px; }
+    .tile-icon { font-size: 14px; }
+
+    /* Tracks Header */
+    .tracks-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0 8px;
+    }
+    .tracks-title { font-weight: 700; font-size: 15px; color: var(--text); }
+    .see-all { font-size: 10px; color: var(--accent); font-weight: 600; text-decoration: underline; cursor: pointer; }
+
+    /* Player Waveform & Scrubber */
+    .player-card { padding: 14px; }
+    .player-row { display: flex; justify-content: space-between; align-items: flex-start; }
+    .track-branding { display: flex; align-items: center; gap: 10px; }
+    .track-icon-box {
+      width: 34px;
+      height: 34px;
+      background: rgba(165, 145, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .track-meta-data h3 { margin: 0; font-size: 13px; font-weight: 700; }
+    .track-meta-data p { margin: 1px 0 0; font-size: 10px; opacity: 0.7; }
+
+    .waveform-visualizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 24px;
+      margin: 10px 0 6px;
+    }
+    .waveform-bar {
+      flex: 1;
+      border-radius: 99px;
+      background: rgba(253, 215, 170, 0.4);
+      min-height: 2px;
+    }
+    .waveform-bar.active { background: #a78bfa; }
+
+    .mechanical-scrubber {
+      height: 3px;
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+      border-radius: 99px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+    .scrubber-progress {
+      position: absolute;
+      height: 100%;
+      width: 35%;
+      background: linear-gradient(90deg, var(--accent), #7c3aed);
+      border-radius: 99px;
+    }
+    .scrubber-ball {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle at 30% 30%, #fff7ed 0%, #fed7aa 100%);
+      border: 1.5px solid #fcd34d;
+      border-radius: 50%;
+      top: 50%;
+      left: 35%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 8px rgba(251, 146, 60, 0.2);
+    }
+
+    .timestamp-row { display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; opacity: 0.5; margin-bottom: 10px; }
+
+    /* Track List Items */
+    .list-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .list-track-info h4 { margin: 0; font-size: 12px; font-weight: 700; }
+    .list-track-info p { margin: 1px 0 0; font-size: 9px; opacity: 0.6; }
+
+    /* 4. THE 'CUTE' DETAILS (Sparkles & Mascot) */
+    .cat-sticker {
+      position: fixed;
+      right: 10px;
+      bottom: -10px;
+      width: 240px;
+      z-index: 5;
+      pointer-events: none;
+      filter: drop-shadow(0 12px 25px rgba(139, 92, 246, 0.15));
+      opacity: 0.9;
+    }
+
+    /* Floating Bar at Bottom */
+    .bottom-capsule {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 15px;
+      width: min(420px, calc(100% - 32px));
+      height: 60px;
+      background: rgba(76, 29, 149, 0.1);
+      backdrop-filter: blur(60px);
+      -webkit-backdrop-filter: blur(60px);
+      border-radius: 30px;
+      border: 1.2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+    }
+    .mini-info { display: flex; align-items: center; gap: 10px; }
+    .now-playing-tag { font-size: 9px; font-weight: 700; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 0.1em; }
+    .mechanical-pill {
+      background: rgba(124, 58, 237, 0.85);
+      padding: 6px 12px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    .pause-bar { width: 2px; height: 8px; background: white; border-radius: 1px; }
+
+    /* Headphones Card Hover/Expand */
+    .info-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
+    }
+    .info-content p { font-size: 11px !important; margin-top: 8px !important; line-height: 1.4 !important; }
+    .acrylic-slab:hover .info-content,
+    .acrylic-slab.expanded .info-content {
+      max-height: 70px;
+      opacity: 1;
+    }
+    .acrylic-slab.expanded #headphonesToggle {
+      background: var(--accent) !important;
+      color: white !important;
+    }
+
+    /* Focus Modes Styles */
+    .focus-modes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .focus-mode-tile {
+      background: var(--slab-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(76, 29, 149, 0.04);
+    }
+
+    .mode-primer-tag {
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-top: -2px;
+    }
+
+    /* ... existing styles ... */
+
+    /* Primer Toggle & Info */
+    .primer-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(76, 29, 149, 0.08);
+    }
+
+    .toggle-label {
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 34px;
+      height: 18px;
+    }
+
+    .switch input { opacity: 0; width: 0; height: 0; }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: rgba(76, 29, 149, 0.1);
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider { background-color: var(--accent); }
+    input:checked + .slider:before { transform: translateX(16px); }
+
+    .primer-info-line {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-out, margin 0.3s;
+    }
+
+    .primer-info-line.visible { max-height: 20px; margin-top: 12px; }
+
+    /* Rating Modal */
+    .rating-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(76, 29, 149, 0.2);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .rating-overlay.visible { opacity: 1; pointer-events: auto; }
+
+    .rating-card {
+      background: white;
+      padding: 24px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(76, 29, 149, 0.15);
+      width: 280px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .star { color: #e5e7eb; transition: color 0.2s; }
+    .star.active { color: #facc15; }
+
+    .focus-mode-tile:hover {
+      background: rgba(243, 232, 255, 0.65);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(76, 29, 149, 0.08);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .focus-mode-tile:active {
+      transform: translateY(1px);
+      background: rgba(243, 232, 255, 0.85);
+      box-shadow: 0 2px 10px rgba(76, 29, 149, 0.04);
+    }
+
+    .focus-mode-tile.active {
+      border: 1.5px solid var(--accent);
+      background: rgba(165, 145, 255, 0.08);
+      box-shadow: inset 0 0 15px rgba(165, 145, 255, 0.05);
+    }
+
+    .mode-name {
+      font-weight: 600;
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .mode-meta {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2px;
+    }
+
+    .mode-shorthand {
+      color: var(--accent);
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .mode-time {
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .cat-sticker { width: 200px; bottom: 50px; right: 0; }
+      .page { padding-bottom: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper-grain"></div>
+
+  <div class="page">
+    <div class="header">
+      <span style="font-size:20px">🎧</span>
+      <h1>Test Binaural Beats</h1>
+    </div>
+
+    <!-- Headphones Info Card -->
+    <div class="acrylic-slab" id="headphonesCard" style="cursor: help;">
+      <div style="display:flex; align-items:center; gap:10px; justify-content:space-between;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div style="background:rgba(108, 92, 231, 0.1); padding:6px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:16px;">🎧</span>
+          </div>
+          <h3 style="margin:0; font-size:14px; font-weight:700;">Headphones required</h3>
+        </div>
+        <div id="headphonesToggle" style="width:24px; height:24px; border-radius:50%; background:rgba(165,145,255,0.1); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--accent); cursor:pointer; transition: 0.2s;">?</div>
+      </div>
+      <div class="info-content">
+        <p style="margin:0; color:var(--text); opacity:0.8;">
+          Binaural beats work by delivering slightly different frequencies to each ear. This only works with stereo headphones.
+        </p>
+      </div>
+    </div>
+
+    <!-- Brain States Selection -->
+    <div class="section-label">Select Brain State:</div>
+    <div style="display:flex; align-items:flex-end; gap:8px; margin-bottom:20px;">
+      <div class="brain-row" id="brainRow">
+        <!-- Generated via JS -->
+      </div>
+      <div class="section-cat-box">
+        <img src="glowchi-cat-heart.png" class="mini-cat" alt="cat">
+      </div>
+    </div>
+
+    <!-- Focus Modes Section -->
+    <div class="section-label">Focus Modes:</div>
+    <div class="focus-modes-grid" id="focusModesGrid">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Featured Player -->
+    <div class="acrylic-slab player-card">
+      <div class="player-row">
+        <div class="track-branding">
+          <div class="track-icon-box">🌙</div>
+          <div class="track-meta-data">
+            <h3 id="activeTitle">Delta · 2 Hz</h3>
+            <p>Relaxing Music</p>
+          </div>
+        </div>
+        <div style="font-size:18px; opacity:0.4;">⏺️</div>
+      </div>
+
+      <div class="waveform-visualizer" id="waveform">
+        <!-- Generated via JS -->
+      </div>
+
+      <div class="mechanical-scrubber">
+        <div class="scrubber-progress"></div>
+        <div class="scrubber-ball"></div>
+      </div>
+
+      <div class="timestamp-row">
+        <span id="timeElapsed">0:00</span>
+        <span id="timeRemaining">-0:00</span>
+      </div>
+
+      <div style="margin-bottom:12px; font-size:11px; font-weight:600; opacity:0.8;">Play binaural beats alongside music</div>
+
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <div style="padding:4px 10px; background:rgba(255,255,255,0.2); border-radius:12px; font-size:10px; font-weight:600;">🌙 Delta</div>
+        <div style="padding:4px 10px; background:rgba(255,255,255,0.2); border-radius:12px; font-size:10px; font-weight:600;">🌍 Schumann</div>
+      </div>
+
+      <!-- Primer Controls -->
+      <div class="primer-controls">
+        <label class="toggle-label">
+          <span>🧠 Guided Primer</span>
+          <label class="switch">
+            <input type="checkbox" id="primerToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </label>
+      </div>
+      <div class="primer-info-line" id="primerInfoLine">
+        <span>🎧 Primer: </span><span id="primerIdText">None</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rating Modal -->
+  <div class="rating-overlay" id="ratingOverlay">
+    <div class="rating-card">
+      <h3 style="margin:0; font-size:18px;">How was the focus?</h3>
+      <p style="font-size:12px; color:var(--muted); margin:8px 0;">Rate this primer session</p>
+      <div class="stars" id="starContainer">
+        <span class="star" data-rating="1">★</span>
+        <span class="star" data-rating="2">★</span>
+        <span class="star" data-rating="3">★</span>
+        <span class="star" data-rating="4">★</span>
+        <span class="star" data-rating="5">★</span>
+      </div>
+      <button id="closeRating" style="background:var(--accent); color:white; border:none; padding:8px 20px; border-radius:12px; font-weight:600; cursor:pointer;">Done</button>
+    </div>
+  </div>
+
+  <!-- THE BOTTOM CAPSULE -->
+  <div class="bottom-capsule">
+    <div class="mini-info">
+      <span class="now-playing-tag">Now Playing</span>
+      <div class="mechanical-pill" id="miniBtn">
+        <div class="pause-icon" id="pauseBars">
+          <div class="pause-bar"></div>
+          <div class="pause-bar" style="margin-left:2px;"></div>
+        </div>
+        <span id="miniTrackName">Delta · 2 Hz</span>
+      </div>
+    </div>
+    <span style="font-size:18px; opacity:0.4;">⚙️</span>
+  </div>
+
+  <script src="js/binauralBeatsEngine.js"></script>
+  <script src="js/sessionTracker.js"></script>
+  <script src="js/primerManager.js"></script>
+  <script>
+    const engine = window.binauralBeatsEngine;
+    const tracker = window.sessionTracker;
+    const primerManager = window.primerManager;
+
+    let selected = 'delta';
+    let activeModeId = null;
+    let isPlaying = false;
+
+    const brainStates = [
+      { id: 'delta', name: 'Delta', hz: '2 Hz', icon: '🌙' },
+      { id: 'theta', name: 'Theta', hz: '6 Hz', icon: '🧘' },
+      { id: 'schumann', name: 'Schumann', hz: '7.8 Hz', icon: '🌍' },
+      { id: 'alpha', name: 'Alpha', hz: '10 Hz', icon: '🌊' },
+      { id: 'beta_low', name: 'Beta', hz: '15 Hz', icon: '⚡' }
+    ];
+
+    const focusModes = [
+      { id: 'deep_work', name: 'Deep Work', shorthand: 'Alpha → Beta', time: '25 min', stateId: 'beta_low', icon: '💻', catImg: 'glowchi-cat.png', audioProfile: { bbVol: 0.7, bgType: 'mechanical', bgVol: 0.3 }, primerMeta: '🎧 Focus primer · 30s' },
+      { id: 'study', name: 'Study / Memory', shorthand: 'Theta → Alpha', time: '45 min', stateId: 'alpha', icon: '📚', catImg: 'cat-mascot-final.png', audioProfile: { bbVol: 0.5, bgType: 'ambient', bgVol: 0.5 }, primerMeta: '🎧 Memory anchor · 30s' },
+      { id: 'calm', name: 'Calm Nervous System', shorthand: 'Delta → Theta', time: '15 min', stateId: 'theta', icon: '🌿', catImg: 'glowchi-cat-heart.png', audioProfile: { bbVol: 0.4, bgType: 'rain', bgVol: 0.6 }, primerMeta: '🌙 Guided throughout' },
+      { id: 'sleep', name: 'Sleep Induction', shorthand: 'Theta → Delta', time: 'Inf.', stateId: 'delta', icon: '😴', catImg: 'glowchi-cat-sticker.png', audioProfile: { bbVol: 0.3, bgType: 'ocean', bgVol: 0.7 }, primerMeta: '🌙 Guided throughout' },
+      { id: 'creative', name: 'Creative Flow', shorthand: 'Alpha → Theta', time: '40 min', stateId: 'schumann', icon: '🎨', catImg: 'cat-transparent.png', audioProfile: { bbVol: 0.6, bgType: 'cosmic', bgVol: 0.4 }, primerMeta: '🎧 Creative priming · 35s' },
+      { id: 'reset', name: 'Emotional Reset', shorthand: 'Beta → Alpha', time: '10 min', stateId: 'alpha', icon: '✨', catImg: 'glowchi-cat-heart.png', audioProfile: { bbVol: 0.8, bgType: 'piano', bgVol: 0.2 }, primerMeta: '🎧 Regulation · 90s' }
+    ];
+
+    const brainRow = document.getElementById('brainRow');
+    const focusModesGrid = document.getElementById('focusModesGrid');
+    const waveform = document.getElementById('waveform');
+    const activeTitle = document.getElementById('activeTitle');
+    const miniTrackName = document.getElementById('miniTrackName');
+    const miniBtn = document.getElementById('miniBtn');
+    const pauseBars = document.getElementById('pauseBars');
+    const mascotImg = document.querySelector('.mini-cat');
+    const timeRemaining = document.getElementById('timeRemaining');
+    const timeElapsed = document.getElementById('timeElapsed');
+    const primerToggle = document.getElementById('primerToggle');
+    const primerInfoLine = document.getElementById('primerInfoLine');
+    const primerIdText = document.getElementById('primerIdText');
+    const ratingOverlay = document.getElementById('ratingOverlay');
+    const starContainer = document.getElementById('starContainer');
+
+    // Sync toggle with manager
+    primerToggle.checked = primerManager.isGuidedEnabled;
+    primerToggle.onchange = (e) => {
+      primerManager.setGuidedEnabled(e.target.checked);
+      if (!e.target.checked && activeModeId) {
+        // Log fatigue signal: turned OFF during or right after mode selection
+        tracker.logFatigueEvent(activeModeId, primerManager.activePrimer?.id);
+      }
+    };
+
+    window.updatePlayerWithPrimer = (primer) => {
+      const guidanceStyle = primer.tags?.guidance_style?.join(', ') || 'unknown';
+      const duration = primer.audio?.duration_sec || 0;
+      primerIdText.textContent = `${primer.primer_id} · ${guidanceStyle} · ${duration}s`;
+      primerInfoLine.classList.add('visible');
+    };
+
+    window.onPrimerComplete = (primer) => {
+      tracker.logPrimerCompleted(
+        activeModeId,
+        primer.primer_id,
+        primerManager.sessionId,
+        primer.audio.duration_sec
+      );
+    };
+
+    function showRating() {
+      ratingOverlay.classList.add('visible');
+    }
+
+    let selectedRating = 0;
+    
+    starContainer.onclick = (e) => {
+      const star = e.target.closest('.star');
+      if (star) {
+        selectedRating = parseInt(star.dataset.rating);
+        Array.from(starContainer.children).forEach((s, idx) => {
+          s.classList.toggle('active', idx < selectedRating);
+        });
+      }
+    };
+
+    document.getElementById('closeRating').onclick = () => {
+      if (selectedRating > 0 && primerManager.activePrimer) {
+        tracker.logSession({
+          event_type: 'primer_rating',
+          session_id: primerManager.sessionId,
+          focus_mode: activeModeId,
+          primer_id: primerManager.activePrimer.primer_id,
+          guidance_style: primerManager.activePrimer.tags?.guidance_style,
+          rating: selectedRating,
+          rating_scale: 5
+        });
+        console.log(`⭐ User rated primer ${primerManager.activePrimer.primer_id}: ${selectedRating}/5`);
+      }
+      
+      // Reset stars
+      Array.from(starContainer.children).forEach(s => s.classList.remove('active'));
+      selectedRating = 0;
+      ratingOverlay.classList.remove('visible');
+    };
+
+    let timerInterval = null;
+    let totalSeconds = 0;
+    let secondsRemaining = 0;
+
+    function startTimer(durationMinutes) {
+      if (timerInterval) clearInterval(timerInterval);
+      
+      if (durationMinutes === 'Inf.') {
+        totalSeconds = 3600; // Default to 1 hour for display if infinite
+        secondsRemaining = 3600;
+      } else {
+        totalSeconds = parseInt(durationMinutes) * 60;
+        secondsRemaining = totalSeconds;
+      }
+
+      updateTimerDisplay();
+      
+      timerInterval = setInterval(() => {
+        if (!isPlaying) return;
+        
+        secondsRemaining--;
+        if (secondsRemaining <= 0) {
+          clearInterval(timerInterval);
+          stopAudio();
+        }
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const elapsed = totalSeconds - secondsRemaining;
+      timeElapsed.textContent = formatTime(elapsed);
+      timeRemaining.textContent = `-${formatTime(secondsRemaining)}`;
+      
+      // Update scrubber
+      const progress = (elapsed / totalSeconds) * 100;
+      document.querySelector('.scrubber-progress').style.width = `${progress}%`;
+      document.querySelector('.scrubber-ball').style.left = `${progress}%`;
+    }
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function renderBrainStates() {
+      brainRow.innerHTML = '';
+      brainStates.forEach(s => {
+        const div = document.createElement('div');
+        div.className = 'pill-card ' + (s.id === selected ? 'pill-pressed' : 'pill-raised');
+        
+        // Target indicator logic
+        let targetTag = '';
+        if (activeModeId) {
+          const mode = focusModes.find(m => m.id === activeModeId);
+          if (mode && mode.stateId === s.id && selected !== s.id) {
+            targetTag = '<div class="target-tag">TARGET</div>';
+          }
+        }
+
+        div.innerHTML = `
+          ${targetTag}
+          <div class="tile-icon">${s.icon}</div>
+          <div class="tile-title">${s.name}</div>
+          <div class="tile-hz">${s.hz}</div>
+        `;
+        
+        div.addEventListener('mousedown', () => div.classList.add('clicking'));
+        div.addEventListener('mouseup', () => div.classList.remove('clicking'));
+        div.addEventListener('mouseleave', () => div.classList.remove('clicking'));
+        div.addEventListener('touchstart', () => div.classList.add('clicking'), {passive: true});
+        div.addEventListener('touchend', () => div.classList.remove('clicking'), {passive: true});
+
+        div.onclick = () => {
+          selectState(s.id);
+          activeModeId = null; 
+          renderFocusModes();
+        };
+        brainRow.appendChild(div);
+      });
+    }
+
+    function renderFocusModes() {
+      focusModesGrid.innerHTML = '';
+      focusModes.forEach(mode => {
+        const div = document.createElement('div');
+        div.className = `focus-mode-tile ${activeModeId === mode.id ? 'active' : ''}`;
+        div.innerHTML = `
+          <div class="mode-name">${mode.name}</div>
+          <div class="mode-primer-tag">🎧 ${mode.primerMeta}</div>
+          <div class="mode-meta">
+            <span class="mode-shorthand">${mode.shorthand}</span>
+            <span class="mode-time">🔒 ${mode.time}</span>
+          </div>
+        `;
+        
+        div.onclick = () => {
+          selectMode(mode.id);
+        };
+        focusModesGrid.appendChild(div);
+      });
+    }
+
+    function selectMode(modeId) {
+      // Generate new session ID for this session
+      primerManager.generateSessionId();
+      
+      activeModeId = modeId;
+      const mode = focusModes.find(m => m.id === modeId);
+      
+      console.log(`🎯 Mode selected: ${mode.name} (Session: ${primerManager.sessionId})`);
+      
+      // Log mode selection
+      tracker.logSession({
+        event_type: 'mode_selected',
+        session_id: primerManager.sessionId,
+        focus_mode: modeId,
+        mode_label: mode.name,
+        target_state_path: mode.shorthand
+      });
+      
+      // Update Cat Image with transition
+      mascotImg.classList.add('changing');
+      setTimeout(() => {
+        mascotImg.src = mode.catImg;
+        mascotImg.classList.remove('changing');
+      }, 400);
+
+      // Update Audio Profile (Mocked volume mix)
+      if (isPlaying) {
+        engine.setVolume(mode.audioProfile.bbVol);
+        console.log(`Setting background: ${mode.audioProfile.bgType} at ${mode.audioProfile.bgVol}`);
+      }
+
+      // Transition Logic: Primer first, then Binaural
+      primerManager.stop();
+      primerInfoLine.classList.remove('visible');
+      
+      primerManager.playPrimer(modeId, () => {
+        selectState(mode.stateId, mode.name);
+        startTimer(mode.time);
+        if (!isPlaying) startAudio();
+      });
+
+      renderFocusModes();
+    }
+
+    function selectState(stateId, displayName = null) {
+      selected = stateId;
+      const state = brainStates.find(s => s.id === stateId);
+      const title = displayName || state.name;
+      activeTitle.textContent = `${title} · ${state.hz}`;
+      miniTrackName.textContent = `${title} · ${state.hz}`;
+      renderBrainStates();
+      if (isPlaying) {
+        engine.start(selected, 0.3);
+      }
+    }
+
+    function renderWaveform() {
+      waveform.innerHTML = '';
+      for (let i = 0; i < 40; i++) {
+        const bar = document.createElement('div');
+        bar.className = `waveform-bar ${i < 15 ? 'active' : ''}`;
+        bar.style.height = `${20 + Math.random() * 80}%`;
+        waveform.appendChild(bar);
+      }
+    }
+
+    function startAudio() {
+      engine.start(selected, 0.3);
+      isPlaying = true;
+      pauseBars.style.display = 'flex';
+    }
+
+    function stopAudio() {
+      engine.stop();
+      primerManager.stop();
+      isPlaying = false;
+      pauseBars.style.display = 'none';
+      
+      if (activeModeId && primerManager.sessionId) {
+        const sessionDuration = totalSeconds - secondsRemaining;
+        const completionPercentage = ((sessionDuration / totalSeconds) * 100).toFixed(1);
+        
+        tracker.logSession({
+          event_type: 'session_complete',
+          session_id: primerManager.sessionId,
+          focus_mode: activeModeId,
+          primer_id: primerManager.activePrimer?.primer_id,
+          primer_used: primerManager.isGuidedEnabled && primerManager.activePrimer !== null,
+          session_duration_sec: sessionDuration,
+          planned_duration_sec: totalSeconds,
+          completion_percentage: completionPercentage,
+          brain_state: selected
+        });
+        
+        // Only show rating if guided primer was used
+        if (primerManager.isGuidedEnabled && primerManager.activePrimer) {
+          showRating();
+        }
+        
+        // Reset session
+        primerManager.resetSession();
+      }
+    }
+
+    // Hidden Data Export & Analytics (Keyboard Shortcuts)
+    window.addEventListener('keydown', (e) => {
+      // E = Export JSON
+      if (e.key === 'E' || e.key === 'e') {
+        tracker.exportData();
+      }
+      
+      // C = Export CSV
+      if (e.key === 'C' || e.key === 'c') {
+        tracker.exportCSV();
+      }
+      
+      // A = View Analytics
+      if (e.key === 'A' || e.key === 'a') {
+        tracker.getAnalytics();
+      }
+      
+      // D = Debug Info
+      if (e.key === 'D' || e.key === 'd') {
+        console.log('=== Guardian Debug Info ===');
+        console.log('Session ID:', primerManager.sessionId);
+        console.log('Active Mode:', activeModeId);
+        console.log('Active Primer:', primerManager.activePrimer);
+        console.log('Guided Enabled:', primerManager.isGuidedEnabled);
+        console.log('Primer History:', primerManager.primerHistory);
+        console.log('===========================');
+      }
+    });
+
+    miniBtn.onclick = () => isPlaying ? stopAudio() : startAudio();
+
+    renderBrainStates();
+    renderFocusModes();
+    renderWaveform();
+
+    // Headphones Toggle
+    document.getElementById('headphonesToggle').onclick = (e) => {
+      e.stopPropagation();
+      document.getElementById('headphonesCard').classList.toggle('expanded');
+    };
+  </script>
+</body>
+</html>
+</html>
+
+
+
+
+
+
+
+

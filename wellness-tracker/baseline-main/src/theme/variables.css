@@ -1,0 +1,168 @@
+/* Ionic Variables and Theming. For more info, please see:
+http://ionicframework.com/docs/theming/ */
+
+/** Ionic CSS Variables **/
+:root {
+    /** primary **/
+    --ion-color-primary: #3880ff;
+    --ion-color-primary-rgb: 56, 128, 255;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #3171e0;
+    --ion-color-primary-tint: #4c8dff;
+    --ion-background-color: white;
+    --ion-item-color: black;
+    --ion-item-background: white;
+
+    --ion-text-color: #121212;
+    --ion-text-color-rgb: 18, 18, 18;
+
+    --ion-color-light: #f4f5f8;
+    --ion-color-light-rgb: 244, 245, 248;
+    --ion-color-light-contrast: #000000;
+    --ion-color-light-contrast-rgb: 0, 0, 0;
+    --ion-color-light-shade: #d7d8da;
+    --ion-color-light-tint: #f5f6f9;
+
+    --background-color-inverted: black;
+
+    --card-background: rgb(235, 235, 235);
+    --dark-action: rgb(32, 32, 32);
+    --graph-label: black;
+    --border-lines: rgb(221, 221, 221);
+    --graph-primary-background: 214, 214, 214;
+    --graph-grid-color: #bdbdbd;
+
+    --circular-slider-label: #020856;
+    --circular-slider-knob: #020856;
+    --circular-slider-knob-highlight: #020856;
+    --circular-slider-track: #eeeeee;
+
+    --notification-green: #81c784;
+
+    --floater-shadow: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
+}
+
+.rmsc.multi {
+    width: 120px;
+    --rmsc-h: 30px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .flickity-page-dots .dot {
+        background: #cacaca !important;
+    }
+
+    body {
+        color: rgb(235, 235, 235);
+
+        --ion-text-color: #ededed;
+        --ion-text-color-rgb: 237, 237, 237;
+        --ion-item-color: #ededed;
+
+        --ion-color-light: #222428;
+        --ion-color-light-rgb: 34,36,40;
+        --ion-color-light-contrast: #ffffff;
+        --ion-color-light-contrast-rgb: 255,255,255;
+        --ion-color-light-shade: #1e2023;
+        --ion-color-light-tint: #383a3e;
+        --ion-item-border-color: #afaeb4;
+
+        --ion-background-color-rgb: 8, 8, 8;
+        --ion-background-color: rgb(8, 8, 8);
+        --ion-item-background: rgb(8, 8, 8);
+
+        --card-background: rgb(22, 22, 22);
+        --background-color-inverted: white;
+        --graph-label: #666666;
+        --dark-action: rgb(32, 32, 32);
+        --border-lines: rgb(91, 91, 91);
+        --graph-background: 90, 90, 90;
+        --graph-grid-color: #424242;
+
+        --circular-slider-label: #e0e0e0;
+        --circular-slider-knob: #212121;
+        --circular-slider-knob-highlight: #e0e0e0;
+        --circular-slider-track: #111111;
+
+        --notification-green: #4b934f;
+        --swiper-pagination-bullet-inactive-color: white;
+
+        --floater-shadow: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3))
+    }
+
+    .ios body {
+        --ion-color-step-100: #1a1a1a;
+        --ion-color-step-150: #373737;
+        --ion-color-step-350: #595959;
+    }
+
+    .md body {
+        --ion-color-step-100: #2a2a2a;
+        --ion-color-step-150: #363636;
+        --ion-color-step-350: #656565;
+    }
+
+    .rmsc.multi {
+        --rmsc-bg: rgb(16, 16, 16);
+        --rmsc-border: rgb(32, 32, 32);
+        --rmsc-hover: rgb(32, 32, 32);
+        --rmsc-selected: rgb(42, 42, 42);
+    }
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: normal;
+    src: url("./Lato-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: bold;
+    src: url("./Lato-Black.ttf");
+}
+
+* {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+ion-input {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+}
+
+textarea {
+    line-height: 21px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.svg-text-color {
+    fill: var(--graph-label);
+}
+
+.__floater__open {
+    transition: opacity 0.4s !important;
+}
+
+.br {
+    height: 19.5px;
+    width: 0px;
+}
+
+/* Search bar adjustments bc Ionic :/ */
+.searchbar-input.sc-ion-searchbar-ios {
+    -webkit-padding-start: 2.1rem !important;
+    padding-inline-start: 2.1rem !important;
+    padding-bottom: 8px;
+}

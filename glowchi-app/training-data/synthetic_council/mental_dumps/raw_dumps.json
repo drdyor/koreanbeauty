@@ -1,0 +1,306 @@
+[
+  {
+    "id": "dump_001",
+    "domain": "career",
+    "raw_text": "I don't know what I'm doing with my life. I'm 32, I've been in this job for 5 years and I just feel... stuck? Like I'm not growing anymore but I don't know if I should quit because the money is good and my parents keep saying I should be grateful but every morning I wake up and I just feel this heaviness like I'm wasting my potential but also what if I leave and I fail and then I'm worse off than I am now? I keep thinking about starting my own thing but I don't even know what that would be. I have ideas but they all seem stupid or already done or too risky. My friend started a business and failed and lost everything and I keep thinking about that. But also I see people on LinkedIn who seem to have it all figured out and I'm just... not there. I don't even know what 'there' means for me. Is this a midlife crisis? Am I depressed? Or is this just what being an adult feels like?",
+    "word_count": 180,
+    "timestamp": "2026-01-29T00:06:45.187413",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_002",
+    "domain": "career",
+    "raw_text": "My boss is driving me insane. Every meeting he takes credit for my ideas, and last week he presented my project to the executives like it was his own. I didn't say anything because I didn't want to seem petty but now I'm getting passed over for promotions and I don't know if I should confront him or go to HR or just quit. But the job market is terrible right now and I have a mortgage. I keep replaying scenarios in my head where I stand up to him but then I chicken out. I'm angry at myself for being a coward but also what if I say something and he makes my life worse? I've been having trouble sleeping and my partner says I've been snapping at them. I don't know what the right move is here.",
+    "word_count": 139,
+    "timestamp": "2026-01-29T00:06:45.187468",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_003",
+    "domain": "career",
+    "raw_text": "I got a job offer from a startup. It's a 30% pay cut but they say there's equity upside. The founder seems smart but also kind of intense? Like he works 80 hour weeks and expects everyone to. I'm currently at a big corp where I'm comfortable but bored. Part of me thinks this could be my big break but part of me thinks I'm being naive about startup equity and I'm going to work myself to death for nothing. My partner thinks I'm crazy for considering it. But I keep thinking about being 50 and wondering 'what if' and I don't want to have regrets. But also I don't want to be stupid. How do people make these decisions?",
+    "word_count": 120,
+    "timestamp": "2026-01-29T00:06:45.187490",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_004",
+    "domain": "relationships",
+    "raw_text": "I've been with my partner for 4 years and I love them but I'm not sure I'm IN love with them anymore. Is that a thing? Or am I just bored? We have a good life, we get along, we rarely fight, but there's just... no spark. I keep wondering if this is what long-term relationships are supposed to feel like or if I'm settling. I met someone at work who I have crazy chemistry with but I haven't done anything and I won't, but it made me realize what I'm missing. But also what if I leave and I never find someone who gets me the way my partner does? And we have a dog together and our families are close and it would be so messy. But then I think about doing this for another 40 years and I feel trapped. I don't know if I'm being realistic or if I'm being a coward or if I'm being selfish. I can't talk to anyone about this because all my friends are mutual friends.",
+    "word_count": 175,
+    "timestamp": "2026-01-29T00:06:45.187515",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_005",
+    "domain": "relationships",
+    "raw_text": "My mom keeps asking when I'm going to have kids and every time she brings it up I get this panic attack. I'm 34 and I've never been sure if I want them. Part of me thinks I would be a good mom and part of me thinks I would resent giving up my freedom. My partner wants them eventually but says they're okay waiting. But I feel this clock ticking and I don't know if it's a biological clock or just societal pressure. I see my friends with kids and they seem exhausted but also fulfilled? Or are they just saying that? I can't tell if I'm being smart by waiting or if I'm going to wake up at 45 and regret not doing it. And what if I can't even have them then? I should probably freeze my eggs but that's expensive and also feels like admitting I'm not ready and what if I never am?",
+    "word_count": 158,
+    "timestamp": "2026-01-29T00:06:45.187536",
+    "emotional_tone": "conflicted"
+  },
+  {
+    "id": "dump_006",
+    "domain": "relationships",
+    "raw_text": "I think my best friend is toxic but I'm not sure if I'm just being sensitive. Every time we hang out she finds a way to make a dig at me - my weight, my job, my relationship. But then she'll be super supportive the next day and I feel crazy for being upset. I've known her since college and she's been there for me through hard times but lately I feel worse after seeing her than before. I tried talking to her about it once and she said I was being dramatic and she was 'just joking.' Now I don't know if I should end the friendship or if I'm overreacting. But I also don't want to keep feeling bad about myself. Is this what gaslighting is? Or am I the problem?",
+    "word_count": 133,
+    "timestamp": "2026-01-29T00:06:45.187555",
+    "emotional_tone": "overwhelmed"
+  },
+  {
+    "id": "dump_007",
+    "domain": "finance",
+    "raw_text": "I have $45,000 in credit card debt and I feel like I'm drowning. I make good money ($120k) but I have no idea where it goes. I keep telling myself I'll start budgeting but then I get anxious about looking at my accounts and I avoid it for another month. I buy things to feel better - clothes, gadgets, expensive dinners - and then I feel worse. I've tried to stop but it's like I'm on autopilot. My partner doesn't know the full extent of it and I'm terrified to tell them. I keep thinking about debt consolidation or bankruptcy but I don't understand any of it and I'm scared of making it worse. I should see a financial advisor but I'm embarrassed. How do people get out of this?",
+    "word_count": 130,
+    "timestamp": "2026-01-29T00:06:45.187575",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_008",
+    "domain": "finance",
+    "raw_text": "I inherited $200,000 from my grandmother and I have no idea what to do with it. Everyone has opinions - my uncle says buy real estate, my friend says crypto, my coworker says index funds. I've been paralyzed for 6 months just leaving it in a savings account losing value to inflation. Part of me wants to use some of it to travel and honor my grandmother's memory but part of me thinks that's wasteful. I keep reading about investing but it all seems so complicated and what if I pick wrong and lose it all? She worked her whole life for this money and I feel this huge responsibility not to mess it up. But I'm also messing up by doing nothing. I need help but I don't know who to trust.",
+    "word_count": 133,
+    "timestamp": "2026-01-29T00:06:45.187595",
+    "emotional_tone": "overwhelmed"
+  },
+  {
+    "id": "dump_009",
+    "domain": "finance",
+    "raw_text": "I'm 29 and I have no retirement savings. Zero. I know I should start but every time I look at my 401k options my eyes glaze over. Target date funds? Small cap? International emerging markets? I don't know what any of it means and I'm scared of picking the wrong thing. My company matches 4% but I'm not even contributing enough to get the match because I don't understand it. I feel like I need a finance degree just to save for retirement. Everyone says 'just start' but start where? With what? How much? I feel so behind already and it's only getting worse. Should I hire someone? Can I even afford that?",
+    "word_count": 113,
+    "timestamp": "2026-01-29T00:06:45.187613",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_010",
+    "domain": "health",
+    "raw_text": "I think I have ADHD but I'm terrified of getting diagnosed. What if I'm just lazy? What if I'm making excuses? I've always struggled with focus and organization but I managed to get through school and I've been okay at jobs. But lately it's getting worse - I can't finish projects, I forget appointments, I have 47 browser tabs open and I can't close any of them because what if I need that one thing? I took an online quiz and it said I probably have it but those aren't real diagnoses. I should see a doctor but what if they say I'm fine and I'm just a failure? And if I do have it, do I take medication? I don't want to be dependent on pills. But also I can't keep living like this. I'm exhausted all the time from just... trying to function.",
+    "word_count": 145,
+    "timestamp": "2026-01-29T00:06:45.187634",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_011",
+    "domain": "health",
+    "raw_text": "I've gained 40 pounds in the last two years and I hate how I look but I can't seem to stick to any diet or exercise plan. I'll be good for a week and then I'll have a bad day and eat an entire pizza and then I feel terrible and give up. I've tried keto, intermittent fasting, counting calories, everything. I know what I should do but I can't make myself do it consistently. I think about food all the time. I'm either restricting or binging, there's no middle ground. I should probably see a therapist but I don't know if this is 'bad enough' for therapy. Maybe I'm just undisciplined. But also I hate myself every time I look in the mirror and that's not normal, right?",
+    "word_count": 129,
+    "timestamp": "2026-01-29T00:06:45.187652",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_012",
+    "domain": "health",
+    "raw_text": "I can't sleep. I lie in bed for hours with my brain running through every embarrassing thing I've ever done and every thing I need to do tomorrow and every thing that could go wrong. I've tried melatonin, magnesium, no screens before bed, meditation apps, everything. Sometimes I'll fall asleep at 4am and have to be up at 7 and I'm a zombie all day. It's affecting my work and my relationships. I'm irritable all the time. I've thought about sleeping pills but I'm scared of getting addicted. And I don't want to be one of those people who needs pills to function. But also I can't keep living on 3 hours of sleep. What if there's something seriously wrong with me?",
+    "word_count": 122,
+    "timestamp": "2026-01-29T00:06:45.187669",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_013",
+    "domain": "ethics",
+    "raw_text": "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few hundred dollars a month - but it's definitely fraud. I don't know if I should report it or mind my own business. If I report it and they get fired, I'll feel terrible. But if I don't report it and the company finds out I knew, I could get in trouble too. Also what if they have a good reason? What if they're struggling financially? I don't want to be a snitch but also I don't want to be complicit. I've been avoiding them at work because I feel awkward. This is keeping me up at night. What would you do?",
+    "word_count": 121,
+    "timestamp": "2026-01-29T00:06:45.187687",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_014",
+    "domain": "ethics",
+    "raw_text": "My company is asking me to work on a project that I think might be harmful. We're building AI tools for a government agency and I have concerns about how they might be used. I don't have proof of anything illegal, just a bad feeling based on some things I've overheard. If I refuse to work on it, I might get fired. If I speak up, I might get blacklisted in the industry. But if I stay quiet and something bad happens, I'll have been part of it. I keep going back and forth. Am I being paranoid? Or am I being complicit? How do you know when to blow the whistle?",
+    "word_count": 112,
+    "timestamp": "2026-01-29T00:06:45.187703",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_015",
+    "domain": "ethics",
+    "raw_text": "I matched with someone on a dating app who I later realized is still married. They say they're separated and the divorce is in progress but I don't know if I believe them. Part of me thinks I should tell the spouse because I would want to know. But part of me thinks it's not my business and I don't know their situation. Also what if I'm wrong about who they are? What if the spouse already knows? I unmatched with them but I keep thinking about it. I have enough information to find the spouse on social media. Should I reach out? Or is that crazy? I feel like I'm in a movie and I don't know the rules.",
+    "word_count": 120,
+    "timestamp": "2026-01-29T00:06:45.187720",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_016",
+    "domain": "creative",
+    "raw_text": "I want to write a novel but I'm terrified of being bad at it. I've started three different books and abandoned them all because I read them back and they're terrible. I know first drafts are supposed to be bad but what if I'm just not talented? What if I spend years on this and it's still garbage? I see people on Twitter who've written 10 books and I haven't finished one. I'm 35. Is it too late? Should I just accept that I'm not a creative person? But then I feel this ache when I think about never trying. I don't know if that's a sign I should keep going or if I'm just romanticizing something I'll never be good at.",
+    "word_count": 122,
+    "timestamp": "2026-01-29T00:06:45.187739",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_017",
+    "domain": "creative",
+    "raw_text": "What if nothing matters? Like, really. I've been reading about existentialism and nihilism and I can't shake this feeling that everything is pointless. We work jobs we hate to buy things we don't need and then we die. Even if I accomplish something, eventually the sun will explode and it'll all be forgotten. So why do anything? Why care about anything? I know this is probably depression talking but also... is it? What if I'm just seeing clearly for the first time? I used to believe in things - progress, meaning, purpose - and now I don't and I don't know how to live without believing in something. Is this a phase? Do people come back from this?",
+    "word_count": 118,
+    "timestamp": "2026-01-29T00:06:45.187758",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_018",
+    "domain": "creative",
+    "raw_text": "I'm scared of dying. Not in an abstract way - like, I have panic attacks thinking about ceasing to exist. The permanence of it. The nothingness. I can't breathe when I think about it too hard. I'm an atheist so I don't have the comfort of an afterlife. I know this is irrational because I won't experience being dead, but the anticipation is unbearable. I've tried therapy and medication and meditation and nothing helps. It comes in waves - sometimes I'm fine for months and then it hits me and I'm paralyzed for days. I feel like I'm broken. Other people seem to handle this. Why can't I? What if this is just my life now?",
+    "word_count": 116,
+    "timestamp": "2026-01-29T00:06:45.187776",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_019",
+    "domain": "creative",
+    "raw_text": "I'm scared of dying. Not in an abstract way - like, I have panic attacks thinking about ceasing to exist. The permanence of it. The nothingness. I can't breathe when I think about it too hard. I'm an atheist so I don't have the comfort of an afterlife. I know this is irrational because I won't experience being dead, but the anticipation is unbearable. I've tried therapy and medication and meditation and nothing helps. It comes in waves - sometimes I'm fine for months and then it hits me and I'm paralyzed for days. I feel like I'm broken. Other people seem to handle this. Why can't I? What if this is just my life now?",
+    "word_count": 116,
+    "timestamp": "2026-01-29T00:06:45.188187",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_020",
+    "domain": "health",
+    "raw_text": "I think I have ADHD but I'm terrified of getting diagnosed. What if I'm just lazy? What if I'm making excuses? I've always struggled with focus and organization but I managed to get through school and I've been okay at jobs. But lately it's getting worse - I can't finish projects, I forget appointments, I have 47 browser tabs open and I can't close any of them because what if I need that one thing? I took an online quiz and it said I probably have it but those aren't real diagnoses. I should see a doctor but what if they say I'm fine and I'm just a failure? And if I do have it, do I take medication? I don't want to be dependent on pills. But also I can't keep living like this. I'm exhausted all the time from just... trying to function.",
+    "word_count": 145,
+    "timestamp": "2026-01-29T00:06:45.188230",
+    "emotional_tone": "frustrated"
+  },
+  {
+    "id": "dump_021",
+    "domain": "creative",
+    "raw_text": "I want to write a novel but I'm terrified of being bad at it. I've started three different books and abandoned them all because I read them back and they're terrible. I know first drafts are supposed to be bad but what if I'm just not talented? What if I spend years on this and it's still garbage? I see people on Twitter who've written 10 books and I haven't finished one. I'm 35. Is it too late? Should I just accept that I'm not a creative person? But then I feel this ache when I think about never trying. I don't know if that's a sign I should keep going or if I'm just romanticizing something I'll never be good at.",
+    "word_count": 122,
+    "timestamp": "2026-01-29T00:06:45.188261",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_022",
+    "domain": "health",
+    "raw_text": "I've gained 40 pounds in the last two years and I hate how I look but I can't seem to stick to any diet or exercise plan. I'll be good for a week and then I'll have a bad day and eat an entire pizza and then I feel terrible and give up. I've tried keto, intermittent fasting, counting calories, everything. I know what I should do but I can't make myself do it consistently. I think about food all the time. I'm either restricting or binging, there's no middle ground. I should probably see a therapist but I don't know if this is 'bad enough' for therapy. Maybe I'm just undisciplined. But also I hate myself every time I look in the mirror and that's not normal, right?",
+    "word_count": 129,
+    "timestamp": "2026-01-29T00:06:45.188289",
+    "emotional_tone": "conflicted"
+  },
+  {
+    "id": "dump_023",
+    "domain": "ethics",
+    "raw_text": "I matched with someone on a dating app who I later realized is still married. They say they're separated and the divorce is in progress but I don't know if I believe them. Part of me thinks I should tell the spouse because I would want to know. But part of me thinks it's not my business and I don't know their situation. Also what if I'm wrong about who they are? What if the spouse already knows? I unmatched with them but I keep thinking about it. I have enough information to find the spouse on social media. Should I reach out? Or is that crazy? I feel like I'm in a movie and I don't know the rules.",
+    "word_count": 120,
+    "timestamp": "2026-01-29T00:06:45.188315",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_024",
+    "domain": "relationships",
+    "raw_text": "I've been with my partner for 3 years and I love them but I'm not sure I'm IN love with them anymore. Is that a thing? Or am I just bored? We have a good life, we get along, we rarely fight, but there's just... no spark. I keep wondering if this is what long-term relationships are supposed to feel like or if I'm settling. I met someone at work who I have crazy chemistry with but I haven't done anything and I won't, but it made me realize what I'm missing. But also what if I leave and I never find someone who gets me the way my partner does? And we have a dog together and our families are close and it would be so messy. But then I think about doing this for another 40 years and I feel trapped. I don't know if I'm being realistic or if I'm being a coward or if I'm being selfish. I can't talk to anyone about this because all my friends are mutual friends.",
+    "word_count": 175,
+    "timestamp": "2026-01-29T00:06:45.188348",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_025",
+    "domain": "ethics",
+    "raw_text": "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few hundred dollars a month - but it's definitely fraud. I don't know if I should report it or mind my own business. If I report it and they get fired, I'll feel terrible. But if I don't report it and the company finds out I knew, I could get in trouble too. Also what if they have a good reason? What if they're struggling financially? I don't want to be a snitch but also I don't want to be complicit. I've been avoiding them at work because I feel awkward. This is keeping me up at night. What would you do?",
+    "word_count": 121,
+    "timestamp": "2026-01-29T00:06:45.188372",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_026",
+    "domain": "creative",
+    "raw_text": "What if nothing matters? Like, really. I've been reading about existentialism and nihilism and I can't shake this feeling that everything is pointless. We work jobs we hate to buy things we don't need and then we die. Even if I accomplish something, eventually the sun will explode and it'll all be forgotten. So why do anything? Why care about anything? I know this is probably depression talking but also... is it? What if I'm just seeing clearly for the first time? I used to believe in things - progress, meaning, purpose - and now I don't and I don't know how to live without believing in something. Is this a phase? Do people come back from this?",
+    "word_count": 118,
+    "timestamp": "2026-01-29T00:06:45.188397",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_027",
+    "domain": "career",
+    "raw_text": "I don't know what I'm doing with my life. I'm 30, I've been in this job for 5 years and I just feel... stuck? Like I'm not growing anymore but I don't know if I should quit because the money is good and my parents keep saying I should be grateful but every morning I wake up and I just feel this heaviness like I'm wasting my potential but also what if I leave and I fail and then I'm worse off than I am now? I keep thinking about starting my own thing but I don't even know what that would be. I have ideas but they all seem stupid or already done or too risky. My friend started a business and failed and lost everything and I keep thinking about that. But also I see people on LinkedIn who seem to have it all figured out and I'm just... not there. I don't even know what 'there' means for me. Is this a midlife crisis? Am I depressed? Or is this just what being an adult feels like?",
+    "word_count": 180,
+    "timestamp": "2026-01-29T00:06:45.188436",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_028",
+    "domain": "relationships",
+    "raw_text": "My mom keeps asking when I'm going to have kids and every time she brings it up I get this panic attack. I'm 34 and I've never been sure if I want them. Part of me thinks I would be a good mom and part of me thinks I would resent giving up my freedom. My partner wants them eventually but says they're okay waiting. But I feel this clock ticking and I don't know if it's a biological clock or just societal pressure. I see my friends with kids and they seem exhausted but also fulfilled? Or are they just saying that? I can't tell if I'm being smart by waiting or if I'm going to wake up at 45 and regret not doing it. And what if I can't even have them then? I should probably freeze my eggs but that's expensive and also feels like admitting I'm not ready and what if I never am?",
+    "word_count": 158,
+    "timestamp": "2026-01-29T00:06:45.188466",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_029",
+    "domain": "ethics",
+    "raw_text": "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few hundred dollars a month - but it's definitely fraud. I don't know if I should report it or mind my own business. If I report it and they get fired, I'll feel terrible. But if I don't report it and the company finds out I knew, I could get in trouble too. Also what if they have a good reason? What if they're struggling financially? I don't want to be a snitch but also I don't want to be complicit. I've been avoiding them at work because I feel awkward. This is keeping me up at night. What would you do?",
+    "word_count": 121,
+    "timestamp": "2026-01-29T00:06:45.188493",
+    "emotional_tone": "anxious"
+  },
+  {
+    "id": "dump_030",
+    "domain": "ethics",
+    "raw_text": "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few hundred dollars a month - but it's definitely fraud. I don't know if I should report it or mind my own business. If I report it and they get fired, I'll feel terrible. But if I don't report it and the company finds out I knew, I could get in trouble too. Also what if they have a good reason? What if they're struggling financially? I don't want to be a snitch but also I don't want to be complicit. I've been avoiding them at work because I feel awkward. This is keeping me up at night. What would you do?",
+    "word_count": 121,
+    "timestamp": "2026-01-29T00:06:45.188517",
+    "emotional_tone": "overwhelmed"
+  },
+  {
+    "id": "dump_031",
+    "domain": "ethics",
+    "raw_text": "I matched with someone on a dating app who I later realized is still married. They say they're separated and the divorce is in progress but I don't know if I believe them. Part of me thinks I should tell the spouse because I would want to know. But part of me thinks it's not my business and I don't know their situation. Also what if I'm wrong about who they are? What if the spouse already knows? I unmatched with them but I keep thinking about it. I have enough information to find the spouse on social media. Should I reach out? Or is that crazy? I feel like I'm in a movie and I don't know the rules.",
+    "word_count": 120,
+    "timestamp": "2026-01-29T00:06:45.188541",
+    "emotional_tone": "conflicted"
+  },
+  {
+    "id": "dump_032",
+    "domain": "creative",
+    "raw_text": "I'm scared of dying. Not in an abstract way - like, I have panic attacks thinking about ceasing to exist. The permanence of it. The nothingness. I can't breathe when I think about it too hard. I'm an atheist so I don't have the comfort of an afterlife. I know this is irrational because I won't experience being dead, but the anticipation is unbearable. I've tried therapy and medication and meditation and nothing helps. It comes in waves - sometimes I'm fine for months and then it hits me and I'm paralyzed for days. I feel like I'm broken. Other people seem to handle this. Why can't I? What if this is just my life now?",
+    "word_count": 116,
+    "timestamp": "2026-01-29T00:06:45.188558",
+    "emotional_tone": "overwhelmed"
+  },
+  {
+    "id": "dump_033",
+    "domain": "health",
+    "raw_text": "I think I have ADHD but I'm terrified of getting diagnosed. What if I'm just lazy? What if I'm making excuses? I've always struggled with focus and organization but I managed to get through school and I've been okay at jobs. But lately it's getting worse - I can't finish projects, I forget appointments, I have 47 browser tabs open and I can't close any of them because what if I need that one thing? I took an online quiz and it said I probably have it but those aren't real diagnoses. I should see a doctor but what if they say I'm fine and I'm just a failure? And if I do have it, do I take medication? I don't want to be dependent on pills. But also I can't keep living like this. I'm exhausted all the time from just... trying to function.",
+    "word_count": 145,
+    "timestamp": "2026-01-29T00:06:45.188575",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_034",
+    "domain": "finance",
+    "raw_text": "I'm 29 and I have no retirement savings. Zero. I know I should start but every time I look at my 401k options my eyes glaze over. Target date funds? Small cap? International emerging markets? I don't know what any of it means and I'm scared of picking the wrong thing. My company matches 4% but I'm not even contributing enough to get the match because I don't understand it. I feel like I need a finance degree just to save for retirement. Everyone says 'just start' but start where? With what? How much? I feel so behind already and it's only getting worse. Should I hire someone? Can I even afford that?",
+    "word_count": 113,
+    "timestamp": "2026-01-29T00:06:45.188591",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_035",
+    "domain": "career",
+    "raw_text": "I don't know what I'm doing with my life. I'm 38, I've been in this job for 5 years and I just feel... stuck? Like I'm not growing anymore but I don't know if I should quit because the money is good and my parents keep saying I should be grateful but every morning I wake up and I just feel this heaviness like I'm wasting my potential but also what if I leave and I fail and then I'm worse off than I am now? I keep thinking about starting my own thing but I don't even know what that would be. I have ideas but they all seem stupid or already done or too risky. My friend started a business and failed and lost everything and I keep thinking about that. But also I see people on LinkedIn who seem to have it all figured out and I'm just... not there. I don't even know what 'there' means for me. Is this a midlife crisis? Am I depressed? Or is this just what being an adult feels like?",
+    "word_count": 180,
+    "timestamp": "2026-01-29T00:06:45.188610",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_036",
+    "domain": "ethics",
+    "raw_text": "My company is asking me to work on a project that I think might be harmful. We're building AI tools for a government agency and I have concerns about how they might be used. I don't have proof of anything illegal, just a bad feeling based on some things I've overheard. If I refuse to work on it, I might get fired. If I speak up, I might get blacklisted in the industry. But if I stay quiet and something bad happens, I'll have been part of it. I keep going back and forth. Am I being paranoid? Or am I being complicit? How do you know when to blow the whistle?",
+    "word_count": 112,
+    "timestamp": "2026-01-29T00:06:45.188625",
+    "emotional_tone": "confused"
+  },
+  {
+    "id": "dump_037",
+    "domain": "ethics",
+    "raw_text": "My company is asking me to work on a project that I think might be harmful. We're building AI tools for a government agency and I have concerns about how they might be used. I don't have proof of anything illegal, just a bad feeling based on some things I've overheard. If I refuse to work on it, I might get fired. If I speak up, I might get blacklisted in the industry. But if I stay quiet and something bad happens, I'll have been part of it. I keep going back and forth. Am I being paranoid? Or am I being complicit? How do you know when to blow the whistle?",
+    "word_count": 112,
+    "timestamp": "2026-01-29T00:06:45.188639",
+    "emotional_tone": "overwhelmed"
+  },
+  {
+    "id": "dump_038",
+    "domain": "ethics",
+    "raw_text": "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few hundred dollars a month - but it's definitely fraud. I don't know if I should report it or mind my own business. If I report it and they get fired, I'll feel terrible. But if I don't report it and the company finds out I knew, I could get in trouble too. Also what if they have a good reason? What if they're struggling financially? I don't want to be a snitch but also I don't want to be complicit. I've been avoiding them at work because I feel awkward. This is keeping me up at night. What would you do?",
+    "word_count": 121,
+    "timestamp": "2026-01-29T00:06:45.188654",
+    "emotional_tone": "frustrated"
+  }
+]

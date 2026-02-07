@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Body Boundary - Focus & Cycle Tracking</title>
+  <style>
+    /* Import existing styles from test-binaural-beats.html */
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --text: #4c1d95; 
+      --muted: #8b839a;
+      --accent: #a591ff;
+      --bone-cream: #fff7ed;
+      --paper-lavender: #e9d5ff;
+      --paper-pink: #fce7f3;
+      --slab-bg: rgba(243, 232, 255, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      background: 
+        radial-gradient(circle at 15% 20%, #fbcfe8 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, #d8b4fe 0%, transparent 50%),
+        radial-gradient(circle at 50% 85%, #fdf2f8 0%, transparent 60%),
+        linear-gradient(180deg, #fce7f3 0%, #e9d5ff 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .paper-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      mix-blend-mode: overlay;
+      opacity: 0.15;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .page {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 25px 16px 150px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .acrylic-slab {
+      background: var(--slab-bg);
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border-radius: 24px;
+      border-top: 1.2px solid rgba(255, 255, 255, 0.7);
+      border-left: 1.2px solid rgba(255, 255, 255, 0.7);
+      border-bottom: 1.5px solid rgba(76, 29, 149, 0.06);
+      border-right: 1.5px solid rgba(76, 29, 149, 0.06);
+      box-shadow: 0 15px 35px -8px rgba(76, 29, 149, 0.08);
+      margin-bottom: 15px;
+      padding: 15px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      color: #a591ff;
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(76, 29, 149, 0.3);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: white;
+      padding: 28px;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px rgba(76, 29, 149, 0.2);
+      width: 90%;
+      max-width: 380px;
+    }
+
+    .modal-card h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .modal-card p {
+      margin: 0 0 20px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(76, 29, 149, 0.15);
+      border-radius: 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.6);
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: white;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 6px 16px rgba(165, 145, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #7c3aed;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(165, 145, 255, 0.35);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0px);
+    }
+
+    /* Range Slider */
+    .range-group {
+      margin-bottom: 18px;
+    }
+
+    .range-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .range-value {
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, rgba(165, 145, 255, 0.2), rgba(165, 145, 255, 0.4));
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(165, 145, 255, 0.4);
+      transition: transform 0.2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 3px 8px rgba(165, 145, 255, 0.4);
+    }
+
+    /* Checkbox Symptoms */
+    .symptoms-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .symptom-checkbox {
+      display: none;
+    }
+
+    .symptom-label {
+      padding: 8px 14px;
+      background: rgba(165, 145, 255, 0.08);
+      border: 1.5px solid rgba(165, 145, 255, 0.15);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .symptom-checkbox:checked + .symptom-label {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 15px;
+      width: min(420px, calc(100% - 32px));
+      height: 60px;
+      background: rgba(76, 29, 149, 0.1);
+      backdrop-filter: blur(60px);
+      -webkit-backdrop-filter: blur(60px);
+      border-radius: 30px;
+      border: 1.2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 10px;
+    }
+
+    .nav-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      background: none;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 20px;
+      color: var(--text);
+      opacity: 0.5;
+    }
+
+    .nav-btn.active {
+      background: rgba(165, 145, 255, 0.15);
+      opacity: 1;
+    }
+
+    .nav-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    /* Screen visibility */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* Info Cards */
+    .info-card {
+      background: white;
+      padding: 18px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(76, 29, 149, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 8px 0;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Insight Cards */
+    .insight-card {
+      background: linear-gradient(135deg, rgba(251, 207, 232, 0.3), rgba(233, 213, 255, 0.3));
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(165, 145, 255, 0.2);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .insight-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .insight-text {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .no-data-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .page { padding-bottom: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="paper-grain"></div>
+
+  <div class="page">
+    <!-- Today Screen -->
+    <div id="todayScreen" class="screen active">
+      <div class="header">
+        <span style="font-size:20px">🌸</span>
+        <h1>Today</h1>
+      </div>
+
+      <div class="acrylic-slab">
+        <div class="card-header">
+          <span class="card-title">Cycle Day</span>
+        </div>
+        <div class="card-value" id="cycleDisplay">—</div>
+        <div class="card-subtitle" id="phaseDisplay">Set up your cycle</div>
+      </div>
+
+      <div class="acrylic-slab">
+        <div class="card-header">
+          <span class="card-title">Today's Log</span>
+        </div>
+        <div id="todayLogContent">
+          <p style="font-size:13px; color:var(--muted); margin:0;">No log yet today</p>
+          <button class="btn-primary" onclick="showDailyLog()" style="margin-top:12px;">Log Today</button>
+        </div>
+      </div>
+
+      <div class="acrylic-slab">
+        <div class="card-header">
+          <span class="card-title">Focus Sessions</span>
+        </div>
+        <div class="card-value" id="sessionsToday">0</div>
+        <div class="card-subtitle">Completed today</div>
+      </div>
+    </div>
+
+    <!-- Insights Screen -->
+    <div id="insightsScreen" class="screen">
+      <div class="header">
+        <span style="font-size:20px">📊</span>
+        <h1>Insights</h1>
+      </div>
+
+      <div id="insightsContainer">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+
+    <!-- Focus Screen (Link to original app) -->
+    <div id="focusScreen" class="screen">
+      <div class="header">
+        <span style="font-size:20px">🎧</span>
+        <h1>Focus</h1>
+      </div>
+
+      <div class="acrylic-slab">
+        <p style="font-size:14px; margin:0 0 15px;">Launch binaural beats focus session</p>
+        <button class="btn-primary" onclick="window.location.href='test-binaural-beats.html'">
+          Start Focus Session
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup Modal -->
+  <div class="modal-overlay" id="setupModal">
+    <div class="modal-card">
+      <h2>Welcome to Body Boundary</h2>
+      <p>Track how your cycle affects your focus and energy</p>
+      
+      <div class="form-group">
+        <label class="form-label">When did your last period start?</label>
+        <input type="date" id="periodStartInput" class="form-input" max="">
+      </div>
+
+      <button class="btn-primary" onclick="saveSetup()">Continue</button>
+    </div>
+  </div>
+
+  <!-- Daily Log Modal -->
+  <div class="modal-overlay" id="dailyLogModal">
+    <div class="modal-card">
+      <h2>Quick Check-in</h2>
+      <p>How are you feeling today?</p>
+
+      <div class="range-group">
+        <div class="range-label">
+          <span>Sleep last night</span>
+          <span class="range-value"><span id="sleepValue">7</span> hrs</span>
+        </div>
+        <input type="range" id="sleepInput" min="3" max="10" step="0.5" value="7" oninput="updateValue('sleep', this.value)">
+      </div>
+
+      <div class="range-group">
+        <div class="range-label">
+          <span>Energy level</span>
+          <span class="range-value" id="energyValue">3</span>
+        </div>
+        <input type="range" id="energyInput" min="1" max="5" value="3" oninput="updateValue('energy', this.value)">
+      </div>
+
+      <div class="range-group">
+        <div class="range-label">
+          <span>Focus quality</span>
+          <span class="range-value" id="focusValue">3</span>
+        </div>
+        <input type="range" id="focusInput" min="1" max="5" value="3" oninput="updateValue('focus', this.value)">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Symptoms today?</label>
+        <div class="symptoms-group">
+          <input type="checkbox" id="brainFog" class="symptom-checkbox">
+          <label for="brainFog" class="symptom-label">Brain Fog</label>
+
+          <input type="checkbox" id="cramps" class="symptom-checkbox">
+          <label for="cramps" class="symptom-label">Cramps</label>
+
+          <input type="checkbox" id="hotFlash" class="symptom-checkbox">
+          <label for="hotFlash" class="symptom-label">Hot Flashes</label>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="saveDailyLog()">Save</button>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <button class="nav-btn active" onclick="switchScreen('today')">
+      <span>🌸</span>
+      <span class="nav-label">Today</span>
+    </button>
+    <button class="nav-btn" onclick="switchScreen('focus')">
+      <span>🎧</span>
+      <span class="nav-label">Focus</span>
+    </button>
+    <button class="nav-btn" onclick="switchScreen('insights')">
+      <span>📊</span>
+      <span class="nav-label">Insights</span>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/sessionTracker.js"></script>
+  <script src="js/cycleTracker.js"></script>
+  <script>
+    const tracker = window.cycleTracker;
+    
+    // Set max date to today for period start
+    document.getElementById('periodStartInput').max = new Date().toISOString().split('T')[0];
+
+    // Initialize app
+    async function init() {
+      const cycleInfo = await tracker.getCurrentCycleInfo();
+      
+      if (!cycleInfo.hasSetup) {
+        document.getElementById('setupModal').classList.add('visible');
+      } else {
+        await updateToday();
+      }
+
+      // Check if need to show daily log
+      const hasLogged = await tracker.hasLoggedToday();
+      if (!hasLogged && cycleInfo.hasSetup) {
+        setTimeout(() => showDailyLog(), 1000);
+      }
+    }
+
+    async function saveSetup() {
+      const periodStart = document.getElementById('periodStartInput').value;
+      if (!periodStart) {
+        alert('Please select a date');
+        return;
+      }
+      
+      await tracker.savePeriodStart(periodStart);
+      document.getElementById('setupModal').classList.remove('visible');
+      await updateToday();
+      showDailyLog();
+    }
+
+    function showDailyLog() {
+      document.getElementById('dailyLogModal').classList.add('visible');
+    }
+
+    function updateValue(type, value) {
+      document.getElementById(type + 'Value').textContent = value;
+    }
+
+    async function saveDailyLog() {
+      const logData = {
+        sleep: document.getElementById('sleepInput').value,
+        energy: document.getElementById('energyInput').value,
+        focusQuality: document.getElementById('focusInput').value,
+        symptoms: {
+          brainFog: document.getElementById('brainFog').checked,
+          cramps: document.getElementById('cramps').checked,
+          hotFlash: document.getElementById('hotFlash').checked
+        }
+      };
+
+      await tracker.saveDailyLog(logData);
+      document.getElementById('dailyLogModal').classList.remove('visible');
+      await updateToday();
+      await updateInsights();
+    }
+
+    async function updateToday() {
+      const cycleInfo = await tracker.getCurrentCycleInfo();
+      const todayLog = await tracker.getTodayLog();
+      const sessions = await window.sessionTracker.getAllSessions();
+      
+      // Update cycle display
+      if (cycleInfo.hasSetup) {
+        document.getElementById('cycleDisplay').textContent = `Day ${cycleInfo.cycleDay}`;
+        document.getElementById('phaseDisplay').textContent = `${cycleInfo.phaseEmoji} ${cycleInfo.phaseLabel} phase`;
+      }
+
+      // Update today's log
+      if (todayLog) {
+        const symptomsText = Object.keys(todayLog.symptoms)
+          .filter(k => todayLog.symptoms[k])
+          .map(k => k.replace(/([A-Z])/g, ' $1').trim())
+          .join(', ') || 'No symptoms';
+        
+        document.getElementById('todayLogContent').innerHTML = `
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:12px; font-weight:600;">Sleep</span>
+            <span style="font-size:12px; color:var(--accent);">${todayLog.sleep} hrs</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:12px; font-weight:600;">Energy</span>
+            <span style="font-size:12px; color:var(--accent);">${todayLog.energy}/5</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:12px; font-weight:600;">Symptoms</span>
+            <span style="font-size:11px; color:var(--muted);">${symptomsText}</span>
+          </div>
+        `;
+      }
+
+      // Update sessions count
+      const today = new Date().toISOString().split('T')[0];
+      const todaySessions = sessions.filter(s => 
+        s.event_type === 'session_complete' && 
+        s.timestamp.startsWith(today)
+      );
+      document.getElementById('sessionsToday').textContent = todaySessions.length;
+    }
+
+    async function updateInsights() {
+      const patterns = await tracker.calculatePatterns();
+      const container = document.getElementById('insightsContainer');
+
+      if (!patterns.hasEnoughData) {
+        container.innerHTML = `
+          <div class="no-data-message">
+            <p>${patterns.message}</p>
+            <p class="progress-text">Keep logging to discover your patterns!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = patterns.insights.map(insight => `
+        <div class="insight-card">
+          <div class="insight-icon">${insight.icon}</div>
+          <div class="insight-text">${insight.text}</div>
+        </div>
+      `).join('');
+    }
+
+    function switchScreen(screen) {
+      // Hide all screens
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+      // Show selected screen
+      const screenMap = {
+        today: 'todayScreen',
+        focus: 'focusScreen',
+        insights: 'insightsScreen'
+      };
+
+      document.getElementById(screenMap[screen]).classList.add('active');
+      event.currentTarget.classList.add('active');
+
+      // Update insights when switching to insights screen
+      if (screen === 'insights') {
+        updateInsights();
+      }
+    }
+
+    // Initialize on load
+    init();
+  </script>
+</body>
+</html>

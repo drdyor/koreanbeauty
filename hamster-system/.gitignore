@@ -1,0 +1,135 @@
+# Hamster System - Git Ignore
+
+# ============================================================================
+# Environment & Secrets
+# ============================================================================
+
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# ============================================================================
+# Python
+# ============================================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# ============================================================================
+# Jupyter Notebook
+# ============================================================================
+
+.ipynb_checkpoints
+*.ipynb
+
+# ============================================================================
+# IDEs
+# ============================================================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ============================================================================
+# Model Files & Data (Large Files)
+# ============================================================================
+
+# Model checkpoints (large files)
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.h5
+
+# Training outputs
+adapters/*/checkpoint-*
+adapters/*/runs/
+adapters/*/logs/
+
+# Data files (can be regenerated)
+data/raw/*.json
+data/cleaned/*.json
+data/final/*.jsonl
+data/**/*.checkpoint.json
+
+# Keep structure with .gitkeep
+!data/raw/.gitkeep
+!data/cleaned/.gitkeep
+!data/final/.gitkeep
+
+# Cache
+.cache/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+
+# HuggingFace cache
+.huggingface/
+.transformers/
+
+# ============================================================================
+# Logs
+# ============================================================================
+
+*.log
+logs/
+log/
+
+# ============================================================================
+# Testing
+# ============================================================================
+
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ============================================================================
+# Deployment
+# ============================================================================
+
+hf_deploy/
+*.tar.gz
+*.zip
+docker-compose.override.yml
+
+# ============================================================================
+# Temporary Files
+# ============================================================================
+
+*.tmp
+*.temp
+tmp/
+temp/

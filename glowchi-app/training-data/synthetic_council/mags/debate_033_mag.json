@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_033",
+  "dump_id": "dump_033",
+  "proposition": "Should I pursue an ADHD diagnosis when I'm unsure if my struggles are 'real' or just character flaws?",
+  "domain": "health",
+  "emotional_tone": "confused",
+  "timestamp": "2026-01-29T00:09:50.015158",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "[The Analyst analyzes the health proposition with their characteristic Evidence-focused, data-driven, skeptical of assumptions.]",
+          "word_count": 14,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "[The Skeptic analyzes the health proposition with their characteristic Contrarian, assumption-challenger, devil's advocate.]",
+          "word_count": 13,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "[The Synthesist analyzes the health proposition with their characteristic Holistic, pattern-recognition, connects dots.]",
+          "word_count": 13,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "[The Empath analyzes the health proposition with their characteristic Emotion-focused, validates feelings, explores inner experience.]",
+          "word_count": 15,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "[The Pragmatist analyzes the health proposition with their characteristic Action-oriented, concrete steps, results-focused.]",
+          "word_count": 13,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "[The Philosopher analyzes the health proposition with their characteristic Questions fundamental assumptions, explores meaning.]",
+          "word_count": 14,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "empath": "The Empath's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "skeptic": "The Skeptic's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "empath": 5,
+            "skeptic": 3,
+            "pragmatist": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "analyst": "The Analyst is too optimistic. What about the downside risks they're not mentioning?",
+            "philosopher": "The Philosopher is too optimistic. What about the downside risks they're not mentioning?",
+            "empath": "The Empath is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "analyst": 4,
+            "philosopher": 3,
+            "empath": 2
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "empath": "The Empath misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "skeptic": "The Skeptic misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "pragmatist": "The Pragmatist misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "empath": 5,
+            "skeptic": 1,
+            "pragmatist": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "pragmatist": "The Pragmatist is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "analyst": "The Analyst is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "philosopher": "The Philosopher is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "pragmatist": 5,
+            "analyst": 5,
+            "philosopher": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "analyst": "The Analyst is too abstract. Where are the concrete next steps?",
+            "philosopher": "The Philosopher is too abstract. Where are the concrete next steps?",
+            "empath": "The Empath is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "analyst": 1,
+            "philosopher": 5,
+            "empath": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "synthesist": "The Synthesist accepts the frame without questioning it. What if the premise is wrong?",
+            "analyst": "The Analyst accepts the frame without questioning it. What if the premise is wrong?",
+            "skeptic": "The Skeptic accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "synthesist": 4,
+            "analyst": 2,
+            "skeptic": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "After considering the council's diverse perspectives, here's what emerges:\n\n1. **The surface problem**: the immediate situation\n2. **The deeper pattern**: a pattern of avoidance or fear\n3. **Actionable next step**: one small concrete step within 48 hours\n\nThe council agrees that this requires both internal work and external action, though we differ on the relative urgency of each. Start with clarity through a small experiment.",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.83
+  }
+}

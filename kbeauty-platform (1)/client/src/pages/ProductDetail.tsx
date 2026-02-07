@@ -21,6 +21,7 @@ export default function ProductDetail() {
     { slug: params?.slug || "" },
     { enabled: !!params?.slug }
   );
+  const { data: summary } = trpc.logs.summary.useQuery(undefined, { enabled: isAuthenticated });
   
   const addToCart = trpc.cart.add.useMutation({
     onSuccess: () => {
@@ -151,6 +152,34 @@ export default function ProductDetail() {
                   <span>{product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}</span>
                 </div>
               </div>
+
+              {isAuthenticated && summary && (
+                <>
+                  <Separator />
+                  <Card className="bg-accent/20">
+                    <CardContent className="py-4">
+                      <div className="text-sm text-muted-foreground mb-2">Based on your recent logs</div>
+                      <div className="flex flex-wrap gap-2">
+                        {Object.keys(summary.foodCounts).length === 0 && Object.keys(summary.moodCounts).length === 0 ? (
+                          <span className="text-muted-foreground">Log mood or foods to personalize tips</span>
+                        ) : (
+                          <>
+                            {summary.foodCounts["Spicy"] && (
+                              <span className="px-3 py-1 rounded-full bg-rose-100 text-rose-900 text-xs">Try tea tree tonight</span>
+                            )}
+                            {summary.foodCounts["Milk"] && (
+                              <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs">Add barrier-repair</span>
+                            )}
+                            {summary.moodCounts["irritable"] && (
+                              <span className="px-3 py-1 rounded-full bg-green-100 text-green-900 text-xs">Centella calming recommended</span>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </>
+              )}
 
               {product.usageInstructions && (
                 <>

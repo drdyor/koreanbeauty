@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Design Mockups - Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --pink-50: #fdf4ff;
+      --neutral-100: #f5f5f5;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 50%, var(--purple-100) 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: var(--neutral-900);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .hero-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--purple-600);
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--neutral-600);
+      margin-bottom: 8px;
+    }
+
+    .hero-tagline {
+      font-size: 16px;
+      color: var(--neutral-400);
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .version-badge {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--purple-600);
+      background: var(--purple-100);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* Screen Grid */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .screen-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .screen-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 48px rgba(147, 51, 234, 0.15);
+    }
+
+    .screen-preview {
+      aspect-ratio: 9/16;
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .screen-info {
+      padding: 24px;
+    }
+
+    .screen-number {
+      font-size: 12px;
+      color: var(--purple-600);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .screen-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 8px;
+    }
+
+    .screen-description {
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .screen-features {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .screen-features li {
+      font-size: 13px;
+      color: var(--neutral-600);
+      margin-bottom: 6px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .screen-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--purple-600);
+      font-weight: 600;
+    }
+
+    .view-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .view-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+    }
+
+    /* Design System */
+    .design-system {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 24px;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .color-swatch {
+      text-align: center;
+    }
+
+    .color-box {
+      height: 80px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .color-name {
+      font-size: 12px;
+      color: var(--neutral-600);
+      font-weight: 500;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .principle {
+      background: var(--purple-50);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .principle-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .principle-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 8px;
+    }
+
+    .principle-description {
+      font-size: 13px;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--neutral-400);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-icon">🐱</div>
+      <h1 class="hero-title">Guardian</h1>
+      <p class="hero-subtitle">Cycle-Aware Wellness Companion</p>
+      <p class="hero-tagline">
+        Beyond Finch: Self-hypnosis × Atomic Habits × Menstrual Cycle Syncing
+      </p>
+      <div class="version-badge">Design Mockups v1.0</div>
+    </div>
+
+    <!-- Screens Grid -->
+    <div class="screens-grid">
+      <!-- Screen 1: Main -->
+      <div class="screen-card" onclick="window.location.href='01-main-screen.html'">
+        <div class="screen-preview">🏠</div>
+        <div class="screen-info">
+          <div class="screen-number">Screen 01</div>
+          <div class="screen-title">Main Screen</div>
+          <div class="screen-description">
+            Daily check-in with Guardian, cycle tracking, and habit selection
+          </div>
+          <ul class="screen-features">
+            <li>Cycle day + phase indicator</li>
+            <li>Thread visualization (7 segments)</li>
+            <li>Guardian responsive states</li>
+            <li>Atmosphere selector (☀️☁️⛈️)</li>
+            <li>Offering selector (simple/nourishing/stimulating)</li>
+            <li>Today's habit with Atomic Habits breakdown</li>
+            <li>Hypnosis CTA</li>
+          </ul>
+          <a href="01-main-screen.html" class="view-btn">View Mockup →</a>
+        </div>
+      </div>
+
+      <!-- Screen 2: Hypnosis -->
+      <div class="screen-card" onclick="window.location.href='02-hypnosis-screen.html'">
+        <div class="screen-preview">🎧</div>
+        <div class="screen-info">
+          <div class="screen-number">Screen 02</div>
+          <div class="screen-title">Hypnosis Screen</div>
+          <div class="screen-description">
+            Self-hypnosis sessions with preset TTS or user's own voice
+          </div>
+          <ul class="screen-features">
+            <li>Toggle: Preset TTS vs My Voice</li>
+            <li>Script selector (4 scripts)</li>
+            <li>Cycle-phase recommendations</li>
+            <li>Script preview + editing</li>
+            <li>Recording interface with waveform</li>
+            <li>Playback controls</li>
+            <li>Voice selection (4 TTS options)</li>
+          </ul>
+          <a href="02-hypnosis-screen.html" class="view-btn">View Mockup →</a>
+        </div>
+      </div>
+
+      <!-- Screen 3: Progress -->
+      <div class="screen-card" onclick="window.location.href='03-progress-screen.html'">
+        <div class="screen-preview">📊</div>
+        <div class="screen-info">
+          <div class="screen-number">Screen 03</div>
+          <div class="screen-title">Progress Screen</div>
+          <div class="screen-description">
+            Habit tracking, thread knitting, and cycle calendar
+          </div>
+          <ul class="screen-features">
+            <li>Stats overview (4 metrics)</li>
+            <li>Habit streak with identity statement</li>
+            <li>Knitting grid (28 stitches)</li>
+            <li>Ovulation trigger visualization (✨)</li>
+            <li>Full cycle calendar with phases</li>
+            <li>Session history log</li>
+          </ul>
+          <a href="03-progress-screen.html" class="view-btn">View Mockup →</a>
+        </div>
+      </div>
+
+      <!-- Screen 4: Breathwork -->
+      <div class="screen-card" onclick="window.location.href='05-breathwork-screen.html'">
+        <div class="screen-preview">🫁</div>
+        <div class="screen-info">
+          <div class="screen-number">Screen 04</div>
+          <div class="screen-title">Breathwork Screen</div>
+          <div class="screen-description">
+            Dynamic breathing patterns with directional arrows and EMDR-inspired cues
+          </div>
+          <ul class="screen-features">
+            <li>4 breathing patterns (Box, 4-7-8, Coherence, Bilateral)</li>
+            <li>Animated expanding circle + arrows</li>
+            <li>Eye movement tracking (EMDR-inspired)</li>
+            <li>Cycle-phase recommendations</li>
+            <li>Real-time countdown and instructions</li>
+            <li>Evidence-based patterns (Navy SEAL, HeartMath, Dr. Weil)</li>
+          </ul>
+          <a href="05-breathwork-screen.html" class="view-btn">View Mockup →</a>
+        </div>
+      </div>
+
+      <!-- Screen 5: Sleep Mode -->
+      <div class="screen-card" onclick="window.location.href='06-sleep-mode.html'">
+        <div class="screen-preview">🌙</div>
+        <div class="screen-info">
+          <div class="screen-number">Screen 05</div>
+          <div class="screen-title">Sleep Mode</div>
+          <div class="screen-description">
+            Delta wave binaural beats + 4-7-8 breathing + progressive muscle relaxation for deep sleep
+          </div>
+          <ul class="screen-features">
+            <li>Delta wave frequency (2 Hz) for sleep induction</li>
+            <li>4-7-8 breathing visual guide</li>
+            <li>Progressive muscle relaxation script</li>
+            <li>Auto-loop option for all-night sessions</li>
+            <li>30/60/90 min timer options</li>
+            <li>Luteal/menstrual phase optimization</li>
+          </ul>
+          <a href="06-sleep-mode.html" class="view-btn">View Mockup →</a>
+        </div>
+      </div>
+
+      <!-- Screen 6: Settings -->
+      <div class="screen-card" onclick="window.location.href='04-settings-screen.html'">
+        <div class="screen-preview">⚙️</div>
+        <div class="screen-info">
+          <div class="screen-number">Screen 06</div>
+          <div class="screen-title">Settings Screen</div>
+          <div class="screen-description">
+            Cycle tracking, notifications, audio, and data management
+          </div>
+          <ul class="screen-features">
+            <li>Cycle editor (length, start date)</li>
+            <li>Notification preferences</li>
+            <li>Voice selection (4 TTS options)</li>
+            <li>Binaural beats toggle</li>
+            <li>Habit/identity editor</li>
+            <li>Data export + privacy</li>
+          </ul>
+          <a href="04-settings-screen.html" class="view-btn">View Mockup →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design System -->
+    <div class="design-system">
+      <h2 class="section-title">Design System</h2>
+
+      <h3 style="font-size: 18px; margin-bottom: 16px; color: var(--neutral-900);">Color Palette</h3>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-box" style="background: #9333ea;"></div>
+          <div class="color-name">Purple 600</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #a855f7;"></div>
+          <div class="color-name">Purple 500</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #c084fc;"></div>
+          <div class="color-name">Purple 400</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #e9d5ff;"></div>
+          <div class="color-name">Purple 200</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #f3e8ff;"></div>
+          <div class="color-name">Purple 100</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #faf5ff;"></div>
+          <div class="color-name">Purple 50</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #fdf4ff;"></div>
+          <div class="color-name">Pink 50</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #f5d0fe;"></div>
+          <div class="color-name">Pink 200</div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 18px; margin: 32px 0 16px; color: var(--neutral-900);">Design Principles</h3>
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-icon">🧘‍♀️</div>
+          <div class="principle-title">Calm & Soothing</div>
+          <div class="principle-description">
+            Soft gradients, rounded corners, and gentle animations create a peaceful environment
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🇰🇷</div>
+          <div class="principle-title">Korean Aesthetic</div>
+          <div class="principle-description">
+            Purple/lavender palette inspired by K-beauty, minimalist and clean design
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🧵</div>
+          <div class="principle-title">Thread Metaphor</div>
+          <div class="principle-description">
+            Knitting visualization makes habit progress tangible and satisfying
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🌸</div>
+          <div class="principle-title">Cycle-Aware</div>
+          <div class="principle-description">
+            Colors, phases, and recommendations adapt to menstrual cycle day
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">📖</div>
+          <div class="principle-title">Atomic Habits</div>
+          <div class="principle-description">
+            4 Laws framework visible in habit cards (Cue, Easy, Aligned, Satisfying)
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🔒</div>
+          <div class="principle-title">Privacy-First</div>
+          <div class="principle-description">
+            All data stored locally, voice recordings never leave device
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Innovations -->
+    <div class="design-system">
+      <h2 class="section-title">Key Innovations Beyond Finch</h2>
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-icon">🎧</div>
+          <div class="principle-title">Self-Hypnosis</div>
+          <div class="principle-description">
+            Progressive muscle relaxation, visualization, and habit installation using TTS or user's own voice (subconscious trusts YOUR voice more)
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">⚛️</div>
+          <div class="principle-title">Atomic Habits Framework</div>
+          <div class="principle-description">
+            James Clear's 4 Laws applied to every habit: Make it Obvious (cue), Attractive (craving), Easy (response), Satisfying (reward)
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🌙</div>
+          <div class="principle-title">Cycle-Synchronized Habits</div>
+          <div class="principle-description">
+            Different habits for different phases. Follicular = high energy, Luteal = gentle movement, Menstrual = rest as the habit
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">☁️</div>
+          <div class="principle-title">Weather Metaphor</div>
+          <div class="principle-description">
+            ☀️☁️⛈️ instead of 1-10 mood scale. More intuitive and removes numeric pressure
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">✨</div>
+          <div class="principle-title">Ovulation Trigger</div>
+          <div class="principle-description">
+            Day 14 gives special animation and momentum boost. Biologically significant milestone
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🧶</div>
+          <div class="principle-title">Thread/Knitting Visual</div>
+          <div class="principle-description">
+            Each stitch = 1 day. Each row = 1 week. Each mitten = 1 full cycle (28 days). Tangible progress
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🫁</div>
+          <div class="principle-title">Directional Breathwork</div>
+          <div class="principle-description">
+            Dynamic arrows + EMDR-inspired eye movements. Box breathing (Navy SEALs), 4-7-8 (Dr. Weil), Heart Coherence (HeartMath), Bilateral Calm (trauma-informed)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Guardian Design Mockups · December 2026</p>
+      <p style="margin-top: 8px;">Built with Web Standards · No framework required</p>
+    </div>
+  </div>
+</body>
+</html>

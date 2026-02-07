@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowchi - Wellness Cat Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.css">
+    <style>
+        :root {
+            --color-primary: #FFB6C1;      /* Korean pink (light pink) */
+            --color-background: #FFF9FA;
+            --color-secondary: #FFE4E1;    /* Misty rose */
+            --color-accent: #FFC0CB;       /* Pink */
+            --color-text: #2D3748;
+            --color-text-secondary: #718096;
+            --border-radius: 16px;         /* More rounded for K-style */
+            --shadow-soft: 0 6px 20px rgba(255, 182, 193, 0.15);
+            --transition-gentle: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FFF9FA 0%, #FFE4E1 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            padding: 24px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(168, 218, 220, 0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 48px;
+            padding: 48px 0;
+            align-items: start;
+        }
+
+        /* Cat Display Area */
+        .cat-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 182, 193, 0.2);
+        }
+
+        .cat-container {
+            position: relative;
+            width: 220px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .cat-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition-gentle);
+            filter: drop-shadow(0 8px 16px rgba(255, 182, 193, 0.2));
+        }
+
+        /* Cute sparkle effects */
+        .cat-container::before,
+        .cat-container::after {
+            content: '✨';
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .cat-container::before {
+            top: 10px;
+            left: 10px;
+            animation-delay: 0s;
+        }
+
+        .cat-container::after {
+            top: 10px;
+            right: 10px;
+            animation-delay: 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .cat-state-info {
+            text-align: center;
+            padding: 16px;
+            background: rgba(168, 218, 220, 0.1);
+            border-radius: var(--border-radius);
+            margin-top: 16px;
+        }
+
+        .cat-state-info h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+
+        .cat-state-info p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Wellness Panel */
+        .wellness-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(10px);
+        }
+
+        .wellness-section {
+            margin-bottom: 32px;
+        }
+
+        .wellness-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .wellness-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wellness-section h3::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        /* Mood Tracker */
+        .mood-tracker {
+            background: rgba(168, 218, 220, 0.1);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .mood-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 16px 0;
+        }
+
+        .mood-button {
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            background: rgba(168, 218, 220, 0.2);
+            color: var(--color-text);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-gentle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mood-button:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .mood-button.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        /* Activity Buttons */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .activity-button {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(168, 218, 220, 0.3);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition-gentle);
+            text-align: center;
+        }
+
+        .activity-button:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .activity-button.completed {
+            background: var(--color-accent);
+            color: var(--color-text);
+        }
+
+        .activity-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .activity-name {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Stats Display */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(168, 218, 220, 0.2);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Breathing Exercise */
+        .breathing-exercise {
+            background: rgba(255, 182, 193, 0.1);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .breathing-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-gentle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breathing-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .breathing-circle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .breathing-circle.active {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px 0;
+            text-align: center;
+            border-top: 1px solid rgba(168, 218, 220, 0.2);
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 24px 0;
+            }
+
+            .cat-section {
+                min-height: 300px;
+                padding: 24px;
+            }
+
+            .cat-container {
+                width: 150px;
+                height: 200px;
+            }
+
+            .wellness-panel {
+                padding: 24px;
+            }
+
+            .mood-scale {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .activity-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles for keyboard navigation */
+        .mood-button:focus,
+        .activity-button:focus,
+        .breathing-circle:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🐯 Glowchi Tiger</h1>
+            <p>Your adorable Korean-style tiger companion for cute wellness moments</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Cat Display Area -->
+            <section class="cat-section">
+                <div class="cat-container">
+                    <img id="catImage" class="cat-image" src="resources/k-tiger-idle.png" alt="Glowchi the Korean-style wellness tiger">
+                </div>
+                <div class="cat-state-info">
+                    <h3 id="catStateTitle">Cute and Happy</h3>
+                    <p id="catStateDescription">Your adorable tiger friend is here to make your wellness journey extra cute and comforting!</p>
+                </div>
+            </section>
+
+            <!-- Wellness Panel -->
+            <section class="wellness-panel">
+                <!-- Mood Tracker -->
+                <div class="wellness-section">
+                    <h3>How are you feeling?</h3>
+                    <div class="mood-tracker">
+                        <p>Select your current mood (1 = low, 10 = great)</p>
+                        <div class="mood-scale">
+                            <button class="mood-button" data-mood="1">1</button>
+                            <button class="mood-button" data-mood="2">2</button>
+                            <button class="mood-button" data-mood="3">3</button>
+                            <button class="mood-button" data-mood="4">4</button>
+                            <button class="mood-button" data-mood="5">5</button>
+                            <button class="mood-button" data-mood="6">6</button>
+                            <button class="mood-button" data-mood="7">7</button>
+                            <button class="mood-button" data-mood="8">8</button>
+                            <button class="mood-button" data-mood="9">9</button>
+                            <button class="mood-button" data-mood="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wellness Activities -->
+                <div class="wellness-section">
+                    <h3>Wellness Activities</h3>
+                    <div class="activity-grid">
+                        <div class="activity-button" data-activity="breathing">
+                            <span class="activity-icon">🫁</span>
+                            <span class="activity-name">Breathing</span>
+                        </div>
+                        <div class="activity-button" data-activity="journal">
+                            <span class="activity-icon">📝</span>
+                            <span class="activity-name">Journal</span>
+                        </div>
+                        <div class="activity-button" data-activity="meditation">
+                            <span class="activity-icon">🧘</span>
+                            <span class="activity-name">Meditate</span>
+                        </div>
+                        <div class="activity-button" data-activity="walk">
+                            <span class="activity-icon">🚶</span>
+                            <span class="activity-name">Walk</span>
+                        </div>
+                        <div class="activity-button" data-activity="water">
+                            <span class="activity-icon">💧</span>
+                            <span class="activity-name">Hydrate</span>
+                        </div>
+                        <div class="activity-button" data-activity="stretch">
+                            <span class="activity-icon">🤸</span>
+                            <span class="activity-name">Stretch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Stats -->
+                <div class="wellness-section">
+                    <h3>Today's Wellness</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-value" id="moodAverage">-</span>
+                            <span class="stat-label">Mood Avg</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="activitiesCompleted">0</span>
+                            <span class="stat-label">Activities</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="checkIns">0</span>
+                            <span class="stat-label">Check-ins</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breathing Exercise -->
+                <div class="wellness-section" id="breathingSection" style="display: none;">
+                    <h3>Breathing Exercise</h3>
+                    <div class="breathing-exercise">
+                        <p>Follow the circle to regulate your breathing</p>
+                        <div class="breathing-circle" id="breathingCircle">
+                            Breathe
+                        </div>
+                        <button class="activity-button" id="stopBreathing" style="margin-top: 16px;">Stop Exercise</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Glowchi. A gentle companion for your wellness journey.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></sc

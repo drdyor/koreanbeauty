@@ -1,0 +1,79 @@
+.calendar-date-strip, .month-calendar {
+    max-width: 900px;
+    display: flex;
+    width: 100%;
+    justify-self: center;
+}
+
+.calendar-date-strip {
+    grid-area: dates;
+    padding: 0 15px;
+}
+
+.calendar-date-strip > span {
+    text-align: center;
+    white-space: nowrap;
+    width: calc(100% / 7);
+}
+
+.month-calendar {
+    grid-area: calendar;
+    overflow: scroll;
+    padding: 15px;
+    flex-direction: column-reverse;
+    scrollbar-width: none;
+}
+
+.month-calendar::-webkit-scrollbar {
+    display: none;
+}
+
+.calendar-row {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    border-bottom: 1px var(--border-lines) solid;
+}
+
+.calendar-card {
+    width: calc(100% / 7);
+    height: 15vh;
+    position: relative;
+    text-align: center;
+    border-right: 1px var(--border-lines) solid;
+}
+
+.calendar-card:last-child {
+    border-left: 1px var(--border-lines) solid;
+}
+
+.calendar-row:last-child {
+    border-top: 1px var(--border-lines) solid !important;
+}
+
+.calendar-card-date {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.highlight-day {
+    background-color: red !important;
+    color: white;
+}
+
+.less-highlight-day {
+    background-color: rgb(253, 109, 109);
+    color: white;
+}
+
+.one-month {
+    background-color: rgba(var(--graph-background), 0.2);
+}
+
+.two-month {
+    background-color: rgba(var(--graph-background), 0.05);
+}

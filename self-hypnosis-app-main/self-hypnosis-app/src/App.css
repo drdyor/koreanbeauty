@@ -1,0 +1,598 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Import Enhanced Therapeutic Design System */
+@import './styles/therapeutic-design.css';
+@import './styles/therapeutic-theme.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Enhanced color system using therapeutic design tokens */
+  --color-background: var(--therapeutic-neutral-50);
+  --color-foreground: var(--therapeutic-neutral-900);
+  --color-card: white;
+  --color-card-foreground: var(--therapeutic-neutral-800);
+  --color-popover: white;
+  --color-popover-foreground: var(--therapeutic-neutral-800);
+  --color-primary: var(--therapeutic-primary-600);
+  --color-primary-foreground: white;
+  --color-secondary: var(--therapeutic-secondary-600);
+  --color-secondary-foreground: white;
+  --color-muted: var(--therapeutic-neutral-100);
+  --color-muted-foreground: var(--therapeutic-neutral-500);
+  --color-accent: var(--therapeutic-accent-500);
+  --color-accent-foreground: white;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: white;
+  --color-border: var(--therapeutic-neutral-200);
+  --color-input: white;
+  --color-ring: var(--therapeutic-primary-500);
+  
+  /* Chart colors using therapeutic palette */
+  --color-chart-1: var(--therapeutic-primary-500);
+  --color-chart-2: var(--therapeutic-secondary-500);
+  --color-chart-3: var(--therapeutic-accent-500);
+  --color-chart-4: var(--therapeutic-neutral-400);
+  --color-chart-5: var(--therapeutic-primary-300);
+  
+  /* Sidebar colors */
+  --color-sidebar: white;
+  --color-sidebar-foreground: var(--therapeutic-neutral-800);
+  --color-sidebar-primary: var(--therapeutic-primary-600);
+  --color-sidebar-primary-foreground: white;
+  --color-sidebar-accent: var(--therapeutic-accent-500);
+  --color-sidebar-accent-foreground: white;
+  --color-sidebar-border: var(--therapeutic-neutral-200);
+  --color-sidebar-ring: var(--therapeutic-primary-500);
+}
+
+:root {
+  --radius: 0.75rem; /* Enhanced for therapeutic feel */
+}
+
+/* ===== ENHANCED GLOBAL STYLES ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-secondary);
+  background: var(--therapeutic-neutral-50);
+  color: var(--therapeutic-neutral-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--therapeutic-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-therapeutic-sm);
+}
+
+/* Smooth transitions for all interactive elements */
+button, input, select, textarea, a {
+  transition: all var(--timing-therapeutic-normal) var(--ease-therapeutic-out);
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--therapeutic-neutral-100);
+  border-radius: var(--radius-therapeutic-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--therapeutic-neutral-300);
+  border-radius: var(--radius-therapeutic-full);
+  transition: background var(--timing-therapeutic-normal) var(--ease-therapeutic-out);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--therapeutic-primary-400);
+}
+
+/* Enhanced selection styling */
+::selection {
+  background: var(--therapeutic-primary-200);
+  color: var(--therapeutic-primary-900);
+}
+
+/* ===== THERAPEUTIC LAYOUT ENHANCEMENTS ===== */
+.therapeutic-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-therapeutic-lg);
+}
+
+.therapeutic-section {
+  margin-bottom: var(--spacing-therapeutic-3xl);
+}
+
+.therapeutic-grid {
+  display: grid;
+  gap: var(--spacing-therapeutic-xl);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.therapeutic-flex {
+  display: flex;
+  gap: var(--spacing-therapeutic-lg);
+  align-items: center;
+}
+
+.therapeutic-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-therapeutic-md);
+}
+
+/* ===== ENHANCED COMPONENT OVERRIDES ===== */
+
+/* Header enhancements */
+header {
+  background: linear-gradient(135deg, white 0%, var(--therapeutic-neutral-50) 100%);
+  border-bottom: 1px solid var(--therapeutic-neutral-200);
+  box-shadow: var(--shadow-therapeutic-sm);
+}
+
+/* Main content area */
+main {
+  min-height: calc(100vh - 200px);
+  padding: var(--spacing-therapeutic-2xl) 0;
+}
+
+/* Footer enhancements */
+footer {
+  background: var(--therapeutic-neutral-900);
+  color: var(--therapeutic-neutral-300);
+  border-top: 1px solid var(--therapeutic-neutral-800);
+}
+
+footer h3 {
+  color: var(--therapeutic-neutral-100);
+  font-weight: 600;
+}
+
+footer a {
+  color: var(--therapeutic-neutral-400);
+  text-decoration: none;
+  transition: color var(--timing-therapeutic-normal) var(--ease-therapeutic-out);
+}
+
+footer a:hover {
+  color: var(--therapeutic-primary-400);
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+@media (max-width: 768px) {
+  .therapeutic-container {
+    padding: 0 var(--spacing-therapeutic-md);
+  }
+  
+  .therapeutic-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-therapeutic-lg);
+  }
+  
+  .therapeutic-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  main {
+    padding: var(--spacing-therapeutic-xl) 0;
+  }
+}
+
+/* ===== LOADING AND EMPTY STATES ===== */
+.therapeutic-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-therapeutic-3xl);
+  color: var(--therapeutic-neutral-500);
+}
+
+.therapeutic-empty-state {
+  text-align: center;
+  padding: var(--spacing-therapeutic-3xl);
+  color: var(--therapeutic-neutral-500);
+}
+
+.therapeutic-empty-state h3 {
+  color: var(--therapeutic-neutral-700);
+  margin-bottom: var(--spacing-therapeutic-md);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.therapeutic-text-center { text-align: center; }
+.therapeutic-text-left { text-align: left; }
+.therapeutic-text-right { text-align: right; }
+
+.therapeutic-mb-0 { margin-bottom: 0; }
+.therapeutic-mb-sm { margin-bottom: var(--spacing-therapeutic-sm); }
+.therapeutic-mb-md { margin-bottom: var(--spacing-therapeutic-md); }
+.therapeutic-mb-lg { margin-bottom: var(--spacing-therapeutic-lg); }
+.therapeutic-mb-xl { margin-bottom: var(--spacing-therapeutic-xl); }
+
+.therapeutic-mt-0 { margin-top: 0; }
+.therapeutic-mt-sm { margin-top: var(--spacing-therapeutic-sm); }
+.therapeutic-mt-md { margin-top: var(--spacing-therapeutic-md); }
+.therapeutic-mt-lg { margin-top: var(--spacing-therapeutic-lg); }
+.therapeutic-mt-xl { margin-top: var(--spacing-therapeutic-xl); }
+
+.therapeutic-p-0 { padding: 0; }
+.therapeutic-p-sm { padding: var(--spacing-therapeutic-sm); }
+.therapeutic-p-md { padding: var(--spacing-therapeutic-md); }
+.therapeutic-p-lg { padding: var(--spacing-therapeutic-lg); }
+.therapeutic-p-xl { padding: var(--spacing-therapeutic-xl); }
+
+.therapeutic-hidden { display: none; }
+.therapeutic-visible { display: block; }
+
+.therapeutic-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dark {
+  --color-background: #0f172a;
+  --color-foreground: #f1f5f9;
+  --color-card: #1e293b;
+  --color-card-foreground: #f1f5f9;
+  --color-popover: #1e293b;
+  --color-popover-foreground: #f1f5f9;
+  --color-primary: var(--therapeutic-primary-light);
+  --color-primary-foreground: var(--therapeutic-text-inverse);
+  --color-secondary: var(--therapeutic-secondary-light);
+  --color-secondary-foreground: var(--therapeutic-text-inverse);
+  --color-muted: #334155;
+  --color-muted-foreground: #cbd5e1;
+  --color-accent: var(--therapeutic-accent-light);
+  --color-accent-foreground: var(--therapeutic-text-inverse);
+  --color-border: #475569;
+  --color-input: #334155;
+  --color-ring: var(--therapeutic-primary-light);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--therapeutic-font-body);
+    line-height: var(--therapeutic-leading-normal);
+  }
+  
+  /* Enhanced Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--therapeutic-font-heading);
+    font-weight: 600;
+    line-height: var(--therapeutic-leading-tight);
+    letter-spacing: -0.025em;
+  }
+  
+  /* Focus Styles for Accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--therapeutic-primary);
+    outline-offset: 2px;
+    border-radius: var(--therapeutic-radius-sm);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--therapeutic-neutral-100);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--therapeutic-neutral-300);
+    border-radius: var(--therapeutic-radius-full);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--therapeutic-primary);
+  }
+  
+  /* Selection Styles */
+  ::selection {
+    background: var(--therapeutic-primary-100);
+    color: var(--therapeutic-primary-dark);
+  }
+}
+
+@layer components {
+  /* Enhanced Button Styles */
+  .btn-therapeutic-primary {
+    font-family: var(--therapeutic-font-heading);
+    font-weight: 500;
+    border-radius: var(--therapeutic-radius-md);
+    transition: all var(--therapeutic-transition-fast);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: var(--therapeutic-gradient-primary);
+    color: var(--therapeutic-text-inverse);
+    padding: var(--therapeutic-space-3) var(--therapeutic-space-6);
+  }
+  
+  .btn-therapeutic-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--therapeutic-shadow-lg);
+  }
+  
+  .btn-therapeutic-primary:focus {
+    outline: 2px solid var(--therapeutic-primary);
+    outline-offset: 2px;
+  }
+  
+  .btn-therapeutic-secondary {
+    font-family: var(--therapeutic-font-heading);
+    font-weight: 500;
+    border-radius: var(--therapeutic-radius-md);
+    transition: all var(--therapeutic-transition-fast);
+    cursor: pointer;
+    background: var(--therapeutic-bg-primary);
+    color: var(--therapeutic-primary);
+    border: 2px solid var(--therapeutic-primary);
+    padding: var(--therapeutic-space-3) var(--therapeutic-space-6);
+  }
+  
+  .btn-therapeutic-secondary:hover {
+    background: var(--therapeutic-primary-50);
+  }
+  
+  .btn-therapeutic-secondary:focus {
+    outline: 2px solid var(--therapeutic-primary);
+    outline-offset: 2px;
+  }
+  
+  /* Enhanced Card Styles */
+  .card-therapeutic {
+    background: var(--therapeutic-bg-primary);
+    border-radius: var(--therapeutic-radius-lg);
+    box-shadow: var(--therapeutic-shadow-md);
+    border: 1px solid var(--therapeutic-neutral-200);
+    transition: all var(--therapeutic-transition-normal);
+    animation: therapeutic-fade-in 0.5s ease-out;
+  }
+  
+  .card-therapeutic:hover {
+    box-shadow: var(--therapeutic-shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  /* Form Enhancements */
+  .form-therapeutic {
+    font-family: var(--therapeutic-font-body);
+    background: var(--therapeutic-bg-primary);
+    border: 2px solid var(--therapeutic-neutral-200);
+    border-radius: var(--therapeutic-radius-md);
+    padding: var(--therapeutic-space-3) var(--therapeutic-space-4);
+    color: var(--therapeutic-text-primary);
+    transition: all var(--therapeutic-transition-fast);
+  }
+  
+  .form-therapeutic:focus {
+    border-color: var(--therapeutic-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--therapeutic-primary-50);
+  }
+  
+  /* Loading States */
+  .loading-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--therapeutic-neutral-100) 25%,
+      var(--therapeutic-neutral-50) 50%,
+      var(--therapeutic-neutral-100) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  /* Audio Player Enhancements */
+  .audio-player-therapeutic {
+    background: var(--therapeutic-bg-primary);
+    border-radius: var(--therapeutic-radius-lg);
+    box-shadow: var(--therapeutic-shadow-md);
+    border: 1px solid var(--therapeutic-neutral-200);
+    transition: all var(--therapeutic-transition-normal);
+    padding: var(--therapeutic-space-6);
+    background: var(--therapeutic-gradient-primary);
+    color: var(--therapeutic-text-inverse);
+  }
+  
+  .audio-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--therapeutic-space-4);
+  }
+  
+  .audio-progress {
+    background: var(--therapeutic-neutral-200);
+    border-radius: var(--therapeutic-radius-full);
+    overflow: hidden;
+    height: 8px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .audio-progress-bar {
+    background: var(--therapeutic-accent);
+  }
+  
+  /* Modal Enhancements */
+  .modal-therapeutic {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    position: fixed;
+    inset: 0;
+    z-index: var(--therapeutic-z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--therapeutic-space-4);
+  }
+  
+  .modal-content-therapeutic {
+    background: var(--therapeutic-bg-primary);
+    border-radius: var(--therapeutic-radius-xl);
+    box-shadow: var(--therapeutic-shadow-xl);
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--therapeutic-space-8);
+  }
+  
+  /* Progress Indicators */
+  .progress-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--therapeutic-primary) var(--progress, 0%),
+      var(--therapeutic-neutral-200) var(--progress, 0%)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .progress-circle::before {
+    content: '';
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: var(--therapeutic-bg-primary);
+    position: absolute;
+  }
+  
+  .progress-text {
+    font-family: var(--therapeutic-font-heading);
+    font-size: var(--therapeutic-text-sm);
+    font-weight: 600;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  /* Therapeutic Mode Specific Styles */
+  .wake-mode {
+    background: var(--therapeutic-gradient-calm);
+    min-height: 100vh;
+    padding: var(--therapeutic-space-8) 0;
+  }
+  
+  .sleep-mode {
+    background: var(--therapeutic-gradient-healing);
+    min-height: 100vh;
+    padding: var(--therapeutic-space-8) 0;
+  }
+  
+  /* Breathing Animation for Meditation Components */
+  .therapeutic-breathe {
+    animation: therapeutic-breathe 4s ease-in-out infinite;
+  }
+  
+  /* Gentle Pulse for Interactive Elements */
+  .therapeutic-pulse {
+    animation: therapeutic-pulse 2s ease-in-out infinite;
+  }
+  
+  /* Smooth Fade In Animation */
+  .therapeutic-fade-in {
+    animation: therapeutic-fade-in 0.5s ease-out;
+  }
+  
+  /* Float Animation */
+  .therapeutic-float {
+    animation: therapeutic-float 3s ease-in-out infinite;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 640px) {
+  .container {
+    padding-left: var(--therapeutic-space-3);
+    padding-right: var(--therapeutic-space-3);
+  }
+  
+  .modal-content-therapeutic {
+    margin: var(--therapeutic-space-4);
+    padding: var(--therapeutic-space-6);
+  }
+  
+  .audio-controls {
+    flex-direction: column;
+    gap: var(--therapeutic-space-3);
+  }
+}
+
+/* Print Optimizations */
+@media print {
+  .wake-mode,
+  .sleep-mode {
+    background: white !important;
+  }
+  
+  .therapeutic-card {
+    break-inside: avoid;
+  }
+  
+  .audio-player-therapeutic {
+    display: none;
+  }
+}
+
+
+
+@keyframes therapeutic-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+

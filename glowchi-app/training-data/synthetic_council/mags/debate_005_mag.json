@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_005",
+  "dump_id": "dump_005",
+  "proposition": "How do I decide whether to have children when I'm genuinely uncertain?",
+  "domain": "relationships",
+  "emotional_tone": "conflicted",
+  "timestamp": "2026-01-29T00:09:49.994707",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "The 'spark' metric is problematic - passion naturally declines in long-term relationships. Research shows companionate love (warmth, trust) often replaces passionate love. The real data point: are your core needs being met? List them. Check them. If 70%+ are met, this may be normal maturation. If <50%, you're settling. The chemistry with the coworker is confounding - new relationship energy always feels stronger.",
+          "word_count": 63,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "You're not uncertain about kids - you're scared of committing to either path. This isn't about biology, it's about fear of regret. Newsflash: whichever you choose, you'll sometimes wonder about the other. That's normal. The question is: can you live with your choice? If you can't decide, you're deciding no by default.",
+          "word_count": 52,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "The kid decision sits at the intersection of biology, identity, and values. It's not just 'do I want kids?' but 'what kind of parent would I be?' and 'what would I be giving up?' and 'what if I regret it?' The pressure you're feeling is partly social clock, partly biological reality, partly FOMO. There's no right answer - only your answer.",
+          "word_count": 61,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "The panic you feel when your mom asks about kids - that's your body telling you something. This isn't just a logical decision. It's about your body, your identity, your future self. The 'not bad enough for therapy' thought - that's the shame talking. This is exactly what therapy is for. You deserve support in this.",
+          "word_count": 56,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "Three concrete steps: 1) Schedule a fertility consultation - information reduces anxiety. 2) Have one honest conversation with your partner about your uncertainty. 3) Give yourself a deadline - 6 months to decide. The deadline creates urgency, the steps create progress, the conversation creates partnership.",
+          "word_count": 45,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "The 'spark' is a cultural construct. We expect romantic love to feel like movie love forever. It doesn't. The question isn't 'do I feel passion?' but 'am I growing with this person?' and 'do we choose each other?' Love is a verb, not a feeling. But also: some relationships have run their course. Only you know which this is.",
+          "word_count": 59,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "empath": "The Empath's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "philosopher": "The Philosopher's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "empath": 4,
+            "philosopher": 6,
+            "pragmatist": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "pragmatist": "The Pragmatist is too optimistic. What about the downside risks they're not mentioning?",
+            "philosopher": "The Philosopher is too optimistic. What about the downside risks they're not mentioning?",
+            "analyst": "The Analyst is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "pragmatist": 2,
+            "philosopher": 6,
+            "analyst": 4
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "skeptic": "The Skeptic misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "analyst": "The Analyst misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "philosopher": "The Philosopher misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "skeptic": 5,
+            "analyst": 3,
+            "philosopher": 4
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "pragmatist": "The Pragmatist is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "synthesist": "The Synthesist is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "skeptic": "The Skeptic is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "pragmatist": 1,
+            "synthesist": 5,
+            "skeptic": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "synthesist": "The Synthesist is too abstract. Where are the concrete next steps?",
+            "empath": "The Empath is too abstract. Where are the concrete next steps?",
+            "philosopher": "The Philosopher is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "synthesist": 6,
+            "empath": 6,
+            "philosopher": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "empath": "The Empath accepts the frame without questioning it. What if the premise is wrong?",
+            "analyst": "The Analyst accepts the frame without questioning it. What if the premise is wrong?",
+            "skeptic": "The Skeptic accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "empath": 4,
+            "analyst": 3,
+            "skeptic": 4
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "Multiple truths exist here. The council's collective wisdom:\n\n\u2022 **From the Analyst**: data and logical analysis matter\n\u2022 **From the Empath**: emotional validation is essential\n\u2022 **From the Pragmatist**: action creates clarity\n\n**Synthesized guidance**: Start with small experiments. Validate feelings AND take one concrete step. The path emerges from walking.\n\nYour move: What's one thing you could do in the next 24 hours?",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.93
+  }
+}

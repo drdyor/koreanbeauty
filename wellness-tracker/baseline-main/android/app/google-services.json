@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "841063163864",
+    "project_id": "getbaselineapp",
+    "storage_bucket": "getbaselineapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841063163864:android:7164b2f1b743ac8f5334ad",
+        "android_client_info": {
+          "package_name": "app.getbaseline.baseline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841063163864-fr6aftfafoka699mrjh1fpicb1sbr4e8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.getbaseline.baseline",
+            "certificate_hash": "074d5f882c35174c3fd78bc06ad0695a41340b2a"
+          }
+        },
+        {
+          "client_id": "841063163864-r9aa3s60v0civt1pne7gskrudocm544i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApCL4g2ApYfWbYrrl8Xo6Z6Cy8NUtDktk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841063163864-r9aa3s60v0civt1pne7gskrudocm544i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

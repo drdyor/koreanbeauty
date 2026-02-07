@@ -1,0 +1,1 @@
+export { MedicalCard } from './VisualCard';

@@ -1,0 +1,69 @@
+# Hamster System - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ============================================================================
+# Core ML/AI Libraries
+# ============================================================================
+
+# PyTorch - Install appropriate version for your system
+# For CUDA 11.8: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# For CPU only: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+torch>=2.0.0
+
+# Transformers (HuggingFace)
+transformers>=4.35.0
+
+# PEFT (Parameter-Efficient Fine-Tuning)
+peft>=0.7.0
+
+# Accelerate
+transformers>=4.35.0
+accelerate>=0.25.0
+
+# BitsAndBytes (4-bit quantization)
+bitsandbytes>=0.41.0
+
+# TRL (Transformer Reinforcement Learning) - for SFTTrainer
+trl>=0.7.0
+
+# Datasets (HuggingFace)
+datasets>=2.14.0
+
+# ============================================================================
+# API Framework
+# ============================================================================
+
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+
+# ============================================================================
+# Data Processing
+# ============================================================================
+
+pandas>=2.0.0
+numpy>=1.24.0
+
+# ============================================================================
+# Utilities
+# ============================================================================
+
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+requests>=2.31.0
+
+# ============================================================================
+# Optional: For cloud deployment
+# ============================================================================
+
+# huggingface-hub>=0.19.0
+# boto3>=1.29.0  # For AWS deployment
+# google-cloud-storage>=2.10.0  # For GCP deployment
+
+# ============================================================================
+# Development/Testing (optional)
+# ============================================================================
+
+# pytest>=7.4.0
+# pytest-asyncio>=0.21.0
+# httpx>=0.25.0  # For testing FastAPI

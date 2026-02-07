@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamster Council Video Test</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .video-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+        .video-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .video-btn.active {
+            background: #E74C3C;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-title {
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+        .dialogue-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .dialogue-bubble {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 12px;
+            border-left: 4px solid;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.4s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .bubble-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .hamster-icon {
+            font-size: 18px;
+        }
+        .hamster-name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .hamster-action {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+        .bubble-content {
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+        .typing {
+            display: flex;
+            gap: 6px;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            width: fit-content;
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+            animation: pulse 1.5s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .restart-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 12px;
+            background: #2ECC71;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐹 Hamster Council Video Test</h1>
+
+        <div class="video-selector">
+            <button class="video-btn active" onclick="switchVideo('council-1')">Council 1</button>
+            <button class="video-btn" onclick="switchVideo('council-2')">Council 2</button>
+            <button class="video-btn" onclick="switchVideo('wheel')">Wheel</button>
+        </div>
+
+        <div class="video-container">
+            <video id="video" autoplay loop muted playsinline>
+                <source src="assets/hamster-council-1.mp4" type="video/mp4">
+            </video>
+            <div class="video-title">🐹 The Council Deliberates</div>
+        </div>
+
+        <div class="dialogue-container" id="dialogue">
+            <!-- Dialogues will be inserted here -->
+        </div>
+
+        <button class="restart-btn" onclick="restartDialogue()">🔄 Restart Dialogue</button>
+    </div>
+
+    <script>
+        const HAMSTERS = {
+            1: { name: 'Al', icon: '🟡', color: '#E74C3C' },
+            2: { name: 'Erik', icon: '🔮', color: '#3498DB' },
+            3: { name: 'Cogni', icon: '🧩', color: '#2ECC71' },
+            4: { name: 'Rocky', icon: '⚡', color: '#9B59B6' }
+        };
+
+        const DIALOGUE = [
+            { id: 1, action: 'twirling whiskers', content: "Let's start with who you're really doing this for. Is this about proving something?" },
+            { id: 4, action: 'spinning wheel', content: "Al's got a point, but let's get concrete. What's the FIRST thing you'd DO tomorrow?" },
+            { id: 2, action: 'stroking whiskers', content: "Rocky's rushing it. This is a midlife pivot. What chapter of your story is ending?" },
+            { id: 3, action: 'adjusting glasses', content: "Hold on everyone. I'm hearing catastrophizing - 'too late' at 42? The average founder is 45!" },
+            { id: 1, action: 'nodding', content: "Cogni's right about the data, but Erik's question matters. Is this growth or escape?" },
+            { id: 4, action: 'jumping down', content: "Fine - let's test both! 3-month experiment: 10 hrs/week while keeping the job." }
+        ];
+
+        let currentIndex = 0;
+        let dialogueContainer = document.getElementById('dialogue');
+
+        function switchVideo(name) {
+            const video = document.getElementById('video');
+            video.src = `assets/hamster-${name}.mp4`;
+            video.play();
+
+            document.querySelectorAll('.video-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function addDialogueBubble(item, delay) {
+            const h = HAMSTERS[item.id];
+            const bubble = document.createElement('div');
+            bubble.className = 'dialogue-bubble';
+            bubble.style.borderLeftColor = h.color;
+            bubble.style.animationDelay = `${delay}ms`;
+
+            bubble.innerHTML = `
+                <div class="bubble-header">
+                    <span class="hamster-icon">${h.icon}</span>
+                    <span class="hamster-name" style="color:${h.color}">${h.name}</span>
+                    <span class="hamster-action">(${item.action})</span>
+                </div>
+                <div class="bubble-content">${item.content}</div>
+            `;
+
+            dialogueContainer.appendChild(bubble);
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'typing';
+            typing.id = 'typing';
+            typing.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            dialogueContainer.appendChild(typing);
+        }
+
+        function removeTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+
+        function showNextDialogue() {
+            if (currentIndex >= DIALOGUE.length) return;
+
+            removeTyping();
+            addDialogueBubble(DIALOGUE[currentIndex], 0);
+            currentIndex++;
+
+            if (currentIndex < DIALOGUE.length) {
+                showTyping();
+                setTimeout(showNextDialogue, 2500);
+            }
+        }
+
+        function restartDialogue() {
+            dialogueContainer.innerHTML = '';
+            currentIndex = 0;
+            showTyping();
+            setTimeout(showNextDialogue, 1500);
+        }
+
+        // Start dialogue
+        showTyping();
+        setTimeout(showNextDialogue, 1500);
+    </script>
+</body>
+</html>

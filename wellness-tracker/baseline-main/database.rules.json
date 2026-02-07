@@ -1,0 +1,71 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "config": {
+      ".read": true,
+      ".write": false
+    },
+    "$uid": {
+      "logs": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+      "surveys": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+      "lastUpdated": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+    	"offline": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+      "lastWeekInReview": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid",
+        ".validate": "newData.isNumber() && newData.val() == now"
+      },
+      "pdp": {
+        "method": {
+          ".read": "auth != null && auth.uid == $uid",
+          ".write":"auth != null && auth.uid == $uid",
+          ".validate": "newData.isString() && (newData.val() == 'upfront' || newData.val() == 'discreet')"
+        },
+        "passphraseUpdate": {
+          ".read": "auth != null && auth.uid == $uid"
+        }
+      },
+      "gapFund": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+      "partners": {
+        ".read": "auth != null && auth.uid == $uid"
+      },
+      "onboarding": {
+        ".read": "auth != null && auth.uid == $uid",
+        "beginner": {
+          ".write": "auth != null && auth.uid == $uid",
+          ".validate": "(newData.isNumber() && newData.val() == now) || newData.val() == false"
+        },
+        "questions": {
+          ".write": "auth != null && auth.uid == $uid",
+          ".validate": "newData.isBoolean()"
+        },
+        "onboarded": {
+          ".write": "auth != null && auth.uid == $uid",
+          ".validate": "newData.isBoolean() && newData.val() == true"
+        }
+      },
+      "prompts": {
+        ".read": "auth != null && auth.uid == $uid",
+        "streak": {
+          ".write": "auth != null && auth.uid == $uid",
+          ".validate": "newData.isNumber() && newData.val() == now"
+        },
+        "widgets": {
+          ".write": "auth != null && auth.uid == $uid",
+          ".validate": "newData.isNumber() && newData.val() == now"
+        }
+      }
+    }
+  }
+}

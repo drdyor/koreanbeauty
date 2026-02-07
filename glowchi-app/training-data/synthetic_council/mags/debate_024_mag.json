@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_024",
+  "dump_id": "dump_024",
+  "proposition": "How do I know if I'm settling in my long-term relationship or if this is normal?",
+  "domain": "relationships",
+  "emotional_tone": "confused",
+  "timestamp": "2026-01-29T00:09:50.008721",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "The biological clock is real but not binary. Fertility declines gradually. At 34, you have options: natural conception for several more years, egg freezing, adoption. The paralysis comes from treating this as a now-or-never decision. It's not. Reframe: what would need to be true for you to feel ready? Work toward that, rather than deciding today.",
+          "word_count": 56,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "The 'spark' is just novelty seeking. In 4 years with the coworker, you'd be exactly where you are now. The problem isn't your partner - it's your expectation that long-term relationships should feel like new ones. You're chasing a feeling, not a person. The real issue: can you tolerate contentment, or do you need drama?",
+          "word_count": 55,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "The kid decision sits at the intersection of biology, identity, and values. It's not just 'do I want kids?' but 'what kind of parent would I be?' and 'what would I be giving up?' and 'what if I regret it?' The pressure you're feeling is partly social clock, partly biological reality, partly FOMO. There's no right answer - only your answer.",
+          "word_count": 61,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "The absence of spark you're describing - that ache - it's real and it's painful. The guilt about the coworker chemistry, the fear of hurting your partner, the terror of making the wrong choice - you're carrying so much. There's no easy answer here. But I want you to know: questioning doesn't make you bad. It makes you human.",
+          "word_count": 59,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "Three concrete steps: 1) Schedule a fertility consultation - information reduces anxiety. 2) Have one honest conversation with your partner about your uncertainty. 3) Give yourself a deadline - 6 months to decide. The deadline creates urgency, the steps create progress, the conversation creates partnership.",
+          "word_count": 45,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "The 'spark' is a cultural construct. We expect romantic love to feel like movie love forever. It doesn't. The question isn't 'do I feel passion?' but 'am I growing with this person?' and 'do we choose each other?' Love is a verb, not a feeling. But also: some relationships have run their course. Only you know which this is.",
+          "word_count": 59,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "philosopher": "The Philosopher's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "empath": "The Empath's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "pragmatist": 6,
+            "philosopher": 4,
+            "empath": 1
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "philosopher": "The Philosopher is too optimistic. What about the downside risks they're not mentioning?",
+            "empath": "The Empath is too optimistic. What about the downside risks they're not mentioning?",
+            "synthesist": "The Synthesist is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "philosopher": 6,
+            "empath": 6,
+            "synthesist": 4
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "analyst": "The Analyst misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "philosopher": "The Philosopher misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "pragmatist": "The Pragmatist misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "analyst": 4,
+            "philosopher": 2,
+            "pragmatist": 4
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "skeptic": "The Skeptic is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "analyst": "The Analyst is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "synthesist": "The Synthesist is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "skeptic": 3,
+            "analyst": 4,
+            "synthesist": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "skeptic": "The Skeptic is too abstract. Where are the concrete next steps?",
+            "analyst": "The Analyst is too abstract. Where are the concrete next steps?",
+            "synthesist": "The Synthesist is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "skeptic": 2,
+            "analyst": 1,
+            "synthesist": 2
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "synthesist": "The Synthesist accepts the frame without questioning it. What if the premise is wrong?",
+            "analyst": "The Analyst accepts the frame without questioning it. What if the premise is wrong?",
+            "skeptic": "The Skeptic accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "synthesist": 6,
+            "analyst": 4,
+            "skeptic": 5
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "The council deliberation reveals a tension between safety/security and growth/fulfillment. Here's the synthesis:\n\n**Immediate**: acknowledge the feeling without judgment\n**Short-term**: gather information to reduce uncertainty\n**Long-term consideration**: build skills or resources for future options\n\nThe key insight: the paralysis is the problem, not the decision itself",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.86
+  }
+}

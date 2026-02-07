@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FoxWidget</string>
+    <string name="action_settings">Settings</string>
+    <string name="maincomment">FoxWidget</string>
+    <string name="introcomment">ver 0.1</string>
+    <string name="exp">---</string>
+    <string name="update">업데이트</string>
+</resources>

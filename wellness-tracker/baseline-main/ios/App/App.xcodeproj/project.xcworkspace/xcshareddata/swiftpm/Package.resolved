@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "ios_sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adjust/ios_sdk",
+      "state" : {
+        "revision" : "c97e8e39a70eeba1742ed6ec75d136d2f111a366",
+        "version" : "4.33.5"
+      }
+    }
+  ],
+  "version" : 2
+}

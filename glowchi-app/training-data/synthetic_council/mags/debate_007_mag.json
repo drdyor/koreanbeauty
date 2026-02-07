@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_007",
+  "dump_id": "dump_007",
+  "proposition": "How do I overcome debt and compulsive spending when avoidance and shame keep me stuck?",
+  "domain": "finance",
+  "emotional_tone": "confused",
+  "timestamp": "2026-01-29T00:09:49.996342",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "Analysis paralysis from option overload. The optimal choice is the one you'll actually execute. For inheritance: time in market beats timing market. Simple portfolio: 60% VTI, 30% VXUS, 10% BND. Set it and forget it. The emotional decision (travel) vs financial decision (invest) is a false dichotomy - do both. Allocate 80% invest, 20% experience.",
+          "word_count": 55,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "You're not 'drowning' - you're choosing to stay underwater. $120k income, $45k debt is a 6-month problem with discipline. The real issue: you don't want to stop spending. You want to feel better AND keep the lifestyle. Pick one. Until you accept that tradeoff, nothing changes. The shopping is the symptom, not the disease.",
+          "word_count": 54,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "The inheritance represents both opportunity and burden - your grandmother's legacy, your family's expectations, your own fear of wasting it. The paralysis is about responsibility, not investment strategy. Consider: what would she want for you? The answer probably isn't 'be paralyzed by fear of making the wrong choice.'",
+          "word_count": 48,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "The weight of your grandmother's money - the responsibility, the fear of wasting it, the not wanting to let her down. She left this to you because she loved you, not to paralyze you. What would she say if she saw you suffering over this? Probably not 'make the perfect investment decision.' Probably something like 'take care of yourself, sweetheart.'",
+          "word_count": 60,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "This week: open a Vanguard account. Put $150k in a target date fund (pick your retirement year). Keep $50k in cash as emergency fund + travel money. Done. Not optimal, but done. Perfect is the enemy of good. You're losing more to inflation than you'd lose to suboptimal allocation. Act.",
+          "word_count": 50,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "The inheritance is a koan: what do you do with abundance when you're conditioned for scarcity? The fear of wasting it IS the waste. The grandmother who earned this - what was she seeking? Security? Freedom? Love? Give yourself those things. That's the inheritance.",
+          "word_count": 44,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "philosopher": "The Philosopher's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "empath": "The Empath's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "philosopher": 5,
+            "pragmatist": 1,
+            "empath": 2
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "philosopher": "The Philosopher is too optimistic. What about the downside risks they're not mentioning?",
+            "synthesist": "The Synthesist is too optimistic. What about the downside risks they're not mentioning?",
+            "analyst": "The Analyst is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "philosopher": 6,
+            "synthesist": 5,
+            "analyst": 5
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "philosopher": "The Philosopher misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "skeptic": "The Skeptic misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "pragmatist": "The Pragmatist misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "philosopher": 2,
+            "skeptic": 4,
+            "pragmatist": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "analyst": "The Analyst is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "pragmatist": "The Pragmatist is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "synthesist": "The Synthesist is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "analyst": 3,
+            "pragmatist": 5,
+            "synthesist": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "philosopher": "The Philosopher is too abstract. Where are the concrete next steps?",
+            "synthesist": "The Synthesist is too abstract. Where are the concrete next steps?",
+            "skeptic": "The Skeptic is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "philosopher": 5,
+            "synthesist": 4,
+            "skeptic": 1
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "analyst": "The Analyst accepts the frame without questioning it. What if the premise is wrong?",
+            "synthesist": "The Synthesist accepts the frame without questioning it. What if the premise is wrong?",
+            "pragmatist": "The Pragmatist accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "analyst": 1,
+            "synthesist": 6,
+            "pragmatist": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "Multiple truths exist here. The council's collective wisdom:\n\n\u2022 **From the Analyst**: data and logical analysis matter\n\u2022 **From the Empath**: emotional validation is essential\n\u2022 **From the Pragmatist**: action creates clarity\n\n**Synthesized guidance**: Start with small experiments. Validate feelings AND take one concrete step. The path emerges from walking.\n\nYour move: What's one thing you could do in the next 24 hours?",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.86
+  }
+}
