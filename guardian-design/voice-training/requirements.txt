@@ -1,0 +1,31 @@
+# Guardian Voice Training Requirements
+
+# Core ML
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+
+# Audio processing
+librosa==0.10.1
+soundfile==0.12.1
+scipy==1.11.4
+numpy==1.24.3
+resampy==0.4.2
+audioread==3.0.1
+
+# RVC dependencies
+faiss-gpu==1.7.2
+praat-parselmouth==0.4.3
+pyworld==0.3.4
+
+# API server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# RunPod
+runpod
+
+# Utilities
+pydantic==2.5.0
+python-dotenv==1.0.0

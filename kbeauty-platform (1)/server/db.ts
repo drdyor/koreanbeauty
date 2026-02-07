@@ -5,7 +5,9 @@ import {
   productSkinConcerns, productIngredients, reviews, cartItems, orders,
   orderItems, quizResults, userPreferences, newsletterSubscribers, blogPosts,
   InsertProduct, InsertReview, InsertCartItem, InsertOrder, InsertOrderItem,
-  InsertQuizResult, InsertUserPreference, InsertNewsletterSubscriber
+  InsertQuizResult, InsertUserPreference, InsertNewsletterSubscriber,
+  dailyCheckins, foodLogs, skinLogs,
+  InsertDailyCheckinRow, InsertFoodLogRow, InsertSkinLogRow
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -442,4 +444,50 @@ export async function updateProductStock(id: number, stock: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.update(products).set({ stock }).where(eq(products.id, id));
+}
+
+// Pet logs
+export async function createDailyCheckin(row: InsertDailyCheckinRow) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(dailyCheckins).values(row);
+}
+
+export async function createFoodLog(row: InsertFoodLogRow) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(foodLogs).values(row);
+}
+
+export async function createSkinLog(row: InsertSkinLogRow) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(skinLogs).values(row);
+}
+
+export async function listRecentCheckins(userId: number, limit = 30) {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(dailyCheckins)
+    .where(eq(dailyCheckins.userId, userId))
+    .orderBy(desc(dailyCheckins.date))
+    .limit(limit);
+}
+
+export async function listRecentFoodLogs(userId: number, limit = 30) {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(foodLogs)
+    .where(eq(foodLogs.userId, userId))
+    .orderBy(desc(foodLogs.date))
+    .limit(limit);
+}
+
+export async function listRecentSkinLogs(userId: number, limit = 30) {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(skinLogs)
+    .where(eq(skinLogs.userId, userId))
+    .orderBy(desc(skinLogs.date))
+    .limit(limit);
 }

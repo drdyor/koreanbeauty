@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --pink-50: #fdf4ff;
+      --pink-100: #fae8ff;
+      --pink-200: #f5d0fe;
+      --neutral-50: #fafafa;
+      --neutral-100: #f5f5f5;
+      --neutral-200: #e5e5e5;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+      --green-500: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 50%, var(--purple-100) 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--neutral-900);
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .app-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 4px;
+    }
+
+    .app-subtitle {
+      font-size: 14px;
+      color: var(--neutral-400);
+    }
+
+    /* Settings Section */
+    .settings-section {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .section-label {
+      font-size: 12px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-info {
+      flex: 1;
+    }
+
+    .setting-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-900);
+      margin-bottom: 4px;
+    }
+
+    .setting-description {
+      font-size: 12px;
+      color: var(--neutral-400);
+      line-height: 1.4;
+    }
+
+    .setting-value {
+      font-size: 14px;
+      color: var(--purple-600);
+      font-weight: 500;
+      background: var(--purple-50);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .setting-value:hover {
+      background: var(--purple-100);
+    }
+
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      background: var(--neutral-200);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-switch.active {
+      background: var(--purple-600);
+    }
+
+    .toggle-switch.active::after {
+      left: 23px;
+    }
+
+    /* Cycle Editor */
+    .cycle-editor {
+      background: var(--purple-50);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+
+    .cycle-input-group {
+      margin-bottom: 16px;
+    }
+
+    .cycle-input-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .input-label {
+      font-size: 12px;
+      color: var(--neutral-600);
+      margin-bottom: 8px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .cycle-input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--purple-200);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .cycle-input:focus {
+      outline: none;
+      border-color: var(--purple-600);
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+    }
+
+    .save-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+    }
+
+    /* Voice Options */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .voice-option {
+      background: var(--purple-50);
+      border: 2px solid var(--purple-200);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .voice-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.15);
+    }
+
+    .voice-option.selected {
+      border-color: var(--purple-600);
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 100%);
+    }
+
+    .voice-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .voice-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--neutral-900);
+      margin-bottom: 4px;
+    }
+
+    .voice-meta {
+      font-size: 11px;
+      color: var(--neutral-400);
+    }
+
+    /* Danger Zone */
+    .danger-section {
+      background: #fef2f2;
+      border: 2px solid #fecaca;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .danger-section .section-label {
+      color: #991b1b;
+    }
+
+    .danger-btn {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      color: #dc2626;
+      border: 2px solid #fecaca;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 12px;
+    }
+
+    .danger-btn:hover {
+      background: #fef2f2;
+      border-color: #dc2626;
+    }
+
+    .danger-btn:last-child {
+      margin-bottom: 0;
+    }
+
+    /* About Section */
+    .about-section {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .guardian-logo {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .about-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 8px;
+    }
+
+    .about-version {
+      font-size: 13px;
+      color: var(--neutral-400);
+      margin-bottom: 16px;
+    }
+
+    .about-description {
+      font-size: 13px;
+      color: var(--neutral-600);
+      line-height: 1.6;
+      max-width: 320px;
+      margin: 0 auto 20px;
+    }
+
+    .about-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .about-link {
+      font-size: 13px;
+      color: var(--purple-600);
+      text-decoration: none;
+      padding: 8px 16px;
+      background: var(--purple-50);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .about-link:hover {
+      background: var(--purple-100);
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      color: var(--neutral-400);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active {
+      color: var(--purple-600);
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Hidden sections */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="app-title">Settings</div>
+      <div class="app-subtitle">Customize your Guardian experience</div>
+    </div>
+
+    <!-- Cycle Settings -->
+    <div class="settings-section">
+      <div class="section-label">Cycle Tracking</div>
+
+      <div class="setting-item" onclick="toggleCycleEditor()">
+        <div class="setting-info">
+          <div class="setting-title">Cycle Start Date</div>
+          <div class="setting-description">Last period began December 1, 2026</div>
+        </div>
+        <div class="setting-value">Edit</div>
+      </div>
+
+      <div class="cycle-editor hidden" id="cycleEditor">
+        <div class="cycle-input-group">
+          <label class="input-label">Average Cycle Length</label>
+          <input type="number" class="cycle-input" value="28" min="21" max="35">
+        </div>
+        <div class="cycle-input-group">
+          <label class="input-label">Last Period Start Date</label>
+          <input type="date" class="cycle-input" value="2026-12-01">
+        </div>
+        <button class="save-btn">Save Changes</button>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Cycle Phase Descriptions</div>
+          <div class="setting-description">Show educational content about each phase</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Ovulation Alert</div>
+          <div class="setting-description">Day 14 special animation and message</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-section">
+      <div class="section-label">Notifications</div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Daily Check-In Reminder</div>
+          <div class="setting-description">9:00 AM · Atmosphere and habit selection</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Evening Reflection</div>
+          <div class="setting-description">9:00 PM · Log today's habits and offering</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Hypnosis Suggestions</div>
+          <div class="setting-description">Gentle reminders for self-care sessions</div>
+        </div>
+        <div class="toggle-switch"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Quiet Mode</div>
+          <div class="setting-description">Minimal notifications during menstrual phase</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+    </div>
+
+    <!-- Audio Preferences -->
+    <div class="settings-section">
+      <div class="section-label">Audio & Hypnosis</div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Preset Voice</div>
+          <div class="setting-description">TTS voice for guided sessions</div>
+        </div>
+      </div>
+
+      <div class="voice-grid">
+        <div class="voice-option selected">
+          <div class="voice-icon">🎙️</div>
+          <div class="voice-name">Calm Female</div>
+          <div class="voice-meta">Soothing · Deep</div>
+        </div>
+        <div class="voice-option">
+          <div class="voice-icon">🎙️</div>
+          <div class="voice-name">Warm Male</div>
+          <div class="voice-meta">Grounding · Steady</div>
+        </div>
+        <div class="voice-option">
+          <div class="voice-icon">🎙️</div>
+          <div class="voice-name">Soft Neutral</div>
+          <div class="voice-meta">Gentle · Balanced</div>
+        </div>
+        <div class="voice-option">
+          <div class="voice-icon">🎙️</div>
+          <div class="voice-name">My Voice</div>
+          <div class="voice-meta">Personalized</div>
+        </div>
+      </div>
+
+      <div class="setting-item" style="margin-top: 16px;">
+        <div class="setting-info">
+          <div class="setting-title">Binaural Beats</div>
+          <div class="setting-description">Alpha/theta wave background (headphones recommended)</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Auto-Play Next Session</div>
+          <div class="setting-description">Continue to next script after completion</div>
+        </div>
+        <div class="toggle-switch"></div>
+      </div>
+    </div>
+
+    <!-- Habit Settings -->
+    <div class="settings-section">
+      <div class="section-label">Habits & Identity</div>
+
+      <div class="setting-item" onclick="window.location.href='#habit-editor'">
+        <div class="setting-info">
+          <div class="setting-title">Current Identity</div>
+          <div class="setting-description">"I'm becoming someone who moves daily"</div>
+        </div>
+        <div class="setting-value">Edit</div>
+      </div>
+
+      <div class="setting-item" onclick="window.location.href='#habit-editor'">
+        <div class="setting-info">
+          <div class="setting-title">Primary Habit</div>
+          <div class="setting-description">10-minute walk after lunch</div>
+        </div>
+        <div class="setting-value">Change</div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Adaptive Suggestions</div>
+          <div class="setting-description">Guardian adjusts habits based on cycle phase</div>
+        </div>
+        <div class="toggle-switch active"></div>
+      </div>
+    </div>
+
+    <!-- Data & Privacy -->
+    <div class="settings-section">
+      <div class="section-label">Data & Privacy</div>
+
+      <div class="setting-item" onclick="window.location.href='#export'">
+        <div class="setting-info">
+          <div class="setting-title">Export Your Data</div>
+          <div class="setting-description">Download all logs, recordings, and progress</div>
+        </div>
+        <div class="setting-value">Export</div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Local Storage</div>
+          <div class="setting-description">All data stored on your device only</div>
+        </div>
+        <div class="setting-value">✓ Private</div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-title">Voice Recordings</div>
+          <div class="setting-description">Hypnosis audio stored locally (5.2 MB used)</div>
+        </div>
+        <div class="setting-value">Manage</div>
+      </div>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="danger-section">
+      <div class="section-label">Danger Zone</div>
+      <button class="danger-btn">Reset Cycle Data</button>
+      <button class="danger-btn">Delete Voice Recordings</button>
+      <button class="danger-btn">Clear All Progress</button>
+    </div>
+
+    <!-- About -->
+    <div class="about-section">
+      <div class="guardian-logo">🐱</div>
+      <div class="about-title">Guardian</div>
+      <div class="about-version">Version 1.0.0 · Web App</div>
+      <div class="about-description">
+        Your cycle-aware wellness companion. Built with Atomic Habits, self-hypnosis, and respect for your body's natural rhythm.
+      </div>
+      <div class="about-links">
+        <a href="#" class="about-link">Privacy Policy</a>
+        <a href="#" class="about-link">Support</a>
+        <a href="#" class="about-link">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="window.location.href='01-main-screen.html'">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='07-cat-hangout.html'">
+        <div class="nav-icon">🐱</div>
+        <div class="nav-label">The Nest</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='03-progress-screen.html'">
+        <div class="nav-icon">📊</div>
+        <div class="nav-label">Progress</div>
+      </div>
+      <div class="nav-item active" onclick="window.location.href='04-settings-screen.html'">
+        <div class="nav-icon">⚙️</div>
+        <div class="nav-label">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data Persistence
+    const STORAGE_KEY = 'guardian_settings';
+    
+    let settings = {
+      cycleLength: 28,
+      lastPeriodDate: '2026-12-01',
+      showPhaseDescriptions: true,
+      ovulationAlert: true,
+      dailyCheckIn: true,
+      eveningReflection: true,
+      hypnosisSuggestions: false,
+      quietMode: true,
+      selectedVoice: 'Calm Female',
+      binauralBeats: true,
+      autoPlayNext: false,
+      currentIdentity: "I'm becoming someone who moves daily",
+      primaryHabit: "10-minute walk after lunch"
+    };
+
+    function loadSettings() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        settings = { ...settings, ...JSON.parse(saved) };
+      }
+      applySettingsToUI();
+    }
+
+    function saveSettings() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+      // Also update cycle day in main storage if it's changed via dates
+      updateCycleDayFromDates();
+    }
+
+    function applySettingsToUI() {
+      // Cycle Length
+      document.querySelector('input[value="28"]').value = settings.cycleLength;
+      // Last Period Date
+      document.querySelector('input[type="date"]').value = settings.lastPeriodDate;
+      // Toggles
+      const toggles = document.querySelectorAll('.toggle-switch');
+      toggles[0].classList.toggle('active', settings.showPhaseDescriptions);
+      toggles[1].classList.toggle('active', settings.ovulationAlert);
+      toggles[2].classList.toggle('active', settings.dailyCheckIn);
+      toggles[3].classList.toggle('active', settings.eveningReflection);
+      toggles[4].classList.toggle('active', settings.hypnosisSuggestions);
+      toggles[5].classList.toggle('active', settings.quietMode);
+      toggles[6].classList.toggle('active', settings.binauralBeats);
+      toggles[7].classList.toggle('active', settings.autoPlayNext);
+      
+      // Voice Selection
+      document.querySelectorAll('.voice-option').forEach(opt => {
+        const name = opt.querySelector('.voice-name').textContent;
+        opt.classList.toggle('selected', name === settings.selectedVoice);
+      });
+
+      // Descriptions
+      document.querySelectorAll('.setting-description')[0].textContent = `Last period began ${formatDate(settings.lastPeriodDate)}`;
+      document.querySelectorAll('.setting-description')[10].textContent = `"${settings.currentIdentity}"`;
+      document.querySelectorAll('.setting-description')[11].textContent = settings.primaryHabit;
+    }
+
+    function formatDate(dateStr) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateStr).toLocaleDateString(undefined, options);
+    }
+
+    function updateCycleDayFromDates() {
+      const lastPeriod = new Date(settings.lastPeriodDate);
+      const today = new Date();
+      const diffTime = Math.abs(today - lastPeriod);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const cycleDay = (diffDays % settings.cycleLength) || 1;
+      localStorage.setItem('guardian_cycleDay', cycleDay);
+    }
+
+    // Toggle switches
+    document.querySelectorAll('.toggle-switch').forEach((toggle, index) => {
+      toggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const isActive = this.classList.contains('active');
+        
+        // Map index to setting
+        const settingKeys = [
+          'showPhaseDescriptions', 'ovulationAlert', 'dailyCheckIn', 
+          'eveningReflection', 'hypnosisSuggestions', 'quietMode', 
+          'binauralBeats', 'autoPlayNext'
+        ];
+        settings[settingKeys[index]] = isActive;
+        saveSettings();
+      });
+    });
+
+    // Voice selection
+    document.querySelectorAll('.voice-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('.voice-option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        settings.selectedVoice = this.querySelector('.voice-name').textContent;
+        saveSettings();
+      });
+    });
+
+    // Cycle editor toggle
+    function toggleCycleEditor() {
+      const editor = document.getElementById('cycleEditor');
+      editor.classList.toggle('hidden');
+    }
+
+    // Save cycle settings
+    document.querySelector('.save-btn')?.addEventListener('click', function() {
+      const lengthInput = document.querySelector('input[type="number"]');
+      const dateInput = document.querySelector('input[type="date"]');
+      
+      settings.cycleLength = parseInt(lengthInput.value);
+      settings.lastPeriodDate = dateInput.value;
+      
+      saveSettings();
+      applySettingsToUI();
+      
+      alert('Cycle settings saved!');
+      toggleCycleEditor();
+    });
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', loadSettings);
+  </script>
+</body>
+</html>

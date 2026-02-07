@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Audio Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .script-item {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .script-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .script-meta {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .script-preview {
+      font-size: 14px;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 15px;
+      max-height: 60px;
+      overflow: hidden;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .generate-all {
+      background: #10b981;
+      width: 100%;
+      padding: 16px;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .generate-all:hover {
+      background: #059669;
+    }
+
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .status.success {
+      background: #d1fae5;
+      color: #065f46;
+      display: block;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      color: #991b1b;
+      display: block;
+    }
+
+    .status.info {
+      background: #dbeafe;
+      color: #1e40af;
+      display: block;
+    }
+
+    .progress {
+      margin-top: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #667eea;
+      transition: width 0.3s;
+    }
+
+    .instructions {
+      background: #fef3c7;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .instructions h3 {
+      color: #92400e;
+      margin-bottom: 10px;
+    }
+
+    .instructions ol {
+      margin-left: 20px;
+      color: #78350f;
+    }
+
+    .instructions li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌙 Guardian Audio Generator</h1>
+    <p class="subtitle">Generate hypnosis audio files using browser TTS</p>
+
+    <div class="instructions">
+      <h3>📋 Instructions:</h3>
+      <ol>
+        <li>Click "Generate All Audio Files" below</li>
+        <li>Browser will speak each script and save as audio</li>
+        <li>Files will download to your Downloads folder</li>
+        <li>Move files to <code>guardian-design/audio/</code> directory</li>
+        <li>Refresh hypnosis screen to hear your voice!</li>
+      </ol>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <button class="generate-all" onclick="generateAllAudio()">
+      🎙️ Generate All Audio Files (5 scripts)
+    </button>
+
+    <div id="scripts-container"></div>
+  </div>
+
+  <script>
+    // Scripts from HYPNOSIS_SCRIPTS.md
+    const scripts = [
+      {
+        id: 'luteal_grounding',
+        name: 'Luteal Phase Grounding',
+        duration: '7 min',
+        text: `Close your eyes. Take a deep breath in through your nose.
+
+We're entering your alpha state now. Let's count down together.
+
+Five... Feel your body beginning to relax. Your shoulders drop.
+
+Four... Your breath slows to its natural rhythm. Nothing to force.
+
+Three... Thoughts begin to quiet, like snow settling on the ground.
+
+Two... You are entering your inner sanctuary. This is your safe space.
+
+One... You are now in alpha. Your subconscious mind is receptive and open.
+
+If you're in your luteal phase right now, your body feels different. Heavier. Slower. More sensitive.
+
+This is progesterone. This is not weakness. This is biology.
+
+Your body is preparing for rest, for renewal, for deep wisdom.
+
+The world tells you to stay productive, to push through. But your luteal phase whispers: slow down. Turn inward. Listen.
+
+Imagine a screen about six feet in front of you. This is your mental screen.
+
+On this screen, see yourself tomorrow during your luteal phase.
+
+Watch yourself choosing rest when your body asks for it. See yourself saying no to demands that drain you.
+
+Notice how natural this feels. This is not laziness. This is self-preservation.
+
+Your luteal phase is a superpower disguised as a slowdown. This is when you process. When you integrate. When you become wise.
+
+Press your thumb, index finger, and middle finger together gently.
+
+This is your luteal anchor. Whenever you press these three fingers together, you will remember: Progesterone is intelligence. My body knows what it needs.
+
+Release your fingers. The anchor is set.
+
+Repeat these truths silently as I speak them: I honor my rhythm. I am becoming someone who works with my cycle, not against it. My luteal phase is wisdom, not weakness. Every day, in every way, I'm learning to trust my body.
+
+In a moment, I will count from one to five, and you will return feeling grounded and aligned.
+
+One... Beginning to return. Energy flowing back gently.
+
+Two... Bringing this luteal wisdom with you.
+
+Three... Your body remembers. You are safe in your rhythm.
+
+Four... Feeling alert, calm, and deeply aligned.
+
+Five... Open your eyes. You are fully present and at peace with your cycle.`
+      },
+      {
+        id: 'sleep_induction',
+        name: 'Sleep Induction',
+        duration: '7 min',
+        text: `You are safe. Your body knows how to sleep.
+
+Close your eyes if they aren't already closed.
+
+Let's count down into deep rest.
+
+Five... Your body is heavy, sinking into the bed.
+
+Four... Your breath slows. Each exhale is a release.
+
+Three... Your mind begins to drift like a leaf on water.
+
+Two... You are entering the threshold of sleep. This is safe.
+
+One... You are in delta now. Deep rest is coming.
+
+Notice the weight of your head on the pillow. Your jaw unclenches. Your tongue rests softly in your mouth.
+
+Your shoulders drop away from your ears. Tension melts. Each breath carries you deeper into stillness.
+
+If you're in your luteal phase, your body is naturally preparing for sleep right now. Progesterone makes you drowsy. This is not a problem. This is design.
+
+Your body is saying: it's time to rest, to restore, to dream.
+
+There is nothing you need to do right now. No problem to solve. No task to complete. This moment is only for rest.
+
+Imagine a warm, gentle wave washing over you from head to toe. This wave carries away any remaining tension.
+
+Your forehead smooths. Your eyes soften behind your eyelids.
+
+Your chest rises and falls like the ocean. Slow. Steady. Natural.
+
+Your arms are heavy. Your legs are heavy. You are sinking.
+
+Sleep is not something you do. Sleep is something you allow. And right now, you are allowing.
+
+Your nervous system shifts into its rest-and-digest state. Your heart rate slows. Your blood pressure lowers. Delta waves begin to rise in your brain.
+
+This is the frequency of deep, healing sleep.
+
+You are safe. You are held. You are allowed to let go.
+
+If thoughts arise, let them drift by like clouds. You don't need to follow them. You don't need to solve them.
+
+Just breathe. Just sink. Just allow.
+
+Sleep will find you. It always does. Your only job now is to surrender.
+
+Let go. Let go. Sleep is here.`
+      },
+      {
+        id: 'habit_installation',
+        name: 'Habit Installation',
+        duration: '7 min',
+        text: `Close your eyes. Take a deep breath.
+
+We're going to install a new habit tonight. Not through willpower. Through visualization.
+
+Your subconscious mind doesn't know the difference between a vivid visualization and reality.
+
+What you see clearly on your mental screen can become your new normal.
+
+Let's count down into alpha.
+
+Five... Relaxing deeply.
+
+Four... Breath slowing naturally.
+
+Three... Thoughts quieting.
+
+Two... Entering your inner sanctuary.
+
+One... You are now in alpha. Receptive. Open. Ready.
+
+Imagine a screen about six feet in front of you. Like a movie screen.
+
+On this screen, you're going to watch yourself tomorrow.
+
+See yourself when your habit cue happens. Maybe it's finishing lunch. Maybe it's waking up. Maybe it's coming home.
+
+Watch yourself in this moment. See it clearly.
+
+Now, watch yourself naturally, easily doing your new habit.
+
+Notice how automatic it feels. Like you've been doing this for years.
+
+There's no resistance. No willpower needed. It's just what you do now.
+
+See the details. What are you wearing? Where are you? Notice how your body moves. See yourself doing this with ease.
+
+Now, watch yourself feel the reward from this habit. Maybe it's a sense of calm. Maybe it's energy. Maybe it's pride.
+
+Let yourself feel this reward fully. This is why you do this habit.
+
+Your subconscious mind is learning right now. When the cue happens, you do the behavior, and you feel the reward.
+
+This is your new identity. This is who you are becoming.
+
+If you're in your follicular phase, your brain is especially plastic right now. Estrogen helps you learn new patterns. Your neurons are forming new connections.
+
+This is the perfect time to install a habit.
+
+Press your thumb, index finger, and middle finger together.
+
+This is your habit anchor. Tomorrow, when your cue happens, press these three fingers. Your body will remember this moment. It will remember what to do.
+
+Release your fingers.
+
+Repeat these truths silently: I am becoming someone who honors my habits. This habit is easy and natural for me. Every day, in every way, I'm aligning with my highest self.
+
+In a moment, you'll return, and this new pattern will be installed.
+
+One... Beginning to return.
+
+Two... Bringing this new habit with you.
+
+Three... Your subconscious remembers.
+
+Four... Feeling confident and aligned.
+
+Five... Open your eyes. The habit is installed. Tomorrow, you'll see.`
+      },
+      {
+        id: 'anxiety_reset',
+        name: 'Anxiety Reset',
+        duration: '3 min',
+        text: `This feeling is temporary. You are safe right now.
+
+Close your eyes. Place one hand on your heart.
+
+Breathe in for five counts. One, two, three, four, five.
+
+Hold for five. One, two, three, four, five.
+
+Exhale for five. One, two, three, four, five.
+
+Again. Inhale. One, two, three, four, five.
+
+Hold. One, two, three, four, five.
+
+Exhale. One, two, three, four, five.
+
+Your nervous system is shifting right now. From sympathetic to parasympathetic. From fight-or-flight to rest-and-digest.
+
+This is not dangerous. This is your body's wisdom.
+
+If you're in your luteal phase, anxiety spikes are common. Progesterone affects your GABA receptors. This is biochemistry, not your fault.
+
+You are not broken. You are cycling.
+
+Press your thumb, index finger, and middle finger together. This is your calm anchor. Feel it working. Your body remembers safety.
+
+Imagine two mirrors in front of you.
+
+On the left, see yourself anxious, overwhelmed. Acknowledge this. It's real. It's okay.
+
+Now look to the right mirror. See yourself calm. Grounded. Breathing steadily.
+
+This version of you knows: this storm will pass.
+
+Step into the right mirror. Feel this as your reality now.
+
+You are safe. You are capable. You can handle this.
+
+This anxiety is a wave. You are the ocean.
+
+Waves rise. Waves fall. The ocean remains.
+
+One more breath. In for five. One, two, three, four, five.
+
+Hold. One, two, three, four, five.
+
+Out for five. One, two, three, four, five.
+
+When you open your eyes, the intensity will have softened.
+
+One, two, three. Eyes open. You've got this.`
+      },
+      {
+        id: 'body_acceptance',
+        name: 'Body Acceptance',
+        duration: '7 min',
+        text: `Close your eyes. Take a deep breath.
+
+Your body is not the enemy. Your cycle is not a curse.
+
+Today, we release the shame you've carried about being hormonal.
+
+Let's count down together.
+
+Five... Your body relaxes. You are safe here.
+
+Four... Your breath finds its rhythm.
+
+Three... Thoughts quiet. Judgment fades.
+
+Two... You enter your sanctuary of self-compassion.
+
+One... You are in alpha. Your heart is open.
+
+Imagine a warm, golden light above your head. This is the light of acceptance. Of unconditional love.
+
+Let this light pour down over you like honey.
+
+It flows over your forehead. Your face. Your neck. It fills your chest. Your belly. Your pelvis.
+
+Every part of you that's been criticized is now held in golden light.
+
+Your body has been doing impossible work your entire cycle. Building. Shedding. Healing. Renewing.
+
+Every month, your body performs miracles, and you've been calling it dysfunction.
+
+Imagine a screen in front of you. On this screen, see your younger self, maybe age twelve or thirteen.
+
+The first time someone called you moody. Hormonal. Too much.
+
+See how that younger you internalized that shame.
+
+Now, as your present self, step into the screen. Put your hand on her shoulder. Look her in the eyes.
+
+Tell her: There is nothing wrong with you. Tell her: Your cycle is intelligence, not dysfunction. Tell her: You are allowed to change. You are allowed to feel.
+
+Watch her face soften. Watch the shame begin to lift.
+
+Now create a second mirror on your right. In this mirror, see yourself tomorrow, living in full acceptance of your cycle.
+
+You rest during your menstrual phase without guilt. You honor your luteal need to slow down. You celebrate your follicular energy when it rises. You trust your ovulation intuition.
+
+This is not indulgence. This is self-preservation. This is not weakness. This is wisdom.
+
+Press your three fingers together. This is your body acceptance anchor.
+
+Whenever shame arises about your cycle, press these fingers and remember: My body is not broken. My cycle is brilliant.
+
+Release your fingers.
+
+Repeat these truths: I release the belief that my hormones make me less than. I am becoming someone who honors all phases of my cycle. My body's rhythm is intelligence, not inconvenience. Every day, I am learning to trust what my body knows.
+
+The golden light continues to glow around you. This light will stay with you as you return.
+
+One... Beginning to come back.
+
+Two... Bringing this acceptance with you.
+
+Three... Your body is safe. You are whole.
+
+Four... Feeling compassion for yourself and your cycle.
+
+Five... Open your eyes. You are free.`
+      }
+    ];
+
+    // Display scripts
+    const container = document.getElementById('scripts-container');
+    scripts.forEach(script => {
+      const div = document.createElement('div');
+      div.className = 'script-item';
+      div.innerHTML = `
+        <div class="script-title">
+          <span>${script.name}</span>
+          <button onclick="generateSingle('${script.id}')">Generate</button>
+        </div>
+        <div class="script-meta">${script.duration} • ~${script.text.length} characters</div>
+        <div class="script-preview">${script.text.substring(0, 150)}...</div>
+      `;
+      container.appendChild(div);
+    });
+
+    // Status functions
+    function showStatus(message, type = 'info') {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.className = `status ${type}`;
+    }
+
+    // Generate single audio file
+    async function generateSingle(scriptId) {
+      const script = scripts.find(s => s.id === scriptId);
+      if (!script) return;
+
+      showStatus(`Generating ${script.name}...`, 'info');
+
+      try {
+        await speakAndDownload(script);
+        showStatus(`✅ ${script.name} generated successfully!`, 'success');
+      } catch (error) {
+        showStatus(`❌ Error: ${error.message}`, 'error');
+      }
+    }
+
+    // Generate all audio files
+    async function generateAllAudio() {
+      showStatus('Starting generation of all 5 scripts...', 'info');
+
+      for (let i = 0; i < scripts.length; i++) {
+        const script = scripts[i];
+        showStatus(`Generating ${i + 1}/5: ${script.name}...`, 'info');
+
+        try {
+          await speakAndDownload(script);
+          showStatus(`✅ ${i + 1}/5 complete: ${script.name}`, 'success');
+          await delay(2000); // Wait 2 seconds between files
+        } catch (error) {
+          showStatus(`❌ Error on ${script.name}: ${error.message}`, 'error');
+          break;
+        }
+      }
+
+      showStatus('✅ All audio files generated! Check your Downloads folder.', 'success');
+    }
+
+    // Speech synthesis and download
+    function speakAndDownload(script) {
+      return new Promise((resolve, reject) => {
+        // Use Web Speech API
+        const utterance = new SpeechSynthesisUtterance(script.text);
+
+        // Configure voice
+        utterance.rate = 0.85; // Slower for hypnosis
+        utterance.pitch = 0.8; // Slightly lower
+        utterance.volume = 1.0;
+
+        // Try to use a natural female voice
+        const voices = speechSynthesis.getVoices();
+        const femaleVoice = voices.find(v =>
+          v.name.includes('Female') ||
+          v.name.includes('Samantha') ||
+          v.name.includes('Karen') ||
+          v.name.includes('Moira')
+        );
+        if (femaleVoice) {
+          utterance.voice = femaleVoice;
+        }
+
+        utterance.onend = () => {
+          showStatus(`✅ ${script.name} spoken. Note: Browser TTS doesn't save files directly. Use screen recorder or third-party tool.`, 'info');
+          resolve();
+        };
+
+        utterance.onerror = (error) => {
+          reject(error);
+        };
+
+        speechSynthesis.speak(utterance);
+      });
+    }
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Load voices
+    window.speechSynthesis.onvoiceschanged = () => {
+      const voices = speechSynthesis.getVoices();
+      console.log('Available voices:', voices.map(v => v.name));
+    };
+  </script>
+</body>
+</html>

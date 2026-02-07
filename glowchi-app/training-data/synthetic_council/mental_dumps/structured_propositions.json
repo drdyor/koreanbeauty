@@ -1,0 +1,1028 @@
+[
+  {
+    "dump_id": "dump_001",
+    "domain": "career",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "Should I leave my stable but unfulfilling job to pursue something more meaningful, even if it means financial risk?",
+      "context_fragments": [
+        "I don't know what I'm doing with my life. I'm 32, I've been in this job for 5 years and I just feel...."
+      ],
+      "implicit_assumptions": [
+        "Money and stability are more important than fulfillment",
+        "It's too late to change careers",
+        "My current job is the best I can do"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "career",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "career_coach",
+        "financial_advisor",
+        "psychologist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_002",
+    "domain": "career",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "How do I handle a boss who takes credit for my work without jeopardizing my job?",
+      "context_fragments": [
+        "My boss is driving me insane. Every meeting he takes credit for my ideas, and last week he presented..."
+      ],
+      "implicit_assumptions": [
+        "Confrontation will make things worse",
+        "HR will protect me",
+        "I have no power in this situation"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "career",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "workplace_navigator",
+        "conflict_mediator",
+        "hr_specialist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_003",
+    "domain": "career",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "Is joining a startup worth the risk and pay cut for potential equity upside?",
+      "context_fragments": [
+        "I got a job offer from a startup. It's a 30% pay cut but they say there's equity upside. The founder..."
+      ],
+      "implicit_assumptions": [
+        "Startup equity is valuable",
+        "Working more hours leads to success",
+        "I can handle the stress"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "career",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "startup_advisor",
+        "risk_analyst",
+        "worklife_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_004",
+    "domain": "relationships",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "How do I know if I'm settling in my long-term relationship or if this is normal?",
+      "context_fragments": [
+        "I've been with my partner for 4 years and I love them but I'm not sure I'm IN love with them anymore..."
+      ],
+      "implicit_assumptions": [
+        "Passion should last forever",
+        "Comfort equals settling",
+        "The grass is greener elsewhere"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "relationships",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "relationship_counselor",
+        "attachment_theorist",
+        "life_philosopher"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_005",
+    "domain": "relationships",
+    "emotional_tone": "conflicted",
+    "structured_proposition": {
+      "reformulated_query": "How do I decide whether to have children when I'm genuinely uncertain?",
+      "context_fragments": [
+        "My mom keeps asking when I'm going to have kids and every time she brings it up I get this panic att..."
+      ],
+      "implicit_assumptions": [
+        "There's a right answer",
+        "I'll regret not having them",
+        "I have unlimited time to decide"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "relationships",
+      "emotional_tone": "conflicted",
+      "council_specializations_needed": [
+        "family_therapist",
+        "existential_counselor",
+        "women_health_advocate"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_006",
+    "domain": "relationships",
+    "emotional_tone": "overwhelmed",
+    "structured_proposition": {
+      "reformulated_query": "How do I know if a friendship is toxic or if I'm being too sensitive?",
+      "context_fragments": [
+        "I think my best friend is toxic but I'm not sure if I'm just being sensitive. Every time we hang out..."
+      ],
+      "implicit_assumptions": [
+        "Long history justifies staying",
+        "I'm overreacting",
+        "All friendships have ups and downs"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "relationships",
+      "emotional_tone": "overwhelmed",
+      "council_specializations_needed": [
+        "boundaries_expert",
+        "communication_coach",
+        "self_esteem_specialist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_007",
+    "domain": "finance",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "How do I overcome debt and compulsive spending when avoidance and shame keep me stuck?",
+      "context_fragments": [
+        "I have $45,000 in credit card debt and I feel like I'm drowning. I make good money ($120k) but I hav..."
+      ],
+      "implicit_assumptions": [
+        "I'm too far gone to fix this",
+        "Budgeting is restrictive",
+        "I need to hide this from my partner"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "finance",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "debt_counselor",
+        "behavioral_economist",
+        "shame_therapist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_008",
+    "domain": "finance",
+    "emotional_tone": "overwhelmed",
+    "structured_proposition": {
+      "reformulated_query": "How should I invest a significant inheritance when I'm paralyzed by fear of making the wrong choice?",
+      "context_fragments": [
+        "I inherited $200,000 from my grandmother and I have no idea what to do with it. Everyone has opinion..."
+      ],
+      "implicit_assumptions": [
+        "There's one right answer",
+        "I must preserve every dollar",
+        "Doing nothing is safer than doing something wrong"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "finance",
+      "emotional_tone": "overwhelmed",
+      "council_specializations_needed": [
+        "financial_planner",
+        "decision_scientist",
+        "grief_counselor"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_009",
+    "domain": "finance",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "How do I start investing for retirement when I feel overwhelmed by options and behind on savings?",
+      "context_fragments": [
+        "I'm 29 and I have no retirement savings. Zero. I know I should start but every time I look at my 401..."
+      ],
+      "implicit_assumptions": [
+        "I need to be an expert first",
+        "It's too late to start",
+        "Complex equals better"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "finance",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "retirement_planner",
+        "financial_educator",
+        "anxiety_specialist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_010",
+    "domain": "health",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "Should I pursue an ADHD diagnosis when I'm unsure if my struggles are 'real' or just character flaws?",
+      "context_fragments": [
+        "I think I have ADHD but I'm terrified of getting diagnosed. What if I'm just lazy? What if I'm makin..."
+      ],
+      "implicit_assumptions": [
+        "Getting diagnosed means I'm broken",
+        "Medication is weakness",
+        "I've managed this long, I can keep managing"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "health",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "adhd_specialist",
+        "mental_health_advocate",
+        "medication_expert"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_011",
+    "domain": "health",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "How do I break the cycle of restriction and binge eating when willpower alone hasn't worked?",
+      "context_fragments": [
+        "I've gained 40 pounds in the last two years and I hate how I look but I can't seem to stick to any d..."
+      ],
+      "implicit_assumptions": [
+        "I just need more discipline",
+        "My worth depends on my weight",
+        "Therapy is for 'serious' problems"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "health",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "eating_disorder_specialist",
+        "health_at_every_size",
+        "habit_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_012",
+    "domain": "health",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "What should I do about chronic insomnia when lifestyle changes and natural remedies haven't worked?",
+      "context_fragments": [
+        "I can't sleep. I lie in bed for hours with my brain running through every embarrassing thing I've ev..."
+      ],
+      "implicit_assumptions": [
+        "Sleeping pills are dangerous/addictive",
+        "I should be able to fix this naturally",
+        "This is just stress"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "health",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "sleep_specialist",
+        "anxiety_therapist",
+        "integrative_medicine"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_013",
+    "domain": "ethics",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "Should I report a coworker's expense fraud when I'm unsure of the consequences and their circumstances?",
+      "context_fragments": [
+        "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few h..."
+      ],
+      "implicit_assumptions": [
+        "Reporting makes me a snitch",
+        "Not reporting makes me complicit",
+        "I know the full story"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "ethicist",
+        "workplace_lawyer",
+        "conflict_resolution"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_014",
+    "domain": "ethics",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "When should an employee refuse to work on a project based on ethical concerns without concrete evidence of wrongdoing?",
+      "context_fragments": [
+        "My company is asking me to work on a project that I think might be harmful. We're building AI tools ..."
+      ],
+      "implicit_assumptions": [
+        "My job security matters more than principles",
+        "One person can't make a difference",
+        "If it's legal it's ethical"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "tech_ethicist",
+        "whistleblower_advocate",
+        "career_strategist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_015",
+    "domain": "ethics",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Do I have a moral obligation to tell someone their spouse is cheating on them?",
+      "context_fragments": [
+        "I matched with someone on a dating app who I later realized is still married. They say they're separ..."
+      ],
+      "implicit_assumptions": [
+        "I have the full picture",
+        "They would want to know",
+        "It's my business to tell them"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "relationship_ethicist",
+        "privacy_advocate",
+        "conflict_mediator"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_016",
+    "domain": "creative",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Should I pursue creative writing despite fear of failure and lack of progress, or accept I'm not talented?",
+      "context_fragments": [
+        "I want to write a novel but I'm terrified of being bad at it. I've started three different books and..."
+      ],
+      "implicit_assumptions": [
+        "Talent is required for art",
+        "Age limits creativity",
+        "If I'm not good, I shouldn't try"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "creativity_coach",
+        "perfectionism_therapist",
+        "career_counselor"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_017",
+    "domain": "creative",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "How do I find meaning and motivation when I'm grappling with existential nihilism?",
+      "context_fragments": [
+        "What if nothing matters? Like, really. I've been reading about existentialism and nihilism and I can..."
+      ],
+      "implicit_assumptions": [
+        "Meaning must be objective",
+        "Nihilism is the 'truth'",
+        "I need to resolve this intellectually"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "existential_therapist",
+        "philosopher",
+        "meaning_making_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_018",
+    "domain": "creative",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "How do I find meaning and motivation when I'm grappling with existential nihilism?",
+      "context_fragments": [
+        "I'm scared of dying. Not in an abstract way - like, I have panic attacks thinking about ceasing to e..."
+      ],
+      "implicit_assumptions": [
+        "Meaning must be objective",
+        "Nihilism is the 'truth'",
+        "I need to resolve this intellectually"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "existential_therapist",
+        "philosopher",
+        "meaning_making_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_019",
+    "domain": "creative",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "How do I find meaning and motivation when I'm grappling with existential nihilism?",
+      "context_fragments": [
+        "I'm scared of dying. Not in an abstract way - like, I have panic attacks thinking about ceasing to e..."
+      ],
+      "implicit_assumptions": [
+        "Meaning must be objective",
+        "Nihilism is the 'truth'",
+        "I need to resolve this intellectually"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "existential_therapist",
+        "philosopher",
+        "meaning_making_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_020",
+    "domain": "health",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "Should I pursue an ADHD diagnosis when I'm unsure if my struggles are 'real' or just character flaws?",
+      "context_fragments": [
+        "I think I have ADHD but I'm terrified of getting diagnosed. What if I'm just lazy? What if I'm makin..."
+      ],
+      "implicit_assumptions": [
+        "Getting diagnosed means I'm broken",
+        "Medication is weakness",
+        "I've managed this long, I can keep managing"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "health",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "adhd_specialist",
+        "mental_health_advocate",
+        "medication_expert"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_021",
+    "domain": "creative",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Should I pursue creative writing despite fear of failure and lack of progress, or accept I'm not talented?",
+      "context_fragments": [
+        "I want to write a novel but I'm terrified of being bad at it. I've started three different books and..."
+      ],
+      "implicit_assumptions": [
+        "Talent is required for art",
+        "Age limits creativity",
+        "If I'm not good, I shouldn't try"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "creativity_coach",
+        "perfectionism_therapist",
+        "career_counselor"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_022",
+    "domain": "health",
+    "emotional_tone": "conflicted",
+    "structured_proposition": {
+      "reformulated_query": "How do I break the cycle of restriction and binge eating when willpower alone hasn't worked?",
+      "context_fragments": [
+        "I've gained 40 pounds in the last two years and I hate how I look but I can't seem to stick to any d..."
+      ],
+      "implicit_assumptions": [
+        "I just need more discipline",
+        "My worth depends on my weight",
+        "Therapy is for 'serious' problems"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "health",
+      "emotional_tone": "conflicted",
+      "council_specializations_needed": [
+        "eating_disorder_specialist",
+        "health_at_every_size",
+        "habit_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_023",
+    "domain": "ethics",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "Do I have a moral obligation to tell someone their spouse is cheating on them?",
+      "context_fragments": [
+        "I matched with someone on a dating app who I later realized is still married. They say they're separ..."
+      ],
+      "implicit_assumptions": [
+        "I have the full picture",
+        "They would want to know",
+        "It's my business to tell them"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "relationship_ethicist",
+        "privacy_advocate",
+        "conflict_mediator"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_024",
+    "domain": "relationships",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "How do I know if I'm settling in my long-term relationship or if this is normal?",
+      "context_fragments": [
+        "I've been with my partner for 3 years and I love them but I'm not sure I'm IN love with them anymore..."
+      ],
+      "implicit_assumptions": [
+        "Passion should last forever",
+        "Comfort equals settling",
+        "The grass is greener elsewhere"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "relationships",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "relationship_counselor",
+        "attachment_theorist",
+        "life_philosopher"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_025",
+    "domain": "ethics",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Should I report a coworker's expense fraud when I'm unsure of the consequences and their circumstances?",
+      "context_fragments": [
+        "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few h..."
+      ],
+      "implicit_assumptions": [
+        "Reporting makes me a snitch",
+        "Not reporting makes me complicit",
+        "I know the full story"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "ethicist",
+        "workplace_lawyer",
+        "conflict_resolution"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_026",
+    "domain": "creative",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "How do I find meaning and motivation when I'm grappling with existential nihilism?",
+      "context_fragments": [
+        "What if nothing matters? Like, really. I've been reading about existentialism and nihilism and I can..."
+      ],
+      "implicit_assumptions": [
+        "Meaning must be objective",
+        "Nihilism is the 'truth'",
+        "I need to resolve this intellectually"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "existential_therapist",
+        "philosopher",
+        "meaning_making_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_027",
+    "domain": "career",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Should I leave my stable but unfulfilling job to pursue something more meaningful, even if it means financial risk?",
+      "context_fragments": [
+        "I don't know what I'm doing with my life. I'm 30, I've been in this job for 5 years and I just feel...."
+      ],
+      "implicit_assumptions": [
+        "Money and stability are more important than fulfillment",
+        "It's too late to change careers",
+        "My current job is the best I can do"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "career",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "career_coach",
+        "financial_advisor",
+        "psychologist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_028",
+    "domain": "relationships",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "How do I decide whether to have children when I'm genuinely uncertain?",
+      "context_fragments": [
+        "My mom keeps asking when I'm going to have kids and every time she brings it up I get this panic att..."
+      ],
+      "implicit_assumptions": [
+        "There's a right answer",
+        "I'll regret not having them",
+        "I have unlimited time to decide"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "relationships",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "family_therapist",
+        "existential_counselor",
+        "women_health_advocate"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_029",
+    "domain": "ethics",
+    "emotional_tone": "anxious",
+    "structured_proposition": {
+      "reformulated_query": "Should I report a coworker's expense fraud when I'm unsure of the consequences and their circumstances?",
+      "context_fragments": [
+        "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few h..."
+      ],
+      "implicit_assumptions": [
+        "Reporting makes me a snitch",
+        "Not reporting makes me complicit",
+        "I know the full story"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "anxious",
+      "council_specializations_needed": [
+        "ethicist",
+        "workplace_lawyer",
+        "conflict_resolution"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_030",
+    "domain": "ethics",
+    "emotional_tone": "overwhelmed",
+    "structured_proposition": {
+      "reformulated_query": "Should I report a coworker's expense fraud when I'm unsure of the consequences and their circumstances?",
+      "context_fragments": [
+        "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few h..."
+      ],
+      "implicit_assumptions": [
+        "Reporting makes me a snitch",
+        "Not reporting makes me complicit",
+        "I know the full story"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "overwhelmed",
+      "council_specializations_needed": [
+        "ethicist",
+        "workplace_lawyer",
+        "conflict_resolution"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_031",
+    "domain": "ethics",
+    "emotional_tone": "conflicted",
+    "structured_proposition": {
+      "reformulated_query": "Do I have a moral obligation to tell someone their spouse is cheating on them?",
+      "context_fragments": [
+        "I matched with someone on a dating app who I later realized is still married. They say they're separ..."
+      ],
+      "implicit_assumptions": [
+        "I have the full picture",
+        "They would want to know",
+        "It's my business to tell them"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "conflicted",
+      "council_specializations_needed": [
+        "relationship_ethicist",
+        "privacy_advocate",
+        "conflict_mediator"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_032",
+    "domain": "creative",
+    "emotional_tone": "overwhelmed",
+    "structured_proposition": {
+      "reformulated_query": "How do I find meaning and motivation when I'm grappling with existential nihilism?",
+      "context_fragments": [
+        "I'm scared of dying. Not in an abstract way - like, I have panic attacks thinking about ceasing to e..."
+      ],
+      "implicit_assumptions": [
+        "Meaning must be objective",
+        "Nihilism is the 'truth'",
+        "I need to resolve this intellectually"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "creative",
+      "emotional_tone": "overwhelmed",
+      "council_specializations_needed": [
+        "existential_therapist",
+        "philosopher",
+        "meaning_making_coach"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_033",
+    "domain": "health",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Should I pursue an ADHD diagnosis when I'm unsure if my struggles are 'real' or just character flaws?",
+      "context_fragments": [
+        "I think I have ADHD but I'm terrified of getting diagnosed. What if I'm just lazy? What if I'm makin..."
+      ],
+      "implicit_assumptions": [
+        "Getting diagnosed means I'm broken",
+        "Medication is weakness",
+        "I've managed this long, I can keep managing"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "health",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "adhd_specialist",
+        "mental_health_advocate",
+        "medication_expert"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_034",
+    "domain": "finance",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "How do I start investing for retirement when I feel overwhelmed by options and behind on savings?",
+      "context_fragments": [
+        "I'm 29 and I have no retirement savings. Zero. I know I should start but every time I look at my 401..."
+      ],
+      "implicit_assumptions": [
+        "I need to be an expert first",
+        "It's too late to start",
+        "Complex equals better"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "finance",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "retirement_planner",
+        "financial_educator",
+        "anxiety_specialist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_035",
+    "domain": "career",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "Should I leave my stable but unfulfilling job to pursue something more meaningful, even if it means financial risk?",
+      "context_fragments": [
+        "I don't know what I'm doing with my life. I'm 38, I've been in this job for 5 years and I just feel...."
+      ],
+      "implicit_assumptions": [
+        "Money and stability are more important than fulfillment",
+        "It's too late to change careers",
+        "My current job is the best I can do"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "career",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "career_coach",
+        "financial_advisor",
+        "psychologist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_036",
+    "domain": "ethics",
+    "emotional_tone": "confused",
+    "structured_proposition": {
+      "reformulated_query": "When should an employee refuse to work on a project based on ethical concerns without concrete evidence of wrongdoing?",
+      "context_fragments": [
+        "My company is asking me to work on a project that I think might be harmful. We're building AI tools ..."
+      ],
+      "implicit_assumptions": [
+        "My job security matters more than principles",
+        "One person can't make a difference",
+        "If it's legal it's ethical"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "confused",
+      "council_specializations_needed": [
+        "tech_ethicist",
+        "whistleblower_advocate",
+        "career_strategist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_037",
+    "domain": "ethics",
+    "emotional_tone": "overwhelmed",
+    "structured_proposition": {
+      "reformulated_query": "When should an employee refuse to work on a project based on ethical concerns without concrete evidence of wrongdoing?",
+      "context_fragments": [
+        "My company is asking me to work on a project that I think might be harmful. We're building AI tools ..."
+      ],
+      "implicit_assumptions": [
+        "My job security matters more than principles",
+        "One person can't make a difference",
+        "If it's legal it's ethical"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "overwhelmed",
+      "council_specializations_needed": [
+        "tech_ethicist",
+        "whistleblower_advocate",
+        "career_strategist"
+      ]
+    }
+  },
+  {
+    "dump_id": "dump_038",
+    "domain": "ethics",
+    "emotional_tone": "frustrated",
+    "structured_proposition": {
+      "reformulated_query": "Should I report a coworker's expense fraud when I'm unsure of the consequences and their circumstances?",
+      "context_fragments": [
+        "I found out my coworker is cheating on their expense reports. It's not a huge amount - maybe a few h..."
+      ],
+      "implicit_assumptions": [
+        "Reporting makes me a snitch",
+        "Not reporting makes me complicit",
+        "I know the full story"
+      ],
+      "uncertainty_flags": [
+        "ambiguous_term_1",
+        "unclear_motivation"
+      ],
+      "domain_classification": "ethics",
+      "emotional_tone": "frustrated",
+      "council_specializations_needed": [
+        "ethicist",
+        "workplace_lawyer",
+        "conflict_resolution"
+      ]
+    }
+  }
+]

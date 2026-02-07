@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_002",
+  "dump_id": "dump_002",
+  "proposition": "How do I handle a boss who takes credit for my work without jeopardizing my job?",
+  "domain": "career",
+  "emotional_tone": "frustrated",
+  "timestamp": "2026-01-29T00:09:49.991770",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "Let's look at the data here. You're 32 with 5 years experience - that's actually prime career pivot age. The sunk cost fallacy is strong: you've invested time, but that doesn't mean you should keep investing in something unfulfilling. Calculate your runway: how many months could you survive on savings? That's your risk window. The real question isn't 'should I leave?' but 'what's my hypothesis for what would be more fulfilling?' Test that hypothesis before burning bridges.",
+          "word_count": 77,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "Confronting your boss is career suicide. HR exists to protect the company from liability, not you. The executives already know who does the work - they don't care. Your best move is quiet competence while building your exit. Document everything, but don't escalate. In 6 months, leave with a better offer. That's power.",
+          "word_count": 53,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "The credit-stealing boss is a symptom of a broken culture, not just a bad actor. But your reaction - paralysis, rumination, snapping at partner - suggests this has triggered something deeper. Past powerlessness? Fear of standing up for yourself? The work situation is the surface problem. The real work is internal.",
+          "word_count": 51,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "This situation has you feeling powerless and angry - at your boss, at yourself. The sleeplessness, the snapping at your partner - this is affecting your whole life. You're not a coward. You're someone who's been put in an impossible position where every option feels dangerous. That fear is information, not weakness.",
+          "word_count": 52,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "Document three incidents. Dates, witnesses, outcomes. Then schedule a 15-minute conversation with your boss: 'I noticed my work was presented as yours. Can we discuss how we handle attribution?' Not accusatory, just factual. If that doesn't work, take the doc to HR. If that doesn't work, leave. You have a plan now. Execute it.",
+          "word_count": 54,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "What if the question isn't 'what should I do?' but 'who do I want to become?' The job is just a context for becoming. The fear of wasting potential assumes there's a correct way to actualize it. What if there isn't? What if 'potential' is just a story we tell ourselves to justify discontent? Consider: what if this feeling of stuckness IS the work?",
+          "word_count": 64,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "philosopher": "The Philosopher's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "synthesist": "The Synthesist's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "philosopher": 5,
+            "synthesist": 4,
+            "pragmatist": 2
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "synthesist": "The Synthesist is too optimistic. What about the downside risks they're not mentioning?",
+            "philosopher": "The Philosopher is too optimistic. What about the downside risks they're not mentioning?",
+            "analyst": "The Analyst is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "synthesist": 5,
+            "philosopher": 5,
+            "analyst": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "analyst": "The Analyst misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "pragmatist": "The Pragmatist misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "empath": "The Empath misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "analyst": 3,
+            "pragmatist": 2,
+            "empath": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "pragmatist": "The Pragmatist is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "philosopher": "The Philosopher is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "analyst": "The Analyst is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "pragmatist": 3,
+            "philosopher": 1,
+            "analyst": 2
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "skeptic": "The Skeptic is too abstract. Where are the concrete next steps?",
+            "philosopher": "The Philosopher is too abstract. Where are the concrete next steps?",
+            "analyst": "The Analyst is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "skeptic": 2,
+            "philosopher": 3,
+            "analyst": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "skeptic": "The Skeptic accepts the frame without questioning it. What if the premise is wrong?",
+            "pragmatist": "The Pragmatist accepts the frame without questioning it. What if the premise is wrong?",
+            "synthesist": "The Synthesist accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "skeptic": 3,
+            "pragmatist": 3,
+            "synthesist": 2
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "After considering the council's diverse perspectives, here's what emerges:\n\n1. **The surface problem**: the immediate situation\n2. **The deeper pattern**: a pattern of avoidance or fear\n3. **Actionable next step**: one small concrete step within 48 hours\n\nThe council agrees that this requires both internal work and external action, though we differ on the relative urgency of each. Start with clarity through a small experiment.",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.9
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "Wellness Tracker",
+    "slug": "wellness-tracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./public/logo.svg",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./public/logo.svg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wellnesstracker.app",
+      "buildNumber": "1.0.0",
+      "requireFullScreen": false,
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "This app uses health data to provide personalized wellness insights.",
+        "NSHealthUpdateUsageDescription": "This app writes wellness data to track your health journey.",
+        "NSCameraUsageDescription": "This app uses the camera for wellness photo features.",
+        "NSPhotoLibraryUsageDescription": "This app accesses photos for wellness tracking."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./public/logo.svg",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.wellnesstracker.app",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./public/favicon.ico",
+      "name": "Wellness Tracker",
+      "shortName": "Wellness",
+      "lang": "en",
+      "scope": "/",
+      "themeColor": "#FF6FAE",
+      "description": "Comprehensive wellness and symptom tracking for better health insights",
+      "orientation": "portrait",
+      "display": "standalone",
+      "startUrl": "/",
+      "backgroundColor": "#ffffff"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "scheme": "wellness-tracker"
+  }
+}

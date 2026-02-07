@@ -1,0 +1,52 @@
+.p-inner {
+    margin: 8px 0;
+}
+
+.question {
+    font-size: 19px;
+    max-width: 600px;
+}
+
+.screener-button {
+    margin: 8px 0 0 0;
+}
+
+.screener-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 800px;
+}
+
+.screener-container div:first-of-type {
+    margin-top: auto;
+}
+
+.screener-container div:last-of-type {
+    margin-bottom: 24px;
+}
+
+.screener-slide {
+    height: calc(100% - 85px);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    margin-top: 12px;
+}
+
+.screener-slide::-webkit-scrollbar {
+    display: none;
+}
+
+.swiper-pagniation-controls {
+    font-size: 1.75em;
+}
+
+.swiper-pagniation-controls > ion-icon {
+    margin: 0 50px;
+}
+
+.swiper-container-mod {
+    width: 95%;
+    max-width: 600px;
+    height: calc(100vh - 110px - env(safe-area-inset-bottom))
+}

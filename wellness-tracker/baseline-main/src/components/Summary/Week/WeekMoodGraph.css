@@ -1,0 +1,41 @@
+.graph-card {
+    border-left: 1px solid var(--border-lines);
+    height: 90%;
+    position: relative;
+}
+
+.graph-card-date {
+    width: min(12.5vw, 74px);
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.graph-card-line {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 57.5%;
+    height: 3.5px;
+    border-bottom: 1px dashed var(--border-lines);
+}
+
+.week-mood-graph::-webkit-scrollbar {
+    display: none;
+}
+
+.week-mood-graph {
+    display: flex;
+    flex-direction: row-reverse;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    height: 200px;
+}
+
+.graph-arrow {
+    position: absolute;
+    bottom: 10px;
+    right: calc(min(6.25vw, 37px) - 10px);
+    grid-area: graph;
+}

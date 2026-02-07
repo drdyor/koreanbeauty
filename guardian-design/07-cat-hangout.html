@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - The Nest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-600: #9333ea;
+      --neutral-50: #fafafa;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fef2f2 0%, #faf5ff 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--neutral-900);
+    }
+
+    .container { max-width: 480px; margin: 0 auto; }
+
+    .header { text-align: center; margin-bottom: 24px; }
+    .title { font-size: 24px; font-weight: 600; color: var(--purple-600); }
+    .subtitle { font-size: 14px; color: var(--neutral-400); }
+
+    /* The Hangout Area */
+    .hangout-area {
+      background: white;
+      border-radius: 32px;
+      height: 300px;
+      margin-bottom: 24px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(147, 51, 234, 0.1);
+      overflow: hidden;
+      border: 2px solid var(--purple-100);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding-bottom: 40px;
+    }
+
+    .window-bg {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 120px;
+      background: #e0f2fe;
+      border: 4px solid #bae6fd;
+      border-radius: 12px;
+      z-index: 0;
+    }
+
+    .bird {
+      position: absolute;
+      font-size: 14px;
+      animation: fly 6s linear infinite;
+    }
+
+    @keyframes fly {
+      0% { transform: translate(-100px, 20px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(200px, 0px); opacity: 0; }
+    }
+
+    .cat-wrapper {
+      position: relative;
+      z-index: 1;
+      transition: all 0.8s ease;
+      text-align: center;
+    }
+
+    .cat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--neutral-400);
+      margin-top: 8px;
+    }
+
+    .support-status {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 1px solid var(--purple-100);
+    }
+
+    .sync-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #fdf2f8;
+      color: #db2777;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .sync-message {
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.6;
+    }
+
+    /* Controls */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 80px;
+    }
+
+    .control-btn {
+      padding: 16px;
+      background: white;
+      border: 1px solid var(--purple-100);
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .control-btn:hover { background: var(--purple-50); transform: translateY(-2px); }
+    .control-btn.active { border-color: var(--purple-600); background: var(--purple-50); }
+
+    .btn-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+    .btn-label { font-size: 12px; font-weight: 500; color: var(--neutral-600); }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .nav-item { text-align: center; color: var(--neutral-400); cursor: pointer; font-size: 11px; }
+    .nav-item.active { color: var(--purple-600); }
+    .nav-icon { font-size: 20px; margin-bottom: 2px; }
+
+    /* Cat Animation Overrides */
+    .cat-wrapper.supportive { transform: translateX(20px); }
+    .cat-wrapper.friend.supportive { transform: translateX(-20px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">The Nest</div>
+      <div class="subtitle">A place for shared biology</div>
+    </div>
+
+    <div class="hangout-area">
+      <div class="window-bg">
+        <div class="bird">🕊️</div>
+        <div class="bird" style="animation-delay: 3s;">🕊️</div>
+      </div>
+      
+      <!-- Your Cat -->
+      <div class="cat-wrapper" id="myCat">
+        <svg width="80" height="80" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="35" fill="#f5f3ff" stroke="#c084fc" stroke-width="3"/>
+          <path d="M30 35 L25 20 L40 30 Z" fill="#e9d5ff" stroke="#c084fc" stroke-width="2"/>
+          <path d="M90 35 L95 20 L80 30 Z" fill="#e9d5ff" stroke="#c084fc" stroke-width="2"/>
+          <circle cx="50" cy="55" r="4" fill="#6b21a8"/>
+          <circle cx="70" cy="55" r="4" fill="#6b21a8"/>
+        </svg>
+        <div class="cat-label">You (Low Battery)</div>
+      </div>
+
+      <!-- Friend's Cat -->
+      <div class="cat-wrapper friend" id="friendCat">
+        <svg width="80" height="80" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="35" fill="#fff7ed" stroke="#fb923c" stroke-width="3"/>
+          <path d="M30 35 L25 20 L40 30 Z" fill="#ffedd5" stroke="#fb923c" stroke-width="2"/>
+          <path d="M90 35 L95 20 L80 30 Z" fill="#ffedd5" stroke="#fb923c" stroke-width="2"/>
+          <circle cx="50" cy="55" r="4" fill="#9a3412"/>
+          <circle cx="70" cy="55" r="4" fill="#9a3412"/>
+        </svg>
+        <div class="cat-label">Mina (Waiting...)</div>
+      </div>
+    </div>
+
+    <div class="support-status" id="statusCard">
+      <div class="sync-badge">Biological Sync</div>
+      <div class="sync-message" id="syncMessage">
+        Mina is nearby. Looking at the birds together...
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="control-btn" onclick="simulateFriend('moody')">
+        <span class="btn-icon">🌧️</span>
+        <span class="btn-label">Friend is Moody</span>
+      </div>
+      <div class="control-btn" onclick="simulateFriend('regulated')">
+        <span class="btn-icon">☀️</span>
+        <span class="btn-label">Friend is Bright</span>
+      </div>
+      <div class="control-btn" style="grid-column: span 2;" onclick="alert('Invite link copied!')">
+        <span class="btn-icon">✉️</span>
+        <span class="btn-label">Invite a Friend to The Nest</span>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="window.location.href='01-main-screen.html'">
+        <div class="nav-icon">🏠</div><div>Home</div>
+      </div>
+      <div class="nav-item active" onclick="window.location.href='07-cat-hangout.html'">
+        <div class="nav-icon">🐱</div><div>The Nest</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='03-progress-screen.html'">
+        <div class="nav-icon">📊</div><div>Progress</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='04-settings-screen.html'">
+        <div class="nav-icon">⚙️</div><div>Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function simulateFriend(state) {
+      const myCat = document.getElementById('myCat');
+      const friendCat = document.getElementById('friendCat');
+      const msg = document.getElementById('syncMessage');
+      
+      if (state === 'moody') {
+        myCat.classList.add('supportive');
+        friendCat.classList.add('supportive');
+        msg.innerHTML = "<b>Co-Regulation Active:</b> Both of you are in a vulnerable state today. Your Guardians are sitting close to protect your peace. When will the clouds go? Only when they are ready.";
+        friendCat.querySelector('.cat-label').textContent = "Mina (Overwhelmed)";
+      } else {
+        myCat.classList.remove('supportive');
+        friendCat.classList.remove('supportive');
+        msg.innerHTML = "Mina is feeling bright! She's here to keep you company while you recharge.";
+        friendCat.querySelector('.cat-label').textContent = "Mina (Regulated)";
+      }
+    }
+  </script>
+</body>
+</html>

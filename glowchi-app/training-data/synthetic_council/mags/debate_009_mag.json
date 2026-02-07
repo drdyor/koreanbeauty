@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_009",
+  "dump_id": "dump_009",
+  "proposition": "How do I start investing for retirement when I feel overwhelmed by options and behind on savings?",
+  "domain": "finance",
+  "emotional_tone": "frustrated",
+  "timestamp": "2026-01-29T00:09:49.997973",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "Analysis paralysis from option overload. The optimal choice is the one you'll actually execute. For inheritance: time in market beats timing market. Simple portfolio: 60% VTI, 30% VXUS, 10% BND. Set it and forget it. The emotional decision (travel) vs financial decision (invest) is a false dichotomy - do both. Allocate 80% invest, 20% experience.",
+          "word_count": 55,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "You're not 'drowning' - you're choosing to stay underwater. $120k income, $45k debt is a 6-month problem with discipline. The real issue: you don't want to stop spending. You want to feel better AND keep the lifestyle. Pick one. Until you accept that tradeoff, nothing changes. The shopping is the symptom, not the disease.",
+          "word_count": 54,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "The inheritance represents both opportunity and burden - your grandmother's legacy, your family's expectations, your own fear of wasting it. The paralysis is about responsibility, not investment strategy. Consider: what would she want for you? The answer probably isn't 'be paralyzed by fear of making the wrong choice.'",
+          "word_count": 48,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "The shame you feel about the debt - that's the heaviest part, isn't it? The hiding, the avoiding, the buying things to feel better then feeling worse. This isn't about math. It's about feeling worthy of financial peace. You think you're a failure, but you're someone coping the best they can with something overwhelming. That's different.",
+          "word_count": 56,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "Tomorrow: tell your partner. This weekend: pull all statements. Next week: call a nonprofit credit counselor (NFCC-certified agency). Not a for-profit debt settlement scam. They'll negotiate rates, create a plan. You don't have to figure this out alone. The first step is always the hardest. Take it.",
+          "word_count": 47,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "Money is a story we tell about security, worth, freedom. Your debt story is 'I'm out of control.' Your inheritance story is 'I must not waste this.' Both are narratives, not truths. What story do you want to tell? 'I learned to be at peace with money?' Start there. The numbers will follow the narrative.",
+          "word_count": 55,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "skeptic": "The Skeptic's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "empath": "The Empath's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "skeptic": 4,
+            "pragmatist": 4,
+            "empath": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "analyst": "The Analyst is too optimistic. What about the downside risks they're not mentioning?",
+            "empath": "The Empath is too optimistic. What about the downside risks they're not mentioning?",
+            "synthesist": "The Synthesist is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "analyst": 2,
+            "empath": 6,
+            "synthesist": 5
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "empath": "The Empath misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "pragmatist": "The Pragmatist misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "analyst": "The Analyst misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "empath": 6,
+            "pragmatist": 3,
+            "analyst": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "analyst": "The Analyst is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "pragmatist": "The Pragmatist is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "skeptic": "The Skeptic is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "analyst": 5,
+            "pragmatist": 6,
+            "skeptic": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "philosopher": "The Philosopher is too abstract. Where are the concrete next steps?",
+            "skeptic": "The Skeptic is too abstract. Where are the concrete next steps?",
+            "analyst": "The Analyst is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "philosopher": 1,
+            "skeptic": 4,
+            "analyst": 5
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "analyst": "The Analyst accepts the frame without questioning it. What if the premise is wrong?",
+            "skeptic": "The Skeptic accepts the frame without questioning it. What if the premise is wrong?",
+            "empath": "The Empath accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "analyst": 5,
+            "skeptic": 2,
+            "empath": 3
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "After considering the council's diverse perspectives, here's what emerges:\n\n1. **The surface problem**: the immediate situation\n2. **The deeper pattern**: a pattern of avoidance or fear\n3. **Actionable next step**: one small concrete step within 48 hours\n\nThe council agrees that this requires both internal work and external action, though we differ on the relative urgency of each. Start with clarity through a small experiment.",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.8
+  }
+}

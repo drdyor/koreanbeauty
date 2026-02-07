@@ -151,27 +151,41 @@
 }
 
 @layer utilities {
-  /* Soft shadow for cards - gentle, not harsh */
-  .soft-shadow {
+  /* Modern shadow system */
+  .shadow-soft {
     box-shadow: 0 2px 12px rgba(255, 111, 174, 0.08);
   }
-  
-  /* Gentle glow on hover */
-  .glow-hover {
-    transition: all 0.3s ease;
-  }
-  
-  .glow-hover:hover {
+
+  .shadow-medium {
     box-shadow: 0 4px 20px rgba(255, 111, 174, 0.12);
-    transform: translateY(-2px);
   }
-  
+
+  .shadow-strong {
+    box-shadow: 0 8px 32px rgba(255, 111, 174, 0.16);
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Cute bouncy hover */
+  .bounce-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bounce-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
   /* Cherry blossom background */
   .bg-cherry {
     background-color: oklch(var(--cherry-blossom));
   }
-  
-  /* Soft floating animation */
+
+  /* Soft floating animation - slower, more elegant */
   @keyframes float-soft {
     0%, 100% {
       transform: translateY(0px) rotate(0deg);
@@ -180,25 +194,112 @@
       transform: translateY(-12px) rotate(1deg);
     }
   }
-  
+
   .animate-float-soft {
     animation: float-soft 6s ease-in-out infinite;
   }
-  
-  /* Gentle fade in */
-  .fade-in {
-    animation: fade-in 0.6s ease-out;
+
+  /* Cute bounce animation */
+  @keyframes bounce-cute {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
-  
-  @keyframes fade-in {
+
+  .animate-bounce-cute {
+    animation: bounce-cute 2s ease-in-out infinite;
+  }
+
+  /* Gentle fade in from bottom */
+  @keyframes fade-in-up {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  /* Slide in from left */
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out;
+  }
+
+  /* Slide in from right */
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out;
+  }
+
+  /* Scale in */
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.5s ease-out;
+  }
+
+  /* Sparkle animation for cute K-beauty vibe */
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  .animate-sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-bouncy {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 

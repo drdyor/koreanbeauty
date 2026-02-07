@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="string_array">
+        <item>테스트</item>
+        <item>@string/maincomment</item>
+    </string-array>
+
+    <array name="icon_array">
+        <item>@string/maincomment</item>
+        <item>@drawable/roundrect</item>
+    </array>
+
+    <array name="color_array">
+        <item>#FFFF0000</item>
+        <item>#FF00FF00</item>
+        <item>@color/BLUE</item>
+    </array>
+
+</resources>

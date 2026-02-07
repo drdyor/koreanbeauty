@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --pink-50: #fdf4ff;
+      --pink-100: #fae8ff;
+      --pink-200: #f5d0fe;
+      --neutral-50: #fafafa;
+      --neutral-100: #f5f5f5;
+      --neutral-200: #e5e5e5;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+      --green-500: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 50%, var(--purple-100) 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--neutral-900);
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .app-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 4px;
+    }
+
+    .app-subtitle {
+      font-size: 14px;
+      color: var(--neutral-400);
+    }
+
+    /* Stats Overview */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--purple-600);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Thread Progress (Knitting Visual) */
+    .thread-section {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--purple-600);
+    }
+
+    .section-meta {
+      font-size: 13px;
+      color: var(--neutral-400);
+    }
+
+    .knitting-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .stitch {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      background: var(--purple-100);
+      border: 2px solid var(--purple-200);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .stitch.completed {
+      background: linear-gradient(135deg, var(--purple-400) 0%, var(--purple-600) 100%);
+      border-color: var(--purple-600);
+      box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
+    }
+
+    .stitch.ovulation {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      border-color: #f59e0b;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.5);
+    }
+
+    .stitch.ovulation::after {
+      content: '✨';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+    }
+
+    /* Knitted Artifact (The Scarf) */
+    .artifact-container {
+      background: white;
+      border-radius: 24px;
+      padding: 32px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .artifact-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 8px;
+    }
+
+    .artifact-subtitle {
+      font-size: 12px;
+      color: var(--neutral-400);
+      margin-bottom: 24px;
+    }
+
+    .scarf-visual {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 4px;
+      max-width: 200px;
+      margin: 0 auto;
+      padding: 10px;
+      background: var(--neutral-50);
+      border-radius: 12px;
+      border: 1px dashed var(--purple-200);
+    }
+
+    .scarf-row {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .knit-stitch {
+      width: 24px;
+      height: 16px;
+      background: var(--purple-100);
+      border-radius: 4px;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Stitch Textures based on Offering */
+    .knit-stitch.nourishing { background: var(--pink-200); }
+    .knit-stitch.stimulating { background: var(--purple-400); }
+    .knit-stitch.simple { background: var(--purple-100); }
+
+    .knit-stitch.completed {
+      transform: scale(1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .knit-stitch.completed::after {
+      content: 'v';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: serif;
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .knit-stitch.unknit {
+      background: transparent;
+      border: 1px dashed var(--neutral-200);
+    }
+
+    .mitten-progress {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .mitten-icon {
+      font-size: 32px;
+      opacity: 0.3;
+      filter: grayscale(1);
+    }
+
+    .mitten-icon.complete {
+      opacity: 1;
+      filter: none;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* Cycle Calendar */
+    .cycle-calendar {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .calendar-day.header {
+      color: var(--neutral-400);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .calendar-day.follicular {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .calendar-day.ovulation {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .calendar-day.luteal {
+      background: var(--purple-100);
+      color: var(--purple-600);
+    }
+
+    .calendar-day.menstrual {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .calendar-day.today {
+      border: 2px solid var(--purple-600);
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+    }
+
+    .calendar-day.logged::after {
+      content: '✓';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      font-size: 10px;
+      color: var(--green-500);
+    }
+
+    .phase-legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--neutral-600);
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+    }
+
+    /* Habit Streak */
+    .streak-card {
+      background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .streak-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .streak-value {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .streak-label {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    .streak-message {
+      font-size: 13px;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* Identity Statement */
+    .identity-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+      text-align: center;
+    }
+
+    .identity-label {
+      font-size: 12px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .identity-statement {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--purple-600);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* Session History */
+    .history-section {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--purple-50);
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .history-icon {
+      font-size: 24px;
+    }
+
+    .history-content {
+      flex: 1;
+    }
+
+    .history-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-900);
+      margin-bottom: 4px;
+    }
+
+    .history-meta {
+      font-size: 12px;
+      color: var(--neutral-400);
+    }
+
+    .history-badge {
+      font-size: 11px;
+      background: var(--purple-600);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      color: var(--neutral-400);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active {
+      color: var(--purple-600);
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="app-title">Your Progress</div>
+      <div class="app-subtitle">Tracking your rhythm and growth</div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">18</div>
+        <div class="stat-label">Cycle Day</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="totalStitches">18</div>
+        <div class="stat-label">Stitches Knitted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Day Streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">0</div>
+        <div class="stat-label">Finished Mittens</div>
+      </div>
+    </div>
+
+    <!-- Knitted Artifact (The Scarf) -->
+    <div class="artifact-container">
+      <div class="artifact-title">The Cycle Scarf</div>
+      <div class="artifact-subtitle">A visual artifact of your consistency</div>
+      
+      <div class="scarf-visual" id="scarfVisual">
+        <!-- Rows of stitches added by JS -->
+      </div>
+
+      <div class="mitten-progress">
+        <div class="mitten-icon">🧤</div>
+        <div class="progress-description">
+          Finish 28 stitches to complete your first memento.
+        </div>
+      </div>
+    </div>
+
+    <!-- Habit Streak -->
+    <div class="streak-card">
+      <div class="streak-icon">🧶</div>
+      <div class="streak-value">12</div>
+      <div class="streak-label">Consecutive Stitches</div>
+      <div class="streak-message">
+        Your scarf is growing beautifully. You're becoming someone who honors their biology daily.
+      </div>
+    </div>
+
+    <!-- Identity Statement -->
+    <div class="identity-card">
+      <div class="identity-label">Current Identity</div>
+      <div class="identity-statement">
+        "I'm becoming someone who moves daily"
+      </div>
+    </div>
+
+    <!-- Cycle Calendar -->
+    <div class="cycle-calendar">
+      <div class="section-header">
+        <div class="section-title">Cycle Calendar</div>
+        <div class="section-meta">December 2026</div>
+      </div>
+
+      <div class="calendar-grid">
+        <!-- Headers -->
+        <div class="calendar-day header">S</div>
+        <div class="calendar-day header">M</div>
+        <div class="calendar-day header">T</div>
+        <div class="calendar-day header">W</div>
+        <div class="calendar-day header">T</div>
+        <div class="calendar-day header">F</div>
+        <div class="calendar-day header">S</div>
+
+        <!-- Week 1 -->
+        <div class="calendar-day menstrual logged">1</div>
+        <div class="calendar-day menstrual logged">2</div>
+        <div class="calendar-day follicular logged">3</div>
+        <div class="calendar-day follicular logged">4</div>
+        <div class="calendar-day follicular logged">5</div>
+        <div class="calendar-day follicular logged">6</div>
+        <div class="calendar-day follicular logged">7</div>
+
+        <!-- Week 2 -->
+        <div class="calendar-day follicular logged">8</div>
+        <div class="calendar-day follicular logged">9</div>
+        <div class="calendar-day follicular logged">10</div>
+        <div class="calendar-day follicular logged">11</div>
+        <div class="calendar-day follicular logged">12</div>
+        <div class="calendar-day follicular logged">13</div>
+        <div class="calendar-day ovulation logged">14</div>
+
+        <!-- Week 3 -->
+        <div class="calendar-day luteal logged">15</div>
+        <div class="calendar-day luteal logged">16</div>
+        <div class="calendar-day luteal logged">17</div>
+        <div class="calendar-day luteal today logged">18</div>
+        <div class="calendar-day luteal">19</div>
+        <div class="calendar-day luteal">20</div>
+        <div class="calendar-day luteal">21</div>
+
+        <!-- Week 4 -->
+        <div class="calendar-day luteal">22</div>
+        <div class="calendar-day luteal">23</div>
+        <div class="calendar-day luteal">24</div>
+        <div class="calendar-day luteal">25</div>
+        <div class="calendar-day luteal">26</div>
+        <div class="calendar-day luteal">27</div>
+        <div class="calendar-day luteal">28</div>
+      </div>
+
+      <div class="phase-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #fee2e2;"></div>
+          <span>Menstrual</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #dbeafe;"></div>
+          <span>Follicular</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #fef3c7;"></div>
+          <span>Ovulation</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--purple-100);"></div>
+          <span>Luteal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Session History -->
+    <div class="history-section">
+      <div class="section-header">
+        <div class="section-title">Recent Sessions</div>
+        <div class="section-meta">Last 7 days</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-icon">🎧</div>
+        <div class="history-content">
+          <div class="history-title">Luteal Phase Grounding</div>
+          <div class="history-meta">Today, 9:30 AM · 7 min</div>
+        </div>
+        <div class="history-badge">Completed</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-icon">🚶‍♀️</div>
+        <div class="history-content">
+          <div class="history-title">10-minute walk after lunch</div>
+          <div class="history-meta">Yesterday, 1:45 PM</div>
+        </div>
+        <div class="history-badge">Completed</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-icon">🎧</div>
+        <div class="history-content">
+          <div class="history-title">90-Second Anxiety Reset</div>
+          <div class="history-meta">Dec 16, 3:20 PM · 90 sec</div>
+        </div>
+        <div class="history-badge">Completed</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-icon">🚶‍♀️</div>
+        <div class="history-content">
+          <div class="history-title">10-minute walk after lunch</div>
+          <div class="history-meta">Dec 16, 1:30 PM</div>
+        </div>
+        <div class="history-badge">Completed</div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="window.location.href='01-main-screen.html'">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='07-cat-hangout.html'">
+        <div class="nav-icon">🐱</div>
+        <div class="nav-label">The Nest</div>
+      </div>
+      <div class="nav-item active" onclick="window.location.href='03-progress-screen.html'">
+        <div class="nav-icon">📊</div>
+        <div class="nav-label">Progress</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='04-settings-screen.html'">
+        <div class="nav-icon">⚙️</div>
+        <div class="nav-label">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data Persistence
+    const SETTINGS_KEY = 'guardian_settings';
+    const STATE_KEY = 'guardian_state';
+
+    function loadProgress() {
+      // 1. Load Cycle Day
+      const cycleDayStr = localStorage.getItem('guardian_cycleDay') || '18';
+      const cycleDay = parseInt(cycleDayStr);
+      
+      // 2. Load State (for offerings)
+      const stateSaved = localStorage.getItem(STATE_KEY);
+      const state = stateSaved ? JSON.parse(stateSaved) : {};
+      
+      // Update stats
+      document.querySelectorAll('.stat-value')[0].textContent = cycleDay;
+      document.getElementById('totalStitches').textContent = cycleDay;
+
+      // 3. Generate Scarf Stitches
+      const scarfVisual = document.getElementById('scarfVisual');
+      scarfVisual.innerHTML = '';
+      
+      // 4 rows of 7 stitches = 28 days
+      for (let r = 0; r < 4; r++) {
+        const row = document.createElement('div');
+        row.className = 'scarf-row';
+        
+        for (let s = 0; s < 7; s++) {
+          const stitchIdx = (r * 7) + s;
+          const stitch = document.createElement('div');
+          
+          if (stitchIdx < cycleDay) {
+            stitch.className = 'knit-stitch completed';
+            
+            // Map feelings to colors/textures for the scarf
+            const feelingColors = {
+              'regulated': 'var(--purple-400)',
+              'foggy': 'var(--neutral-400)',
+              'overwhelmed': 'var(--purple-600)',
+              'blocked': '#171717',
+              'low-battery': 'var(--purple-200)',
+              'hidden': 'var(--purple-100)',
+              'spark': '#c084fc',
+              'clingy': '#f5d0fe',
+              'order': '#a855f7'
+            };
+            
+            if (stitchIdx === cycleDay - 1 && state.feeling) {
+              const feelingKey = state.feeling.toLowerCase().replace(' ', '-');
+              stitch.style.backgroundColor = feelingColors[feelingKey] || 'var(--purple-200)';
+            } else {
+              stitch.classList.add('simple');
+            }
+          } else {
+            stitch.className = 'knit-stitch unknit';
+          }
+          row.appendChild(stitch);
+        }
+        scarfVisual.appendChild(row);
+      }
+
+      // Update Calendar Today
+      const calendarDays = document.querySelectorAll('.calendar-day:not(.header)');
+      calendarDays.forEach((day) => {
+        day.classList.remove('today');
+        if (parseInt(day.textContent) === cycleDay) {
+          day.classList.add('today');
+        }
+      });
+
+      // Load Settings for identity
+      const settingsSaved = localStorage.getItem(SETTINGS_KEY);
+      if (settingsSaved) {
+        const settings = JSON.parse(settingsSaved);
+        if (settings.currentIdentity) {
+          document.querySelector('.identity-statement').textContent = `"${settings.currentIdentity}"`;
+        }
+      }
+    }
+
+    // Interactive calendar hover
+    document.querySelectorAll('.calendar-day:not(.header)').forEach(day => {
+      day.addEventListener('click', function() {
+        console.log('Show day detail:', this.textContent);
+      });
+    });
+
+    // Stitch hover
+    document.querySelectorAll('.stitch.completed').forEach(stitch => {
+      stitch.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1)';
+      });
+      stitch.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+    });
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', loadProgress);
+  </script>
+</body>
+</html>

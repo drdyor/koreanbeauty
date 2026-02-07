@@ -1,0 +1,377 @@
+{
+  "version": 2,
+  "updated_at": "2026-01-06T00:00:00Z",
+  "defaults": {
+    "language": "en",
+    "region": "global",
+    "fallback_primer_policy": "none",
+    "randomization": {
+      "method": "deterministic",
+      "seed_source": "session_id"
+    }
+  },
+  "modes": [
+    {
+      "mode_id": "deep_work",
+      "label": "Deep Work",
+      "category": "eyes_open",
+      "recommended_state_path": ["alpha", "beta"],
+      "default_session_sec": 1500,
+      "primer_policy": {
+        "enabled_by_default": true,
+        "primer_slot": "pre_task",
+        "max_primer_sec": 60,
+        "allow_continuous_guidance": false
+      },
+      "selection": {
+        "pool_ids": ["pool_dw_focus"],
+        "strategy": "weighted_random",
+        "cooldown_sessions": 2
+      }
+    },
+    {
+      "mode_id": "study",
+      "label": "Study / Memory",
+      "category": "eyes_open",
+      "recommended_state_path": ["theta", "alpha"],
+      "default_session_sec": 2700,
+      "primer_policy": {
+        "enabled_by_default": true,
+        "primer_slot": "pre_task",
+        "max_primer_sec": 60,
+        "allow_continuous_guidance": false
+      },
+      "selection": {
+        "pool_ids": ["pool_sm_memory"],
+        "strategy": "weighted_random",
+        "cooldown_sessions": 2
+      }
+    },
+    {
+      "mode_id": "creative",
+      "label": "Creative Flow",
+      "category": "eyes_open",
+      "recommended_state_path": ["alpha", "theta"],
+      "default_session_sec": 2400,
+      "primer_policy": {
+        "enabled_by_default": true,
+        "primer_slot": "pre_task",
+        "max_primer_sec": 90,
+        "allow_continuous_guidance": false
+      },
+      "selection": {
+        "pool_ids": ["pool_cf_open"],
+        "strategy": "weighted_random",
+        "cooldown_sessions": 1
+      }
+    },
+    {
+      "mode_id": "calm",
+      "label": "Calm Nervous System",
+      "category": "somatic",
+      "recommended_state_path": ["delta", "theta"],
+      "default_session_sec": 900,
+      "primer_policy": {
+        "enabled_by_default": true,
+        "primer_slot": "continuous",
+        "max_primer_sec": 900,
+        "allow_continuous_guidance": true
+      },
+      "selection": {
+        "pool_ids": ["pool_cn_downshift"],
+        "strategy": "weighted_random",
+        "cooldown_sessions": 0
+      }
+    },
+    {
+      "mode_id": "sleep",
+      "label": "Sleep Induction",
+      "category": "eyes_closed",
+      "recommended_state_path": ["theta", "delta"],
+      "default_session_sec": 3600,
+      "primer_policy": {
+        "enabled_by_default": true,
+        "primer_slot": "continuous",
+        "max_primer_sec": 1800,
+        "allow_continuous_guidance": true
+      },
+      "selection": {
+        "pool_ids": ["pool_si_sleep"],
+        "strategy": "weighted_random",
+        "cooldown_sessions": 0
+      }
+    },
+    {
+      "mode_id": "reset",
+      "label": "Emotional Reset",
+      "category": "somatic",
+      "recommended_state_path": ["beta", "alpha"],
+      "default_session_sec": 600,
+      "primer_policy": {
+        "enabled_by_default": true,
+        "primer_slot": "pre_task",
+        "max_primer_sec": 90,
+        "allow_continuous_guidance": false
+      },
+      "selection": {
+        "pool_ids": ["pool_er_regulation"],
+        "strategy": "weighted_random",
+        "cooldown_sessions": 1
+      }
+    }
+  ],
+  "primers": [
+    {
+      "primer_id": "dw_fp_v01",
+      "mode_id": "deep_work",
+      "pool_id": "pool_dw_focus",
+      "weight": 70,
+      "slot": "pre_task",
+      "audio": {
+        "src": "/primers/deep-work/dw_focus-priming_v01_en_f_30s.mp3",
+        "duration_sec": 30,
+        "lufs_target": -16,
+        "mix": {
+          "duck_music_db": -10,
+          "duck_binaural_db": -6,
+          "fade_in_ms": 250,
+          "fade_out_ms": 600
+        }
+      },
+      "behavior": {
+        "voice_continues": false,
+        "eyes": "open",
+        "requires_stillness": false,
+        "ends_with_silence_ms": 0,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["focus_priming"],
+        "tone": ["calm", "directive"],
+        "complexity": 1,
+        "intensity": 2
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 10,
+        "exclude_if_user_reports": []
+      }
+    },
+    {
+      "primer_id": "dw_fp_v02",
+      "mode_id": "deep_work",
+      "pool_id": "pool_dw_focus",
+      "weight": 30,
+      "slot": "pre_task",
+      "audio": {
+        "src": "/primers/deep-work/dw_focus-priming_v02_en_f_45s.mp3",
+        "duration_sec": 45,
+        "lufs_target": -16,
+        "mix": {
+          "duck_music_db": -10,
+          "duck_binaural_db": -6,
+          "fade_in_ms": 250,
+          "fade_out_ms": 700
+        }
+      },
+      "behavior": {
+        "voice_continues": false,
+        "eyes": "open",
+        "requires_stillness": false,
+        "ends_with_silence_ms": 0,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["task_commitment"],
+        "tone": ["neutral", "directive"],
+        "complexity": 1,
+        "intensity": 2
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 10,
+        "exclude_if_user_reports": []
+      }
+    },
+    {
+      "primer_id": "sm_mc_v01",
+      "mode_id": "study",
+      "pool_id": "pool_sm_memory",
+      "weight": 100,
+      "slot": "pre_task",
+      "audio": {
+        "src": "/primers/study/sm_memory-cue_v01_en_m_30s.mp3",
+        "duration_sec": 30,
+        "lufs_target": -16,
+        "mix": {
+          "duck_music_db": -10,
+          "duck_binaural_db": -6,
+          "fade_in_ms": 250,
+          "fade_out_ms": 600
+        }
+      },
+      "behavior": {
+        "voice_continues": false,
+        "eyes": "open",
+        "requires_stillness": false,
+        "ends_with_silence_ms": 0,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["memory_cueing"],
+        "tone": ["neutral"],
+        "complexity": 1,
+        "intensity": 2
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 10,
+        "exclude_if_user_reports": []
+      }
+    },
+    {
+      "primer_id": "cf_ol_v01",
+      "mode_id": "creative",
+      "pool_id": "pool_cf_open",
+      "weight": 100,
+      "slot": "pre_task",
+      "audio": {
+        "src": "/primers/creative/cf_open-loop_v01_en_f_35s.mp3",
+        "duration_sec": 35,
+        "lufs_target": -16,
+        "mix": {
+          "duck_music_db": -8,
+          "duck_binaural_db": -4,
+          "fade_in_ms": 250,
+          "fade_out_ms": 800
+        }
+      },
+      "behavior": {
+        "voice_continues": false,
+        "eyes": "open",
+        "requires_stillness": false,
+        "ends_with_silence_ms": 0,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["open_loop_creativity"],
+        "tone": ["warm", "minimal"],
+        "complexity": 2,
+        "intensity": 1
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 10,
+        "exclude_if_user_reports": []
+      }
+    },
+    {
+      "primer_id": "cn_ds_v01",
+      "mode_id": "calm",
+      "pool_id": "pool_cn_downshift",
+      "weight": 100,
+      "slot": "continuous",
+      "audio": {
+        "src": "/primers/calm/cn_downshift_v01_en_f_120s.mp3",
+        "duration_sec": 120,
+        "lufs_target": -18,
+        "mix": {
+          "duck_music_db": -12,
+          "duck_binaural_db": -8,
+          "fade_in_ms": 500,
+          "fade_out_ms": 1000
+        }
+      },
+      "behavior": {
+        "voice_continues": true,
+        "eyes": "either",
+        "requires_stillness": true,
+        "ends_with_silence_ms": 1000,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["somatic_downshift", "breath_guidance"],
+        "tone": ["calm", "warm"],
+        "complexity": 1,
+        "intensity": 1
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 5,
+        "exclude_if_user_reports": []
+      }
+    },
+    {
+      "primer_id": "si_bs_v01",
+      "mode_id": "sleep",
+      "pool_id": "pool_si_sleep",
+      "weight": 100,
+      "slot": "continuous",
+      "audio": {
+        "src": "/primers/sleep/si_body-scan_v01_en_f_600s.mp3",
+        "duration_sec": 600,
+        "lufs_target": -18,
+        "mix": {
+          "duck_music_db": -12,
+          "duck_binaural_db": -8,
+          "fade_in_ms": 500,
+          "fade_out_ms": 1500
+        }
+      },
+      "behavior": {
+        "voice_continues": true,
+        "eyes": "closed",
+        "requires_stillness": true,
+        "ends_with_silence_ms": 2000,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["body_scan", "sleep_descent"],
+        "tone": ["calm", "warm"],
+        "complexity": 1,
+        "intensity": 1
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 3,
+        "exclude_if_user_reports": []
+      }
+    },
+    {
+      "primer_id": "er_el_v01",
+      "mode_id": "reset",
+      "pool_id": "pool_er_regulation",
+      "weight": 100,
+      "slot": "pre_task",
+      "audio": {
+        "src": "/primers/reset/er_emotional-labeling_v01_en_f_90s.mp3",
+        "duration_sec": 90,
+        "lufs_target": -16,
+        "mix": {
+          "duck_music_db": -10,
+          "duck_binaural_db": -6,
+          "fade_in_ms": 300,
+          "fade_out_ms": 800
+        }
+      },
+      "behavior": {
+        "voice_continues": false,
+        "eyes": "either",
+        "requires_stillness": false,
+        "ends_with_silence_ms": 0,
+        "autostart_main_session": true
+      },
+      "tags": {
+        "guidance_style": ["emotional_labeling", "compassion_reframe"],
+        "tone": ["warm", "calm"],
+        "complexity": 2,
+        "intensity": 2
+      },
+      "constraints": {
+        "min_sessions_before_use": 0,
+        "max_uses_per_day": 8,
+        "exclude_if_user_reports": []
+      }
+    }
+  ]
+}

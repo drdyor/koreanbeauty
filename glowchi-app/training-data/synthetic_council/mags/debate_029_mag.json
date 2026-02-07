@@ -1,0 +1,168 @@
+{
+  "debate_id": "debate_029",
+  "dump_id": "dump_029",
+  "proposition": "Should I report a coworker's expense fraud when I'm unsure of the consequences and their circumstances?",
+  "domain": "ethics",
+  "emotional_tone": "anxious",
+  "timestamp": "2026-01-29T00:09:50.012412",
+  "council_composition": [
+    "analyst",
+    "skeptic",
+    "synthesist",
+    "empath",
+    "pragmatist",
+    "philosopher"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "type": "initial_responses",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "response": "[The Analyst analyzes the ethics proposition with their characteristic Evidence-focused, data-driven, skeptical of assumptions.]",
+          "word_count": 14,
+          "specialization": "pattern_recognition"
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "response": "[The Skeptic analyzes the ethics proposition with their characteristic Contrarian, assumption-challenger, devil's advocate.]",
+          "word_count": 13,
+          "specialization": "risk_assessment"
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "response": "[The Synthesist analyzes the ethics proposition with their characteristic Holistic, pattern-recognition, connects dots.]",
+          "word_count": 13,
+          "specialization": "systems_thinking"
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "response": "[The Empath analyzes the ethics proposition with their characteristic Emotion-focused, validates feelings, explores inner experience.]",
+          "word_count": 15,
+          "specialization": "emotional_intelligence"
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "response": "[The Pragmatist analyzes the ethics proposition with their characteristic Action-oriented, concrete steps, results-focused.]",
+          "word_count": 13,
+          "specialization": "implementation"
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "response": "[The Philosopher analyzes the ethics proposition with their characteristic Questions fundamental assumptions, explores meaning.]",
+          "word_count": 14,
+          "specialization": "paradigm_shifting"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "type": "reviews",
+      "nodes": [
+        {
+          "agent_id": "analyst",
+          "agent_name": "The Analyst",
+          "critiques": {
+            "pragmatist": "The Pragmatist's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "empath": "The Empath's response lacks concrete evidence. Where's the data? The assumptions need verification.",
+            "synthesist": "The Synthesist's response lacks concrete evidence. Where's the data? The assumptions need verification."
+          },
+          "rankings": {
+            "pragmatist": 4,
+            "empath": 5,
+            "synthesist": 5
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "skeptic",
+          "agent_name": "The Skeptic",
+          "critiques": {
+            "empath": "The Empath is too optimistic. What about the downside risks they're not mentioning?",
+            "philosopher": "The Philosopher is too optimistic. What about the downside risks they're not mentioning?",
+            "analyst": "The Analyst is too optimistic. What about the downside risks they're not mentioning?"
+          },
+          "rankings": {
+            "empath": 3,
+            "philosopher": 6,
+            "analyst": 4
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        },
+        {
+          "agent_id": "synthesist",
+          "agent_name": "The Synthesist",
+          "critiques": {
+            "skeptic": "The Skeptic misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "analyst": "The Analyst misses the systemic context. This isn't isolated - it's part of a larger pattern.",
+            "philosopher": "The Philosopher misses the systemic context. This isn't isolated - it's part of a larger pattern."
+          },
+          "rankings": {
+            "skeptic": 3,
+            "analyst": 2,
+            "philosopher": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more nuanced."
+        },
+        {
+          "agent_id": "empath",
+          "agent_name": "The Empath",
+          "critiques": {
+            "skeptic": "The Skeptic is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "philosopher": "The Philosopher is intellectually correct but emotionally tone-deaf. Where's the validation?",
+            "synthesist": "The Synthesist is intellectually correct but emotionally tone-deaf. Where's the validation?"
+          },
+          "rankings": {
+            "skeptic": 1,
+            "philosopher": 6,
+            "synthesist": 6
+          },
+          "self_reflection": "Looking back at my own response, I could have been more compassionate."
+        },
+        {
+          "agent_id": "pragmatist",
+          "agent_name": "The Pragmatist",
+          "critiques": {
+            "synthesist": "The Synthesist is too abstract. Where are the concrete next steps?",
+            "skeptic": "The Skeptic is too abstract. Where are the concrete next steps?",
+            "empath": "The Empath is too abstract. Where are the concrete next steps?"
+          },
+          "rankings": {
+            "synthesist": 3,
+            "skeptic": 4,
+            "empath": 5
+          },
+          "self_reflection": "Looking back at my own response, I could have been more specific."
+        },
+        {
+          "agent_id": "philosopher",
+          "agent_name": "The Philosopher",
+          "critiques": {
+            "pragmatist": "The Pragmatist accepts the frame without questioning it. What if the premise is wrong?",
+            "empath": "The Empath accepts the frame without questioning it. What if the premise is wrong?",
+            "synthesist": "The Synthesist accepts the frame without questioning it. What if the premise is wrong?"
+          },
+          "rankings": {
+            "pragmatist": 1,
+            "empath": 2,
+            "synthesist": 1
+          },
+          "self_reflection": "Looking back at my own response, I could have been more rigorous."
+        }
+      ]
+    }
+  ],
+  "consensus": {
+    "final_response": "The council deliberation reveals a tension between safety/security and growth/fulfillment. Here's the synthesis:\n\n**Immediate**: acknowledge the feeling without judgment\n**Short-term**: gather information to reduce uncertainty\n**Long-term consideration**: build skills or resources for future options\n\nThe key insight: the paralysis is the problem, not the decision itself",
+    "chairman_model": "synthesist",
+    "consensus_reached": true,
+    "quality_score": 0.79
+  }
+}

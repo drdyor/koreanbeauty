@@ -302,3 +302,43 @@ export const orderItemsRelations = relations(orderItems, ({ one }) => ({
     references: [products.id],
   }),
 }));
+
+/**
+ * Daily check-ins and health logs
+ */
+export const dailyCheckins = mysqlTable("daily_checkins", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id"),
+  date: timestamp("date").defaultNow().notNull(),
+  cycleDay: int("cycle_day"),
+  mood: varchar("mood", { length: 32 }),
+  energy: int("energy"),
+  skinCondition: varchar("skin_condition", { length: 64 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const foodLogs = mysqlTable("food_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id"),
+  date: timestamp("date").defaultNow().notNull(),
+  foodItem: varchar("food_item", { length: 100 }).notNull(),
+  triggerLevel: int("trigger_level").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const skinLogs = mysqlTable("skin_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id"),
+  date: timestamp("date").defaultNow().notNull(),
+  breakouts: int("breakouts"),
+  sensitivity: int("sensitivity"),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type DailyCheckinRow = typeof dailyCheckins.$inferSelect;
+export type InsertDailyCheckinRow = typeof dailyCheckins.$inferInsert;
+export type FoodLogRow = typeof foodLogs.$inferSelect;
+export type InsertFoodLogRow = typeof foodLogs.$inferInsert;
+export type SkinLogRow = typeof skinLogs.$inferSelect;
+export type InsertSkinLogRow = typeof skinLogs.$inferInsert;

@@ -1,0 +1,378 @@
+/* Therapeutic Design Theme - Enhanced Visual Identity */
+
+/* Import therapeutic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+
+/* CSS Custom Properties for Therapeutic Color Palette */
+:root {
+  /* Primary Colors - Trust & Stability */
+  --therapeutic-primary: #1e3a8a;
+  --therapeutic-primary-light: #3b82f6;
+  --therapeutic-primary-dark: #1e40af;
+  --therapeutic-primary-50: #eff6ff;
+  --therapeutic-primary-100: #dbeafe;
+  --therapeutic-primary-200: #bfdbfe;
+
+  /* Secondary Colors - Growth & Healing */
+  --therapeutic-secondary: #10b981;
+  --therapeutic-secondary-light: #34d399;
+  --therapeutic-secondary-dark: #059669;
+  --therapeutic-secondary-50: #ecfdf5;
+  --therapeutic-secondary-100: #d1fae5;
+  --therapeutic-secondary-200: #a7f3d0;
+
+  /* Accent Colors - Wisdom & Warmth */
+  --therapeutic-accent: #f59e0b;
+  --therapeutic-accent-light: #fbbf24;
+  --therapeutic-accent-dark: #d97706;
+  --therapeutic-accent-50: #fffbeb;
+  --therapeutic-accent-100: #fef3c7;
+  --therapeutic-accent-200: #fde68a;
+
+  /* Neutral Colors - Balance & Calm */
+  --therapeutic-neutral: #6b7280;
+  --therapeutic-neutral-light: #9ca3af;
+  --therapeutic-neutral-dark: #4b5563;
+  --therapeutic-neutral-50: #f9fafb;
+  --therapeutic-neutral-100: #f3f4f6;
+  --therapeutic-neutral-200: #e5e7eb;
+
+  /* Text Colors */
+  --therapeutic-text-primary: #374151;
+  --therapeutic-text-secondary: #6b7280;
+  --therapeutic-text-muted: #9ca3af;
+  --therapeutic-text-inverse: #ffffff;
+
+  /* Background Colors */
+  --therapeutic-bg-primary: #ffffff;
+  --therapeutic-bg-secondary: #f9fafb;
+  --therapeutic-bg-tertiary: #f3f4f6;
+  --therapeutic-bg-overlay: rgba(30, 58, 138, 0.05);
+
+  /* Therapeutic Gradients */
+  --therapeutic-gradient-primary: linear-gradient(135deg, var(--therapeutic-primary) 0%, var(--therapeutic-primary-light) 100%);
+  --therapeutic-gradient-secondary: linear-gradient(135deg, var(--therapeutic-secondary) 0%, var(--therapeutic-secondary-light) 100%);
+  --therapeutic-gradient-calm: linear-gradient(135deg, var(--therapeutic-primary-50) 0%, var(--therapeutic-secondary-50) 100%);
+  --therapeutic-gradient-healing: linear-gradient(135deg, var(--therapeutic-secondary-50) 0%, var(--therapeutic-accent-50) 100%);
+
+  /* Typography Scale */
+  --therapeutic-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --therapeutic-font-body: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --therapeutic-font-accent: 'Playfair Display', Georgia, serif;
+
+  /* Font Sizes - Therapeutic Scale */
+  --therapeutic-text-xs: 0.75rem;    /* 12px */
+  --therapeutic-text-sm: 0.875rem;   /* 14px */
+  --therapeutic-text-base: 1rem;     /* 16px */
+  --therapeutic-text-lg: 1.125rem;   /* 18px */
+  --therapeutic-text-xl: 1.25rem;    /* 20px */
+  --therapeutic-text-2xl: 1.5rem;    /* 24px */
+  --therapeutic-text-3xl: 1.875rem;  /* 30px */
+  --therapeutic-text-4xl: 2.25rem;   /* 36px */
+  --therapeutic-text-5xl: 3rem;      /* 48px */
+
+  /* Line Heights - Optimized for Readability */
+  --therapeutic-leading-tight: 1.25;
+  --therapeutic-leading-snug: 1.375;
+  --therapeutic-leading-normal: 1.5;
+  --therapeutic-leading-relaxed: 1.625;
+  --therapeutic-leading-loose: 2;
+
+  /* Spacing Scale - Harmonious Rhythm */
+  --therapeutic-space-1: 0.25rem;   /* 4px */
+  --therapeutic-space-2: 0.5rem;    /* 8px */
+  --therapeutic-space-3: 0.75rem;   /* 12px */
+  --therapeutic-space-4: 1rem;      /* 16px */
+  --therapeutic-space-5: 1.25rem;   /* 20px */
+  --therapeutic-space-6: 1.5rem;    /* 24px */
+  --therapeutic-space-8: 2rem;      /* 32px */
+  --therapeutic-space-10: 2.5rem;   /* 40px */
+  --therapeutic-space-12: 3rem;     /* 48px */
+  --therapeutic-space-16: 4rem;     /* 64px */
+
+  /* Border Radius - Soft & Approachable */
+  --therapeutic-radius-sm: 0.375rem;  /* 6px */
+  --therapeutic-radius-md: 0.5rem;    /* 8px */
+  --therapeutic-radius-lg: 0.75rem;   /* 12px */
+  --therapeutic-radius-xl: 1rem;      /* 16px */
+  --therapeutic-radius-2xl: 1.5rem;   /* 24px */
+  --therapeutic-radius-full: 9999px;
+
+  /* Shadows - Gentle Depth */
+  --therapeutic-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --therapeutic-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --therapeutic-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --therapeutic-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --therapeutic-shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  /* Transitions - Smooth & Calming */
+  --therapeutic-transition-fast: 150ms ease-in-out;
+  --therapeutic-transition-normal: 250ms ease-in-out;
+  --therapeutic-transition-slow: 350ms ease-in-out;
+
+  /* Z-Index Scale */
+  --therapeutic-z-dropdown: 1000;
+  --therapeutic-z-sticky: 1020;
+  --therapeutic-z-fixed: 1030;
+  --therapeutic-z-modal: 1040;
+  --therapeutic-z-popover: 1050;
+  --therapeutic-z-tooltip: 1060;
+}
+
+/* Dark Mode Therapeutic Colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --therapeutic-bg-primary: #0f172a;
+    --therapeutic-bg-secondary: #1e293b;
+    --therapeutic-bg-tertiary: #334155;
+    --therapeutic-text-primary: #f1f5f9;
+    --therapeutic-text-secondary: #cbd5e1;
+    --therapeutic-text-muted: #94a3b8;
+    --therapeutic-bg-overlay: rgba(30, 58, 138, 0.1);
+  }
+}
+
+/* Base Typography Styles */
+.therapeutic-heading {
+  font-family: var(--therapeutic-font-heading);
+  font-weight: 600;
+  line-height: var(--therapeutic-leading-tight);
+  color: var(--therapeutic-text-primary);
+  letter-spacing: -0.025em;
+}
+
+.therapeutic-body {
+  font-family: var(--therapeutic-font-body);
+  font-weight: 400;
+  line-height: var(--therapeutic-leading-normal);
+  color: var(--therapeutic-text-primary);
+}
+
+.therapeutic-accent {
+  font-family: var(--therapeutic-font-accent);
+  font-weight: 500;
+  line-height: var(--therapeutic-leading-snug);
+  color: var(--therapeutic-primary);
+}
+
+/* Component Base Styles */
+.therapeutic-card {
+  background: var(--therapeutic-bg-primary);
+  border-radius: var(--therapeutic-radius-lg);
+  box-shadow: var(--therapeutic-shadow-md);
+  border: 1px solid var(--therapeutic-neutral-200);
+  transition: all var(--therapeutic-transition-normal);
+}
+
+.therapeutic-card:hover {
+  box-shadow: var(--therapeutic-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.therapeutic-button {
+  font-family: var(--therapeutic-font-heading);
+  font-weight: 500;
+  border-radius: var(--therapeutic-radius-md);
+  transition: all var(--therapeutic-transition-fast);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.therapeutic-button:focus {
+  outline: 2px solid var(--therapeutic-primary);
+  outline-offset: 2px;
+}
+
+.therapeutic-button-primary {
+  background: var(--therapeutic-gradient-primary);
+  color: var(--therapeutic-text-inverse);
+  padding: var(--therapeutic-space-3) var(--therapeutic-space-6);
+}
+
+.therapeutic-button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--therapeutic-shadow-lg);
+}
+
+.therapeutic-button-secondary {
+  background: var(--therapeutic-bg-primary);
+  color: var(--therapeutic-primary);
+  border: 2px solid var(--therapeutic-primary);
+  padding: var(--therapeutic-space-3) var(--therapeutic-space-6);
+}
+
+.therapeutic-button-secondary:hover {
+  background: var(--therapeutic-primary-50);
+}
+
+/* Breathing Animation for Meditation Components */
+@keyframes therapeutic-breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+.therapeutic-breathe {
+  animation: therapeutic-breathe 4s ease-in-out infinite;
+}
+
+/* Gentle Pulse for Interactive Elements */
+@keyframes therapeutic-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.therapeutic-pulse {
+  animation: therapeutic-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth Fade In Animation */
+@keyframes therapeutic-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.therapeutic-fade-in {
+  animation: therapeutic-fade-in 0.5s ease-out;
+}
+
+/* Progress Bar Styles */
+.therapeutic-progress {
+  background: var(--therapeutic-neutral-200);
+  border-radius: var(--therapeutic-radius-full);
+  overflow: hidden;
+  height: 8px;
+}
+
+.therapeutic-progress-bar {
+  background: var(--therapeutic-gradient-secondary);
+  height: 100%;
+  border-radius: var(--therapeutic-radius-full);
+  transition: width var(--therapeutic-transition-slow);
+}
+
+/* Input Styles */
+.therapeutic-input {
+  font-family: var(--therapeutic-font-body);
+  background: var(--therapeutic-bg-primary);
+  border: 2px solid var(--therapeutic-neutral-200);
+  border-radius: var(--therapeutic-radius-md);
+  padding: var(--therapeutic-space-3) var(--therapeutic-space-4);
+  color: var(--therapeutic-text-primary);
+  transition: all var(--therapeutic-transition-fast);
+}
+
+.therapeutic-input:focus {
+  border-color: var(--therapeutic-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--therapeutic-primary-50);
+}
+
+/* Modal Styles */
+.therapeutic-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  position: fixed;
+  inset: 0;
+  z-index: var(--therapeutic-z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--therapeutic-space-4);
+}
+
+.therapeutic-modal {
+  background: var(--therapeutic-bg-primary);
+  border-radius: var(--therapeutic-radius-xl);
+  box-shadow: var(--therapeutic-shadow-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Accessibility Enhancements */
+.therapeutic-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --therapeutic-primary: #000080;
+    --therapeutic-secondary: #006400;
+    --therapeutic-text-primary: #000000;
+    --therapeutic-bg-primary: #ffffff;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .therapeutic-breathe,
+  .therapeutic-pulse,
+  .therapeutic-fade-in {
+    animation: none;
+  }
+  
+  .therapeutic-card,
+  .therapeutic-button,
+  .therapeutic-input {
+    transition: none;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  :root {
+    --therapeutic-text-base: 1.125rem;   /* Larger base text on mobile */
+    --therapeutic-space-4: 1.25rem;      /* More generous spacing */
+  }
+  
+  .therapeutic-button {
+    min-height: 44px;  /* Touch-friendly minimum */
+    min-width: 44px;
+  }
+  
+  .therapeutic-card {
+    margin: var(--therapeutic-space-2);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .therapeutic-card {
+    box-shadow: none;
+    border: 1px solid var(--therapeutic-neutral-300);
+  }
+  
+  .therapeutic-button {
+    background: transparent !important;
+    color: var(--therapeutic-text-primary) !important;
+    border: 1px solid var(--therapeutic-neutral-300) !important;
+  }
+}
+

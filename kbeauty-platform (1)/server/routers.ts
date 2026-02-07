@@ -366,6 +366,71 @@ export const appRouter = router({
       }),
   }),
 
+  // Pet logs
+  logs: router({
+    createCheckin: protectedProcedure
+      .input(z.object({
+        date: z.string().optional(),
+        cycleDay: z.number().optional(),
+        mood: z.string().optional(),
+        energy: z.number().optional(),
+        skinCondition: z.string().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        await db.createDailyCheckin({
+          userId: ctx.user.id,
+          date: input.date ? new Date(input.date) : new Date(),
+          cycleDay: input.cycleDay,
+          mood: input.mood,
+          energy: input.energy,
+          skinCondition: input.skinCondition,
+        } as any);
+        return { success: true };
+      }),
+
+    createFood: protectedProcedure
+      .input(z.object({
+        date: z.string().optional(),
+        foodItem: z.string(),
+        triggerLevel: z.number().min(1).max(3).default(1),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        await db.createFoodLog({
+          userId: ctx.user.id,
+          date: input.date ? new Date(input.date) : new Date(),
+          foodItem: input.foodItem,
+          triggerLevel: input.triggerLevel,
+        } as any);
+        return { success: true };
+      }),
+
+    summary: protectedProcedure
+      .query(async ({ ctx }) => {
+        const [checkins, foods, skins] = await Promise.all([
+          db.listRecentCheckins(ctx.user.id),
+          db.listRecentFoodLogs(ctx.user.id),
+          db.listRecentSkinLogs(ctx.user.id),
+        ]);
+
+        const moodCounts: Record<string, number> = {};
+        for (const c of checkins) {
+          if (!c.mood) continue;
+          moodCounts[c.mood] = (moodCounts[c.mood] || 0) + 1;
+        }
+
+        const foodCounts: Record<string, number> = {};
+        for (const f of foods) {
+          foodCounts[f.foodItem] = (foodCounts[f.foodItem] || 0) + 1;
+        }
+
+        return {
+          moodCounts,
+          foodCounts,
+          lastCheckin: checkins[0]?.date ?? null,
+        } as const;
+      }),
+  }),
+
   // Chatbot
   chatbot: router({
     chat: publicProcedure

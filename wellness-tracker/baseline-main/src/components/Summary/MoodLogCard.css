@@ -1,0 +1,117 @@
+.mood-card {
+    background-color: var(--card-background);
+    width: 100%;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: initial;
+    margin: 10px 0; 
+
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "time labels"
+      "log log"
+      "bottom bottom";
+
+    position: relative;
+}
+
+.mood-card-log {
+    grid-area: log;
+    white-space: pre-wrap;
+    padding: 8px;
+    line-height: 19px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.tx.tx-card {
+    padding: 0px;
+    padding-right: 12px;
+}
+
+.tx-card > div > textarea {
+    overflow: hidden;
+    padding-left: 8px !important;
+}
+
+.close-btn {
+    padding-top: 8px;
+    padding-left: 8px;
+    font-size: 1.2em;
+}
+
+.carousel-mods {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-bottom: 30px;
+    min-height: 100px;
+}
+
+.carousel-mods:not(.is-fullscreen) {
+    margin-top: 12px;
+}
+
+.carousel-mods.is-fullscreen > div > div > div {
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-mods.is-fullscreen > div > div > div > img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.carousel-mods.is-fullscreen.flickity-enabled {
+    z-index: 2000;
+}
+
+div.flickity-enabled.is-fullscreen > .flickity-fullscreen-button {
+    top: max(env(safe-area-inset-top), 10px);
+}
+
+div.flickity-enabled.is-fullscreen > .flickity-download-button {
+    top: max(env(safe-area-inset-top), 10px);
+}
+
+.flickity-enabled.is-fullscreen ol.flickity-page-dots {
+    bottom: 25px;
+}
+
+.display-point {
+    height: 9px;
+    width: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: 1.5px;
+}
+
+.spotify-embed-box {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.spotify-embed {
+    border-radius: 14px !important;
+}
+
+.rj-audio-element {
+    margin-left: 4px;
+    width: 100%;
+    margin-top: 8px;
+    padding-right: 8px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.rj-audio-element.rj-audio-loading {
+    margin-left: 8px;
+}
+
+.pad-left {
+    padding-left: 8px;
+}

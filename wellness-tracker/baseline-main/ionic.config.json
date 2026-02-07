@@ -1,0 +1,7 @@
+{
+  "name": "baseline",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

@@ -62,40 +62,41 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/product/${product.slug}`}>
-      <Card className="group hover-lift overflow-hidden cursor-pointer h-full flex flex-col">
-        <div className="relative aspect-square overflow-hidden bg-accent/20">
+      <Card className="group overflow-hidden cursor-pointer h-full flex flex-col transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(255,111,174,0.15)] border-gray-100">
+        <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-pink-50 to-purple-50">
           {product.imageUrl ? (
             <img
               src={product.imageUrl}
               alt={product.name}
-              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+              className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 ease-out"
+              loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10">
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-100/50 to-purple-100/50">
               <span className="text-4xl">🧴</span>
             </div>
           )}
           
-          {/* Badges */}
-          <div className="absolute top-2 left-2 flex flex-col gap-1">
+          {/* Badges - Modern with backdrop blur */}
+          <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
             {product.bestseller && (
-              <Badge variant="default" className="bg-primary">
-                Bestseller
+              <Badge variant="default" className="bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/30 backdrop-blur-sm">
+                ⭐ Bestseller
               </Badge>
             )}
             {product.featured && (
-              <Badge variant="secondary">
-                Featured
+              <Badge variant="secondary" className="bg-purple-100/90 text-purple-700 backdrop-blur-sm shadow-md">
+                ✨ Featured
               </Badge>
             )}
             {product.newArrival && (
-              <Badge variant="outline" className="bg-white">
-                New
+              <Badge variant="outline" className="bg-white/90 backdrop-blur-sm shadow-md border-pink-200">
+                🆕 New
               </Badge>
             )}
             {product.originalPrice && product.originalPrice > product.price && (
-              <Badge variant="destructive">
-                Sale
+              <Badge variant="destructive" className="bg-rose-500 shadow-lg shadow-rose-500/30 backdrop-blur-sm">
+                🔥 Sale
               </Badge>
             )}
           </div>
@@ -110,42 +111,54 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        <CardContent className="p-4 flex-1 flex flex-col">
-          <p className="text-xs text-muted-foreground font-medium mb-1">{product.brand}</p>
-          <h3 className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+        <CardContent className="p-5 flex-1 flex flex-col">
+          <p className="text-xs text-pink-600 font-semibold uppercase tracking-wider mb-2">{product.brand}</p>
+          <h3 className="font-semibold text-sm line-clamp-2 mb-3 group-hover:text-pink-600 transition-colors duration-200">
             {product.name}
           </h3>
-          
-          {/* Rating */}
+
+          {/* Rating - More prominent */}
           {product.reviewCount > 0 && (
-            <div className="flex items-center gap-1 mb-2">
-              <Star className="h-3 w-3 fill-primary text-primary" />
-              <span className="text-xs font-medium">{rating.toFixed(1)}</span>
-              <span className="text-xs text-muted-foreground">({product.reviewCount})</span>
+            <div className="flex items-center gap-1.5 mb-3">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-3.5 w-3.5 ${i < Math.floor(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`}
+                  />
+                ))}
+              </div>
+              <span className="text-xs font-semibold text-gray-700">{rating.toFixed(1)}</span>
+              <span className="text-xs text-gray-500">({product.reviewCount})</span>
             </div>
           )}
           
           {/* Price */}
           <div className="flex items-center gap-2 mt-auto">
-            <span className="font-bold text-lg text-primary">
+            <span className="font-bold text-xl text-gray-900">
               {formatPrice(product.price)}
             </span>
             {product.originalPrice && product.originalPrice > product.price && (
-              <span className="text-sm text-muted-foreground line-through">
-                {formatPrice(product.originalPrice)}
-              </span>
+              <>
+                <span className="text-sm text-gray-400 line-through">
+                  {formatPrice(product.originalPrice)}
+                </span>
+                <span className="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded-full">
+                  Save {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                </span>
+              </>
             )}
           </div>
         </CardContent>
 
-        <CardFooter className="p-4 pt-0">
+        <CardFooter className="p-5 pt-0">
           <Button
-            className="w-full rounded-full"
+            className="w-full rounded-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 shadow-md hover:shadow-lg transition-all duration-300 group/button"
             size="sm"
             onClick={handleAddToCart}
             disabled={product.stock === 0 || addToCart.isPending}
           >
-            <ShoppingCart className="h-4 w-4 mr-2" />
+            <ShoppingCart className="h-4 w-4 mr-2 group-hover/button:scale-110 transition-transform" />
             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
           </Button>
         </CardFooter>

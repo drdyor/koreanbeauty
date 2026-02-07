@@ -1,0 +1,64 @@
+name: Nightly Test
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Use Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: "18.x"
+        cache: "npm"
+    - run: npm ci
+    - name: Build Tests
+      run: |
+        npm install -g @ionic/cli
+        npm run build
+        ionic cap sync
+      env:
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+    - name: Integration Tests
+      run: |
+        PORT=8100 npx react-scripts start &
+        sleep 60
+        npm run test:e2e:noinst
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Use Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: "18.x"
+        cache: "npm"
+    - run: npm ci
+    - run: npm run build
+  internal:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./scheduled-services
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Use Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: "18.x"
+        cache: "npm"
+    - run: npm ci
+    - run: npm run build

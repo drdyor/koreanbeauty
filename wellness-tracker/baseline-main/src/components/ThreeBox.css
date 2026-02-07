@@ -1,0 +1,31 @@
+.threebox {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "icon title"
+      "icon description";
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.threebox-icon {
+    grid-area: icon;
+    width: 100%;
+    font-size: 2em;
+    align-self: center;
+}
+
+.threebox-title {
+    grid-area: title;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+.threebox-desc {
+    grid-area: description;
+    margin: 0;
+    text-align: left;
+    width: 90%;
+}

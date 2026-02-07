@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - Sleep Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --pink-50: #fdf4ff;
+      --neutral-100: #f5f5f5;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+      /* Dark sleep gradient */
+      --dark-blue: #0a1628;
+      --deep-purple: #1e1b4b;
+      /* Pastel sunrise gradient */
+      --sunrise-rose: #f8dce7;
+      --sunrise-peach: #f9e6d7;
+      --sunrise-blue: #d9e8f9;
+      --sunrise-lilac: #e6defa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, var(--sunrise-rose) 0%, var(--sunrise-peach) 35%, var(--sunrise-blue) 70%, var(--sunrise-lilac) 100%);
+      min-height: 100vh;
+      color: var(--neutral-900);
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 16px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .mode-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--neutral-900);
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--purple-100);
+      border: none;
+      color: var(--purple-600);
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: var(--purple-200);
+    }
+
+    /* Binaural Frequency Canvas */
+    .frequency-container {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 32px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 8px 32px rgba(147, 51, 234, 0.15);
+    }
+
+    #frequencyCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Breathing Circle */
+    .breathing-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .breath-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0) 70%);
+      border: 3px solid rgba(168, 85, 247, 0.5);
+      margin-bottom: 24px;
+      transition: transform 8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+    }
+
+    .breath-circle.inhale {
+      transform: scale(1.5);
+    }
+
+    .breath-circle.exhale {
+      transform: scale(1);
+    }
+
+    .breath-instruction {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--purple-600);
+      margin-bottom: 12px;
+      min-height: 32px;
+    }
+
+    .breath-count {
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--purple-400);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 16px;
+    }
+
+    .phase-description {
+      font-size: 14px;
+      color: var(--neutral-400);
+      max-width: 300px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* Script Display */
+    .script-display {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      max-height: 120px;
+      overflow-y: auto;
+      box-shadow: 0 2px 12px rgba(147, 51, 234, 0.1);
+    }
+
+    .script-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--neutral-900);
+      font-weight: 300;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .timer-display {
+      text-align: center;
+      font-size: 16px;
+      color: var(--neutral-600);
+      margin-bottom: 8px;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .control-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      background: var(--purple-500);
+      color: var(--neutral-900);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+    }
+
+    .control-btn.play {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+      box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+    }
+
+    .control-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .options {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      padding: 10px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--purple-200);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--neutral-600);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .option-btn.active {
+      background: var(--purple-600);
+      border-color: var(--purple-600);
+      color: var(--neutral-900);
+    }
+
+    .option-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Info Panel */
+    .info-panel {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .info-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-text {
+      font-size: 12px;
+      color: var(--neutral-400);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="mode-title">🌙 Sleep Induction</div>
+      <button class="close-btn" onclick="window.location.href='index.html'">✕</button>
+    </div>
+
+    <!-- Binaural Frequency Visualization -->
+    <div class="frequency-container">
+      <canvas id="frequencyCanvas"></canvas>
+    </div>
+
+    <!-- Breathing Guide -->
+    <div class="breathing-container">
+      <div class="breath-circle" id="breathCircle"></div>
+      <div class="breath-instruction" id="breathInstruction">Press play to begin</div>
+      <div class="breath-count" id="breathCount"></div>
+      <div class="phase-description" id="phaseDescription">
+        Delta wave (2 Hz) + 4-7-8 breathing for deep sleep
+      </div>
+    </div>
+
+    <!-- Progressive Relaxation Script -->
+    <div class="script-display" id="scriptDisplay">
+      <div class="script-text" id="scriptText">
+        Your session will guide you through progressive muscle relaxation while delta waves prepare your brain for sleep.
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="timer-display" id="timerDisplay">30:00 remaining</div>
+
+      <div class="control-buttons">
+        <button class="control-btn" id="loopBtn" title="Loop">🔁</button>
+        <button class="control-btn play" id="playBtn">▶️</button>
+        <button class="control-btn" id="stopBtn" title="Stop">⏹️</button>
+      </div>
+
+      <div class="options">
+        <button class="option-btn active" data-duration="30">30 min</button>
+        <button class="option-btn" data-duration="60">60 min</button>
+        <button class="option-btn" data-duration="90">Loop all night</button>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="info-panel">
+      <div class="info-title">💜 Luteal Phase Sleep Support</div>
+      <div class="info-text">
+        Delta waves (0.5-4 Hz) + extended exhale breathing naturally lower cortisol and trigger sleep response.
+        Perfect for days 15-28 when progesterone makes you naturally drowsy.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Binaural Frequency Engine (Enhanced with Web Audio API)
+    class SimpleBinauralEngine {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.isRunning = false;
+        this.startTime = 0;
+        this.animationId = null;
+
+        // Audio properties
+        this.audioCtx = null;
+        this.oscLeft = null;
+        this.oscRight = null;
+        this.gainNode = null;
+        this.baseFreq = 200; // Carrier frequency
+        
+        // Delta wave for sleep
+        this.frequency = 2; // Binaural beat frequency (Hz)
+        this.color = [10, 30, 80]; // Dark blue
+        this.intensity = 0.4;
+
+        // Set canvas size
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
+      }
+
+      initAudio() {
+        if (this.audioCtx) return;
+
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        this.gainNode = this.audioCtx.createGain();
+        this.gainNode.gain.setValueAtTime(0, this.audioCtx.currentTime);
+        this.gainNode.connect(this.audioCtx.destination);
+      }
+
+      start() {
+        this.isRunning = true;
+        this.startTime = performance.now();
+        
+        // Initialize audio on first start
+        this.initAudio();
+        
+        if (this.audioCtx.state === 'suspended') {
+          this.audioCtx.resume();
+        }
+
+        // Setup Oscillators
+        this.oscLeft = this.audioCtx.createOscillator();
+        this.oscRight = this.audioCtx.createOscillator();
+        
+        const pannerLeft = this.audioCtx.createStereoPanner();
+        const pannerRight = this.audioCtx.createStereoPanner();
+
+        this.oscLeft.frequency.setValueAtTime(this.baseFreq, this.audioCtx.currentTime);
+        this.oscRight.frequency.setValueAtTime(this.baseFreq + this.frequency, this.audioCtx.currentTime);
+
+        pannerLeft.pan.setValueAtTime(-1, this.audioCtx.currentTime);
+        pannerRight.pan.setValueAtTime(1, this.audioCtx.currentTime);
+
+        this.oscLeft.connect(pannerLeft);
+        pannerLeft.connect(this.gainNode);
+
+        this.oscRight.connect(pannerRight);
+        pannerRight.connect(this.gainNode);
+
+        this.oscLeft.start();
+        this.oscRight.start();
+
+        // Fade in
+        this.gainNode.gain.linearRampToValueAtTime(0.1, this.audioCtx.currentTime + 2);
+
+        this.render();
+      }
+
+      stop() {
+        this.isRunning = false;
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId);
+        }
+        
+        // Fade out and stop audio
+        if (this.gainNode) {
+          this.gainNode.gain.linearRampToValueAtTime(0, this.audioCtx.currentTime + 1);
+          setTimeout(() => {
+            if (this.oscLeft) this.oscLeft.stop();
+            if (this.oscRight) this.oscRight.stop();
+          }, 1000);
+        }
+
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+
+      render() {
+        if (!this.isRunning) return;
+
+        const currentTime = (performance.now() - this.startTime) / 1000;
+        const wave = Math.sin(currentTime * this.frequency * 2 * Math.PI);
+        const brightness = (wave * 0.5 + 0.5) * this.intensity;
+
+        // Create gradient
+        const centerX = this.canvas.width / 2;
+        const centerY = this.canvas.height / 2;
+        const radius = Math.min(centerX, centerY);
+
+        const r = Math.floor(this.color[0] * brightness * 2.5);
+        const g = Math.floor(this.color[1] * brightness * 2.5);
+        const b = Math.floor(this.color[2] * brightness * 2.5);
+
+        const gradient = this.ctx.createRadialGradient(
+          centerX, centerY, 0,
+          centerX, centerY, radius
+        );
+
+        gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.8)`);
+        gradient.addColorStop(1, 'rgba(10, 22, 40, 0.2)');
+
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.animationId = requestAnimationFrame(() => this.render());
+      }
+    }
+
+    // Progressive Muscle Relaxation Script
+    const relaxationScript = [
+      { time: 0, text: "Close your eyes. Take a deep breath in through your nose..." },
+      { time: 10, text: "Notice the weight of your body sinking into the bed. You are safe." },
+      { time: 20, text: "Tense your toes. Hold... Now release. Feel the tension melting away." },
+      { time: 35, text: "Tense your calves. Hold... Release. Your legs feel heavy and warm." },
+      { time: 50, text: "Notice your breath naturally slowing down. This is your body preparing for sleep." },
+      { time: 65, text: "Tense your stomach. Hold... Release. Feel your belly soften with each exhale." },
+      { time: 80, text: "Your luteal phase makes you naturally drowsy. This is not weakness. This is biology." },
+      { time: 95, text: "Tense your shoulders. Hold... Release. They drop away from your ears." },
+      { time: 110, text: "Notice how your jaw has unclenched. Your face is soft." },
+      { time: 125, text: "You are becoming someone who honors their need for rest." },
+      { time: 140, text: "Each exhale takes you deeper. Your body knows how to sleep." },
+      { time: 160, text: "Progesterone is preparing you for rest. Let it do its work." },
+      { time: 180, text: "Your breath is slow and steady. You are drifting now." },
+      { time: 200, text: "There is nothing you need to do. Sleep will find you." },
+      { time: 220, text: "You are safe. You are held. You can let go now." }
+    ];
+
+    // 4-7-8 Breathing Pattern
+    const breathingPattern = [
+      { phase: 'inhale', duration: 4, instruction: 'Breathe In', description: 'Through your nose, slowly' },
+      { phase: 'hold', duration: 7, instruction: 'Hold', description: 'Let the calm deepen' },
+      { phase: 'exhale', duration: 8, instruction: 'Breathe Out', description: 'Through your mouth, slowly release' }
+    ];
+
+    // App State
+    let engine = null;
+    let isPlaying = false;
+    let currentStep = 0;
+    let currentBreathStep = 0;
+    let countdown = 0;
+    let sessionTime = 0;
+    let sessionDuration = 30 * 60; // 30 minutes in seconds
+    let loopEnabled = false;
+    let breathInterval = null;
+    let scriptInterval = null;
+    let timerInterval = null;
+
+    // DOM Elements
+    const canvas = document.getElementById('frequencyCanvas');
+    const breathCircle = document.getElementById('breathCircle');
+    const breathInstruction = document.getElementById('breathInstruction');
+    const breathCount = document.getElementById('breathCount');
+    const phaseDescription = document.getElementById('phaseDescription');
+    const scriptText = document.getElementById('scriptText');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const playBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const loopBtn = document.getElementById('loopBtn');
+
+    // Initialize engine
+    engine = new SimpleBinauralEngine(canvas);
+
+    // Duration selection
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (isPlaying) return; // Can't change during session
+
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const duration = this.dataset.duration;
+        if (duration === 'Loop') {
+          loopEnabled = true;
+          sessionDuration = 30 * 60; // Start with 30 min, will loop
+          timerDisplay.textContent = '∞ Loop mode';
+        } else {
+          loopEnabled = false;
+          sessionDuration = parseInt(duration) * 60;
+          timerDisplay.textContent = `${duration}:00 remaining`;
+        }
+      });
+    });
+
+    // Loop toggle
+    loopBtn.addEventListener('click', () => {
+      loopEnabled = !loopEnabled;
+      loopBtn.style.opacity = loopEnabled ? '1' : '0.5';
+      if (loopEnabled) {
+        timerDisplay.textContent = '∞ Loop mode';
+      }
+    });
+
+    // Play/Pause
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        pauseSession();
+      } else {
+        startSession();
+      }
+    });
+
+    // Stop
+    stopBtn.addEventListener('click', () => {
+      stopSession();
+    });
+
+    function startSession() {
+      isPlaying = true;
+      playBtn.textContent = '⏸️';
+
+      // Start delta wave
+      engine.start();
+
+      // Start breathing guide
+      runBreathingCycle();
+
+      // Start relaxation script
+      startRelaxationScript();
+
+      // Start timer
+      startTimer();
+    }
+
+    function pauseSession() {
+      isPlaying = false;
+      playBtn.textContent = '▶️';
+
+      clearInterval(breathInterval);
+      clearInterval(scriptInterval);
+      clearInterval(timerInterval);
+
+      // Keep visual frequency running (soothing)
+    }
+
+    function stopSession() {
+      isPlaying = false;
+      playBtn.textContent = '▶️';
+
+      engine.stop();
+
+      clearInterval(breathInterval);
+      clearInterval(scriptInterval);
+      clearInterval(timerInterval);
+
+      // Reset
+      sessionTime = 0;
+      currentStep = 0;
+      currentBreathStep = 0;
+      breathCircle.className = 'breath-circle';
+      breathInstruction.textContent = 'Press play to begin';
+      breathCount.textContent = '';
+      scriptText.textContent = 'Your session will guide you through progressive muscle relaxation while delta waves prepare your brain for sleep.';
+    }
+
+    function runBreathingCycle() {
+      const step = breathingPattern[currentBreathStep];
+      countdown = step.duration;
+
+      breathInstruction.textContent = step.instruction;
+      phaseDescription.textContent = step.description;
+      breathCircle.className = 'breath-circle ' + step.phase;
+
+      breathInterval = setInterval(() => {
+        if (!isPlaying) {
+          clearInterval(breathInterval);
+          return;
+        }
+
+        breathCount.textContent = countdown;
+        countdown--;
+
+        if (countdown < 0) {
+          clearInterval(breathInterval);
+          currentBreathStep = (currentBreathStep + 1) % breathingPattern.length;
+          runBreathingCycle();
+        }
+      }, 1000);
+    }
+
+    function startRelaxationScript() {
+      scriptInterval = setInterval(() => {
+        if (!isPlaying) {
+          clearInterval(scriptInterval);
+          return;
+        }
+
+        // Find next script line
+        const nextScript = relaxationScript.find(s => s.time === sessionTime);
+        if (nextScript) {
+          scriptText.textContent = nextScript.text;
+
+          // Smooth scroll animation
+          const scriptDisplay = document.getElementById('scriptDisplay');
+          scriptDisplay.scrollTop = scriptDisplay.scrollHeight;
+        }
+
+        // Loop script if enabled
+        if (loopEnabled && sessionTime >= relaxationScript[relaxationScript.length - 1].time + 30) {
+          sessionTime = 0; // Restart script
+        }
+      }, 1000);
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        if (!isPlaying) {
+          clearInterval(timerInterval);
+          return;
+        }
+
+        sessionTime++;
+
+        if (!loopEnabled) {
+          const remaining = sessionDuration - sessionTime;
+          const mins = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          timerDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')} remaining`;
+
+          // Auto-stop
+          if (remaining <= 0) {
+            stopSession();
+            timerDisplay.textContent = 'Session complete';
+          }
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

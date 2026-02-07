@@ -1,0 +1,10 @@
+services:
+  - type: static
+    name: self-hypnosis-frontend
+    buildCommand: "npm install && npm run build"
+    publishPath: "build"
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false
+
+

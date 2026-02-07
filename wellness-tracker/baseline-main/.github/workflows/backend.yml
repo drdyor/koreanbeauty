@@ -1,0 +1,36 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Use Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: "18.x"
+        cache: "npm"
+    - run: npm ci
+    - run: npm run build
+    - name: Deploy to Cloud Run
+      run: |
+        echo $GOOGLE_APPLICATION_CREDENTIALS > ~/google-credentials.json
+        gcloud auth activate-service-account --key-file ~/google-credentials.json
+        echo $SVC_EMAIL_SERVICE_ACCOUNT_GETBASELINEAPP > getbaselineapp-svc-email.json
+        npm run deploy
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETBASELINEAPP }}
+        SVC_EMAIL_SERVICE_ACCOUNT_GETBASELINEAPP: ${{ secrets.SVC_EMAIL_SERVICE_ACCOUNT_GETBASELINEAPP }}

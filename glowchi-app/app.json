@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "GLOWCHI",
+    "slug": "glowchi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "glowchi",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFF5F7"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.glowchi.app",
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "GLOWCHI needs access to your health data to help your pet reflect your wellness journey.",
+        "NSHealthUpdateUsageDescription": "GLOWCHI needs to update health data to track your progress."
+      }
+    },
+    "android": {
+      "package": "com.glowchi.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFF5F7"
+      },
+      "permissions": [
+        "ACTIVITY_RECOGNITION",
+        "android.permission.ACTIVITY_RECOGNITION",
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_SLEEP",
+        "android.permission.health.READ_HEART_RATE",
+        "android.permission.health.READ_HEART_RATE_VARIABILITY"
+      ],
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}

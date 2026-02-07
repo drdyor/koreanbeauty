@@ -9,8 +9,9 @@ import { MilestoneBadge } from "./components/GlowJourney/MilestoneBadge";
 import { DynamicSkincarePet } from "./components/Pet/DynamicSkincarePet";
 import { TriggerTracker } from "./components/Trackers/TriggerTracker";
 import { TriggerFood } from "./components/Pet/TriggerFood";
+import { ProcedureTracker } from "./components/Procedures";
 import { saveToStorage, loadFromStorage } from "./utils/storage";
-import { Calendar } from "lucide-react";
+import { Calendar, Camera, TrendingUp, Sparkles, Award } from "lucide-react";
 
 // Mock data
 const mockRoutineSteps = [
@@ -79,7 +80,8 @@ const mockMilestones = [
 ];
 
 function App() {
-  const [currentView, setCurrentView] = useState<'camera' | 'analysis' | 'quiz' | 'routine' | 'journey' | 'trackers'>('camera');
+  const [currentView, setCurrentView] = useState<'camera' | 'analysis' | 'quiz' | 'routine' | 'journey' | 'trackers' | 'procedures'>('procedures');
+  const [showChronicPet, setShowChronicPet] = useState(false); // Toggle for pet motivation feature
   const [skinData, setSkinData] = useState({
     score: 0,
     concerns: [] as string[],
@@ -332,44 +334,57 @@ function App() {
               </div>
             </div>
           )}
+
+          {currentView === 'procedures' && (
+            <ProcedureTracker />
+          )}
         </main>
 
         <nav className="fixed bottom-20 left-0 right-0 flex justify-center">
           <div className="flex bg-white/80 backdrop-blur-sm rounded-full p-1 shadow-lg border border-purple-100">
-            <button 
-              onClick={() => setCurrentView('camera')}
-              className={`px-5 py-3 rounded-full text-sm font-medium ${currentView === 'camera' || currentView === 'analysis' || currentView === 'quiz' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
+            <button
+              onClick={() => setCurrentView('procedures')}
+              className={`px-4 py-3 rounded-full text-sm font-medium flex items-center gap-1 ${currentView === 'procedures' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
             >
+              <TrendingUp className="w-4 h-4" />
+              Progress
+            </button>
+            <button
+              onClick={() => setCurrentView('camera')}
+              className={`px-4 py-3 rounded-full text-sm font-medium flex items-center gap-1 ${currentView === 'camera' || currentView === 'analysis' || currentView === 'quiz' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
+            >
+              <Camera className="w-4 h-4" />
               Analyze
             </button>
-            <button 
+            <button
               onClick={() => setCurrentView('routine')}
-              className={`px-5 py-3 rounded-full text-sm font-medium ${currentView === 'routine' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
+              className={`px-4 py-3 rounded-full text-sm font-medium flex items-center gap-1 ${currentView === 'routine' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
             >
+              <Sparkles className="w-4 h-4" />
               Routine
             </button>
-            <button 
-              onClick={() => setCurrentView('trackers')}
-              className={`px-5 py-3 rounded-full text-sm font-medium ${currentView === 'trackers' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
-            >
-              Triggers
-            </button>
-            <button 
+            <button
               onClick={() => setCurrentView('journey')}
-              className={`px-5 py-3 rounded-full text-sm font-medium ${currentView === 'journey' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
+              className={`px-4 py-3 rounded-full text-sm font-medium flex items-center gap-1 ${currentView === 'journey' ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white' : 'text-gray-600'}`}
             >
+              <Award className="w-4 h-4" />
               Journey
             </button>
           </div>
         </nav>
       </div>
       
-      <DynamicSkincarePet 
-        onInteract={handlePetInteraction} 
-        skinCondition={skinData.condition}
-        lastInteraction={lastInteraction || undefined} 
-      />
-      <TriggerFood onTriggerLog={handleFoodTrigger} />
+      {/* Pet for chronic condition tracking - hidden by default */}
+      {showChronicPet && (
+        <>
+          <DynamicSkincarePet
+            onInteract={handlePetInteraction}
+            skinCondition={skinData.condition}
+            lastInteraction={lastInteraction || undefined}
+          />
+          <TriggerFood onTriggerLog={handleFoodTrigger} />
+        </>
+      )}
     </div>
   );
 }

@@ -1,0 +1,69 @@
+{
+  "hosting": [{
+    "public": "build",
+    "target": "getbaselineapp",
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Frame-Options",
+            "value": "deny"
+          }
+        ]
+      },
+      {
+        "source": "/.well-known/apple-app-site-association",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+    }],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/.well-known/apple-app-site-association",
+        "destination": "/.well-known/apple-app-site-association"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }, {
+    "target": "baseline-links",
+    "public": "empty",
+    "ignore": [ "*" ],
+    "appAssociation": "AUTO",
+    "rewrites": [
+      {
+        "source": "**",
+        "dynamicLinks": true
+      }
+    ]
+  }, {
+    "target": "baseline-api",
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "baseline-backend",
+          "region": "us-central1",
+          "pinTag": false
+        }
+      }
+    ]
+  }],
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

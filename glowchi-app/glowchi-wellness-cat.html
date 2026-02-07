@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - Wellness Companion</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #fae8ff 50%, #f0f9ff 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .app-container {
+      max-width: 400px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 32px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Guardian (Cat) Section */
+    .guardian-section {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .guardian-container {
+      position: relative;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .guardian {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      transition: all 0.6s ease;
+    }
+
+    .guardian.close { transform: scale(1.1) translateY(-5px); }
+    .guardian.distant { transform: scale(0.85) translateY(10px); opacity: 0.7; }
+    .guardian.resting { opacity: 0.6; }
+
+    /* Cat SVG */
+    .cat-body {
+      width: 100%;
+      height: 100%;
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .guardian-state {
+      color: #9333ea;
+      font-size: 13px;
+      margin-top: 12px;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    /* Thread (Knitting) Section */
+    .thread-section {
+      background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thread-label {
+      font-size: 12px;
+      color: #9333ea;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .thread-visual {
+      display: flex;
+      gap: 4px;
+      height: 8px;
+      margin-top: 12px;
+    }
+
+    .thread-segment {
+      flex: 1;
+      background: #e9d5ff;
+      border-radius: 4px;
+      transition: all 0.8s ease;
+    }
+
+    .thread-segment.filled {
+      background: linear-gradient(90deg, #c084fc 0%, #9333ea 100%);
+      box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
+    }
+
+    .thread-segment.ovulation-pulse {
+      animation: pulse 1.5s ease-in-out 3;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.4); }
+    }
+
+    .cycle-phase {
+      font-size: 14px;
+      color: #6b21a8;
+      margin-top: 8px;
+    }
+
+    /* Atmosphere (Mood) Section */
+    .atmosphere-section {
+      margin-bottom: 24px;
+    }
+
+    .atmosphere-label {
+      font-size: 12px;
+      color: #9333ea;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .atmosphere-options {
+      display: flex;
+      gap: 12px;
+    }
+
+    .atmosphere-btn {
+      flex: 1;
+      padding: 16px 12px;
+      border: 2px solid #e9d5ff;
+      background: white;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 24px;
+      position: relative;
+    }
+
+    .atmosphere-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2);
+    }
+
+    .atmosphere-btn.selected {
+      border-color: #9333ea;
+      background: #fdf4ff;
+      box-shadow: 0 4px 16px rgba(147, 51, 234, 0.3);
+    }
+
+    .atmosphere-btn span {
+      display: block;
+      font-size: 11px;
+      color: #6b21a8;
+      margin-top: 4px;
+    }
+
+    /* Offering (Food) Section */
+    .offering-section {
+      margin-bottom: 24px;
+    }
+
+    .offering-label {
+      font-size: 12px;
+      color: #9333ea;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .offering-options {
+      display: flex;
+      gap: 12px;
+    }
+
+    .offering-btn {
+      flex: 1;
+      padding: 14px 10px;
+      border: 2px solid #e9d5ff;
+      background: white;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 11px;
+      color: #6b21a8;
+      font-weight: 500;
+    }
+
+    .offering-btn:hover {
+      transform: translateY(-2px);
+      border-color: #c084fc;
+    }
+
+    .offering-btn.selected {
+      border-color: #9333ea;
+      background: #fdf4ff;
+    }
+
+    /* Quiet Mode Toggle */
+    .quiet-mode {
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid #e9d5ff;
+    }
+
+    .quiet-toggle {
+      background: none;
+      border: none;
+      color: #9333ea;
+      font-size: 13px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .quiet-toggle:hover {
+      opacity: 1;
+      background: #fdf4ff;
+    }
+
+    .quiet-mode.active .app-container {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container" id="app">
+    <!-- Guardian (Cat) Section -->
+    <div class="guardian-section">
+      <div class="guardian-container">
+        <div class="guardian" id="guardian">
+          <svg class="cat-body" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cat ears -->
+            <path d="M30 35 L25 20 L40 30 Z" fill="#e9d5ff" stroke="#c084fc" stroke-width="2"/>
+            <path d="M90 35 L95 20 L80 30 Z" fill="#e9d5ff" stroke="#c084fc" stroke-width="2"/>
+
+            <!-- Cat face -->
+            <circle cx="60" cy="60" r="35" fill="#f5f3ff" stroke="#c084fc" stroke-width="3"/>
+
+            <!-- Eyes -->
+            <circle cx="50" cy="55" r="4" fill="#6b21a8" id="leftEye">
+              <animate attributeName="r" values="4;4;1;4" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="70" cy="55" r="4" fill="#6b21a8" id="rightEye">
+              <animate attributeName="r" values="4;4;1;4" dur="4s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Eye sparkles -->
+            <circle cx="48" cy="53" r="1.5" fill="white"/>
+            <circle cx="68" cy="53" r="1.5" fill="white"/>
+
+            <!-- Nose -->
+            <path d="M60 62 L57 67 L63 67 Z" fill="#c084fc"/>
+
+            <!-- Whiskers -->
+            <line x1="30" y1="60" x2="20" y2="58" stroke="#c084fc" stroke-width="1.5"/>
+            <line x1="30" y1="65" x2="20" y2="67" stroke="#c084fc" stroke-width="1.5"/>
+            <line x1="90" y1="60" x2="100" y2="58" stroke="#c084fc" stroke-width="1.5"/>
+            <line x1="90" y1="65" x2="100" y2="67" stroke="#c084fc" stroke-width="1.5"/>
+
+            <!-- Mouth -->
+            <path d="M60 67 Q55 72 50 70" stroke="#c084fc" stroke-width="2" fill="none"/>
+            <path d="M60 67 Q65 72 70 70" stroke="#c084fc" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="guardian-state" id="guardianState">Guardian is nearby, observing</div>
+    </div>
+
+    <!-- Thread (Knitting Progress) Section -->
+    <div class="thread-section">
+      <div class="thread-label">Thread</div>
+      <div class="cycle-phase" id="cyclePhase">Day 1 of your cycle</div>
+      <div class="thread-visual" id="threadVisual">
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+        <div class="thread-segment"></div>
+      </div>
+    </div>
+
+    <!-- Atmosphere (Mood) Section -->
+    <div class="atmosphere-section">
+      <div class="atmosphere-label">Atmosphere</div>
+      <div class="atmosphere-options">
+        <button class="atmosphere-btn" data-mood="sunny" onclick="setAtmosphere('sunny')">
+          ☀️<span>Sunny</span>
+        </button>
+        <button class="atmosphere-btn" data-mood="cloudy" onclick="setAtmosphere('cloudy')">
+          ☁️<span>Cloudy</span>
+        </button>
+        <button class="atmosphere-btn" data-mood="storm" onclick="setAtmosphere('storm')">
+          ⛈️<span>Storm</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Offering (Food) Section -->
+    <div class="offering-section">
+      <div class="offering-label">Today's Offering</div>
+      <div class="offering-options">
+        <button class="offering-btn" data-food="simple" onclick="setOffering('simple')">
+          Simple
+        </button>
+        <button class="offering-btn" data-food="nourishing" onclick="setOffering('nourishing')">
+          Nourishing
+        </button>
+        <button class="offering-btn" data-food="stimulating" onclick="setOffering('stimulating')">
+          Stimulating
+        </button>
+      </div>
+    </div>
+
+    <!-- Quiet Mode -->
+    <div class="quiet-mode" id="quietMode">
+      <button class="quiet-toggle" onclick="toggleQuietMode()">Enter Quiet Mode</button>
+    </div>
+  </div>
+
+  <script>
+    // State management
+    let state = {
+      cycleDay: 1,
+      mood: null,
+      food: null,
+      quietMode: false
+    };
+
+    // Update guardian based on user state (NERVOUS SYSTEM LOGIC)
+    function updateGuardian() {
+      const guardian = document.getElementById('guardian');
+      const guardianState = document.getElementById('guardianState');
+
+      // Default
+      let position = 'nearby';
+      let energy = 'observing';
+      let description = 'Guardian is nearby, observing';
+
+      // Response to STORM atmosphere (user struggling)
+      if (state.mood === 'storm') {
+        position = 'close';
+        energy = 'quiet';
+        description = state.food === 'stimulating'
+          ? 'Guardian sits closer. It understands.'
+          : 'Guardian is present, steady and quiet';
+      }
+
+      // Response to SUNNY + NOURISHING (user thriving)
+      else if (state.mood === 'sunny' && state.food === 'nourishing') {
+        position = 'nearby';
+        energy = 'alert';
+        description = 'Guardian is bright and attentive';
+      }
+
+      // Response to luteal phase (cycle energy withdrawing)
+      else if (state.cycleDay >= 15 && state.cycleDay <= 28) {
+        position = 'distant';
+        energy = 'resting';
+        description = 'Guardian has stepped back. This phase is inward.';
+      }
+
+      // Apply visual changes
+      guardian.className = `guardian ${position}`;
+      guardianState.textContent = description;
+    }
+
+    // Set atmosphere (mood)
+    function setAtmosphere(mood) {
+      state.mood = mood;
+
+      // Visual feedback
+      document.querySelectorAll('.atmosphere-btn').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+      document.querySelector(`[data-mood="${mood}"]`).classList.add('selected');
+
+      // Update guardian response
+      setTimeout(updateGuardian, 300);
+    }
+
+    // Set offering (food)
+    function setOffering(food) {
+      state.food = food;
+
+      // Visual feedback
+      document.querySelectorAll('.offering-btn').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+      document.querySelector(`[data-food="${food}"]`).classList.add('selected');
+
+      // Update guardian response
+      setTimeout(updateGuardian, 300);
+    }
+
+    // Update knitting progress (thread)
+    function updateThread() {
+      const segments = document.querySelectorAll('.thread-segment');
+      const cyclePhase = document.getElementById('cyclePhase');
+
+      // Update phase description
+      if (state.cycleDay <= 7) {
+        cyclePhase.textContent = 'Early cycle - beginning a new pattern';
+      } else if (state.cycleDay <= 14) {
+        cyclePhase.textContent = 'Building toward the turning point';
+      } else if (state.cycleDay <= 21) {
+        cyclePhase.textContent = 'Weaving continues with new colors';
+      } else {
+        cyclePhase.textContent = 'Finishing the current piece';
+      }
+
+      // Fill segments based on cycle day
+      const filledCount = Math.floor((state.cycleDay / 28) * 7);
+      segments.forEach((seg, i) => {
+        if (i < filledCount) {
+          seg.classList.add('filled');
+        } else {
+          seg.classList.remove('filled');
+        }
+      });
+    }
+
+    // Ovulation trigger (day 14)
+    function checkOvulationTrigger() {
+      if (state.cycleDay === 14) {
+        // Major knitting progress
+        const segments = document.querySelectorAll('.thread-segment');
+        segments.forEach((seg, i) => {
+          if (i >= 3 && i <= 5) {
+            seg.classList.add('ovulation-pulse');
+            setTimeout(() => {
+              seg.classList.add('filled');
+            }, 800);
+          }
+        });
+
+        // Guardian becomes alert
+        const guardian = document.getElementById('guardian');
+        guardian.style.transform = 'scale(1.15)';
+        setTimeout(() => {
+          guardian.style.transform = '';
+        }, 2000);
+      }
+    }
+
+    // Simulate cycle progression (for demo)
+    function advanceDay() {
+      state.cycleDay = (state.cycleDay % 28) + 1;
+      updateThread();
+      checkOvulationTrigger();
+      updateGuardian();
+    }
+
+    // Quiet mode
+    function toggleQuietMode() {
+      state.quietMode = !state.quietMode;
+      const app = document.querySelector('.app-container');
+      const btn = document.querySelector('.quiet-toggle');
+
+      if (state.quietMode) {
+        app.style.opacity = '0.3';
+        app.style.pointerEvents = 'none';
+        btn.textContent = 'Leave Quiet Mode';
+        btn.style.pointerEvents = 'auto';
+      } else {
+        app.style.opacity = '1';
+        app.style.pointerEvents = 'auto';
+        btn.textContent = 'Enter Quiet Mode';
+      }
+    }
+
+    // Initialize
+    updateThread();
+    updateGuardian();
+
+    // Demo: advance day every 5 seconds (remove in production)
+    setInterval(advanceDay, 5000);
+  </script>
+</body>
+</html>

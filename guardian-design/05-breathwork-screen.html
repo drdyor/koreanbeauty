@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian - Breathwork</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --pink-50: #fdf4ff;
+      --pink-100: #fae8ff;
+      --neutral-50: #fafafa;
+      --neutral-100: #f5f5f5;
+      --neutral-200: #e5e5e5;
+      --neutral-400: #a3a3a3;
+      --neutral-600: #525252;
+      --neutral-900: #171717;
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --green-400: #4ade80;
+      --green-500: #22c55e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 50%, var(--purple-100) 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--neutral-900);
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08);
+    }
+
+    .header-title {
+      flex: 1;
+    }
+
+    .app-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--purple-600);
+    }
+
+    .app-subtitle {
+      font-size: 13px;
+      color: var(--neutral-400);
+    }
+
+    /* Technique Selector */
+    .technique-selector {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .section-label {
+      font-size: 12px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .technique-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .technique-card {
+      background: var(--purple-50);
+      border: 2px solid var(--purple-200);
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .technique-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.15);
+    }
+
+    .technique-card.selected {
+      border-color: var(--purple-600);
+      background: linear-gradient(135deg, var(--purple-50) 0%, var(--pink-50) 100%);
+    }
+
+    .technique-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .technique-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 4px;
+    }
+
+    .technique-duration {
+      font-size: 11px;
+      color: var(--neutral-400);
+    }
+
+    /* Breathwork Canvas */
+    .breathwork-canvas {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+      text-align: center;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breath-status {
+      font-size: 13px;
+      color: var(--neutral-400);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+    }
+
+    .breath-status.active {
+      color: var(--purple-600);
+      font-weight: 600;
+    }
+
+    /* Breathing Circle */
+    .breath-circle-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 32px;
+    }
+
+    .breath-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple-400) 0%, var(--purple-600) 100%);
+      box-shadow: 0 8px 32px rgba(147, 51, 234, 0.3);
+      transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .breath-circle.inhale {
+      transform: scale(1.5);
+    }
+
+    .breath-circle.hold {
+      transform: scale(1.5);
+    }
+
+    .breath-circle.exhale {
+      transform: scale(1);
+    }
+
+    /* Directional Arrows */
+    .arrow-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+    }
+
+    .arrow {
+      position: absolute;
+      font-size: 48px;
+      opacity: 0;
+      transition: all 0.5s ease;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
+
+    .arrow.active {
+      opacity: 1;
+      animation: pulse-arrow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-arrow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .arrow.up {
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .arrow.down {
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .arrow.left {
+      left: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .arrow.right {
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Eye Movement Dots */
+    .eye-movement-container {
+      width: 100%;
+      height: 120px;
+      margin-bottom: 32px;
+      position: relative;
+      display: none;
+    }
+
+    .eye-movement-container.visible {
+      display: block;
+    }
+
+    .eye-dot {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--purple-600);
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+      transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Breathing Instruction */
+    .breath-instruction {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 16px;
+      min-height: 36px;
+    }
+
+    .breath-count {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--purple-600);
+      margin-bottom: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .breath-description {
+      font-size: 14px;
+      color: var(--neutral-600);
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    /* Control Buttons */
+    .control-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .control-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .control-btn.play {
+      background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+      color: white;
+      width: 80px;
+      height: 80px;
+    }
+
+    .control-btn.secondary {
+      background: white;
+      color: var(--neutral-600);
+    }
+
+    .control-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Pattern Info */
+    .pattern-info {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .pattern-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--purple-600);
+      margin-bottom: 12px;
+    }
+
+    .pattern-description {
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .pattern-benefits {
+      background: var(--purple-50);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .benefit-item {
+      font-size: 13px;
+      color: var(--neutral-600);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .benefit-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .benefit-item::before {
+      content: '✓';
+      color: var(--green-500);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      color: var(--neutral-400);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active {
+      color: var(--purple-600);
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <button class="back-btn">←</button>
+      <div class="header-title">
+        <div class="app-title">Breathwork</div>
+        <div class="app-subtitle">Guided breathing with visual cues</div>
+      </div>
+    </div>
+
+    <!-- Technique Selector -->
+    <div class="technique-selector">
+      <div class="section-label">Choose Your Pattern</div>
+      <div class="technique-grid">
+        <div class="technique-card selected" data-technique="box">
+          <div class="technique-icon">⬜</div>
+          <div class="technique-name">Box Breathing</div>
+          <div class="technique-duration">4-4-4-4 · 2 min</div>
+        </div>
+        <div class="technique-card" data-technique="478">
+          <div class="technique-icon">🌙</div>
+          <div class="technique-name">4-7-8 Relaxation</div>
+          <div class="technique-duration">Sleep aid · 2 min</div>
+        </div>
+        <div class="technique-card" data-technique="coherence">
+          <div class="technique-icon">💜</div>
+          <div class="technique-name">Heart Coherence</div>
+          <div class="technique-duration">5-5 · 3 min</div>
+        </div>
+        <div class="technique-card" data-technique="bilateral">
+          <div class="technique-icon">👁️</div>
+          <div class="technique-name">Bilateral Calm</div>
+          <div class="technique-duration">EMDR-inspired · 90 sec</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breathwork Canvas -->
+    <div class="breathwork-canvas">
+      <div class="breath-status" id="breathStatus">Ready to Begin</div>
+
+      <!-- Breathing Circle with Arrows -->
+      <div class="breath-circle-container">
+        <div class="breath-circle" id="breathCircle"></div>
+        <div class="arrow-container" id="arrowContainer">
+          <div class="arrow up">↑</div>
+          <div class="arrow right">→</div>
+          <div class="arrow down">↓</div>
+          <div class="arrow left">←</div>
+        </div>
+      </div>
+
+      <!-- Eye Movement Dots (for Bilateral technique) -->
+      <div class="eye-movement-container" id="eyeMovement">
+        <div class="eye-dot" id="eyeDot"></div>
+      </div>
+
+      <div class="breath-instruction" id="breathInstruction">Press play to start</div>
+      <div class="breath-count" id="breathCount"></div>
+      <div class="breath-description" id="breathDescription">
+        Follow the arrows and breathing cues for calm
+      </div>
+
+      <div class="control-buttons">
+        <button class="control-btn secondary" id="resetBtn">↺</button>
+        <button class="control-btn play" id="playBtn">▶</button>
+        <button class="control-btn secondary" id="settingsBtn">⚙️</button>
+      </div>
+    </div>
+
+    <!-- Pattern Info -->
+    <div class="pattern-info" id="patternInfo">
+      <div class="pattern-title">Box Breathing (4-4-4-4)</div>
+      <div class="pattern-description">
+        Navy SEAL technique for stress regulation. Four equal phases create a balanced, grounding rhythm.
+      </div>
+      <div class="pattern-benefits">
+        <div class="benefit-item">Reduces cortisol and anxiety within 2 minutes</div>
+        <div class="benefit-item">Activates parasympathetic nervous system</div>
+        <div class="benefit-item">Improves focus and decision-making</div>
+        <div class="benefit-item">Safe for all cycle phases</div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="window.location.href='01-main-screen.html'">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='07-cat-hangout.html'">
+        <div class="nav-icon">🐱</div>
+        <div class="nav-label">The Nest</div>
+      </div>
+      <div class="nav-item active" onclick="window.location.href='05-breathwork-screen.html'">
+        <div class="nav-icon">🫁</div>
+        <div class="nav-label">Breathwork</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='03-progress-screen.html'">
+        <div class="nav-icon">📊</div>
+        <div class="nav-label">Progress</div>
+      </div>
+      <div class="nav-item" onclick="window.location.href='04-settings-screen.html'">
+        <div class="nav-icon">⚙️</div>
+        <div class="nav-label">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Breathing patterns
+    const patterns = {
+      box: {
+        name: 'Box Breathing (4-4-4-4)',
+        description: 'Navy SEAL technique for stress regulation. Four equal phases create a balanced, grounding rhythm.',
+        benefits: [
+          'Reduces cortisol and anxiety within 2 minutes',
+          'Activates parasympathetic nervous system',
+          'Improves focus and decision-making',
+          'Safe for all cycle phases'
+        ],
+        sequence: [
+          { phase: 'inhale', duration: 4, instruction: 'Breathe In', arrow: 'up' },
+          { phase: 'hold', duration: 4, instruction: 'Hold', arrow: 'right' },
+          { phase: 'exhale', duration: 4, instruction: 'Breathe Out', arrow: 'down' },
+          { phase: 'hold', duration: 4, instruction: 'Hold', arrow: 'left' }
+        ]
+      },
+      '478': {
+        name: '4-7-8 Relaxation',
+        description: 'Dr. Andrew Weil\'s sleep-inducing technique. Extended hold and exhale activate deep relaxation.',
+        benefits: [
+          'Triggers sleep response in 60-90 seconds',
+          'Reduces racing thoughts',
+          'Lowers heart rate and blood pressure',
+          'Ideal for luteal/menstrual phases'
+        ],
+        sequence: [
+          { phase: 'inhale', duration: 4, instruction: 'Breathe In', arrow: 'up' },
+          { phase: 'hold', duration: 7, instruction: 'Hold (deeper calm)', arrow: 'right' },
+          { phase: 'exhale', duration: 8, instruction: 'Breathe Out Slowly', arrow: 'down' }
+        ]
+      },
+      coherence: {
+        name: 'Heart Coherence (5-5)',
+        description: 'HeartMath technique for emotional regulation. Equal inhale/exhale syncs heart rate variability.',
+        benefits: [
+          'Increases HRV (heart rate variability)',
+          'Balances autonomic nervous system',
+          'Improves emotional resilience',
+          'Great for follicular/ovulation phases'
+        ],
+        sequence: [
+          { phase: 'inhale', duration: 5, instruction: 'Breathe In (imagine heart)', arrow: 'up' },
+          { phase: 'exhale', duration: 5, instruction: 'Breathe Out (gratitude)', arrow: 'down' }
+        ]
+      },
+      bilateral: {
+        name: 'Bilateral Calm (EMDR-inspired)',
+        description: 'Eye movement + breathing for trauma processing. Left-right stimulation calms amygdala.',
+        benefits: [
+          'Processes stored stress and tension',
+          'Reduces intrusive thoughts',
+          'Integrates left/right brain hemispheres',
+          'Use cautiously if trauma-sensitive'
+        ],
+        sequence: [
+          { phase: 'inhale', duration: 4, instruction: 'Breathe In', eyeMove: 'left' },
+          { phase: 'exhale', duration: 4, instruction: 'Breathe Out', eyeMove: 'right' }
+        ],
+        useEyeMovement: true
+      }
+    };
+
+    let currentPattern = patterns.box;
+    let isPlaying = false;
+    let currentStep = 0;
+    let countdown = 0;
+    let intervalId = null;
+
+    const breathCircle = document.getElementById('breathCircle');
+    const breathStatus = document.getElementById('breathStatus');
+    const breathInstruction = document.getElementById('breathInstruction');
+    const breathCount = document.getElementById('breathCount');
+    const breathDescription = document.getElementById('breathDescription');
+    const playBtn = document.getElementById('playBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const arrowContainer = document.getElementById('arrowContainer');
+    const eyeMovement = document.getElementById('eyeMovement');
+    const eyeDot = document.getElementById('eyeDot');
+    const patternInfo = document.getElementById('patternInfo');
+
+    // Technique selection
+    document.querySelectorAll('.technique-card').forEach(card => {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.technique-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+
+        const technique = this.dataset.technique;
+        currentPattern = patterns[technique];
+        updatePatternInfo();
+
+        if (isPlaying) {
+          stopBreathing();
+        }
+      });
+    });
+
+    function updatePatternInfo() {
+      patternInfo.innerHTML = `
+        <div class="pattern-title">${currentPattern.name}</div>
+        <div class="pattern-description">${currentPattern.description}</div>
+        <div class="pattern-benefits">
+          ${currentPattern.benefits.map(b => `<div class="benefit-item">${b}</div>`).join('')}
+        </div>
+      `;
+    }
+
+    function startBreathing() {
+      isPlaying = true;
+      playBtn.textContent = '⏸';
+      breathStatus.textContent = 'Session Active';
+      breathStatus.classList.add('active');
+
+      if (currentPattern.useEyeMovement) {
+        eyeMovement.classList.add('visible');
+        arrowContainer.style.display = 'none';
+      } else {
+        eyeMovement.classList.remove('visible');
+        arrowContainer.style.display = 'block';
+      }
+
+      runBreathCycle();
+    }
+
+    function stopBreathing() {
+      isPlaying = false;
+      playBtn.textContent = '▶';
+      breathStatus.textContent = 'Paused';
+      breathStatus.classList.remove('active');
+      clearInterval(intervalId);
+
+      // Reset visual elements
+      breathCircle.className = 'breath-circle';
+      document.querySelectorAll('.arrow').forEach(arrow => arrow.classList.remove('active'));
+    }
+
+    function resetBreathing() {
+      stopBreathing();
+      currentStep = 0;
+      countdown = 0;
+      breathInstruction.textContent = 'Press play to start';
+      breathCount.textContent = '';
+      breathStatus.textContent = 'Ready to Begin';
+      breathCircle.className = 'breath-circle';
+    }
+
+    function runBreathCycle() {
+      const step = currentPattern.sequence[currentStep];
+      countdown = step.duration;
+
+      breathInstruction.textContent = step.instruction;
+      breathCircle.className = 'breath-circle ' + step.phase;
+
+      // Show arrow or eye movement
+      if (currentPattern.useEyeMovement) {
+        moveEyeDot(step.eyeMove);
+      } else if (step.arrow) {
+        document.querySelectorAll('.arrow').forEach(arrow => arrow.classList.remove('active'));
+        document.querySelector('.arrow.' + step.arrow).classList.add('active');
+      }
+
+      intervalId = setInterval(() => {
+        if (!isPlaying) {
+          clearInterval(intervalId);
+          return;
+        }
+
+        breathCount.textContent = countdown;
+        countdown--;
+
+        if (countdown < 0) {
+          clearInterval(intervalId);
+          currentStep = (currentStep + 1) % currentPattern.sequence.length;
+          runBreathCycle();
+        }
+      }, 1000);
+    }
+
+    function moveEyeDot(direction) {
+      const positions = {
+        left: { left: '10%', top: '50%' },
+        right: { left: '90%', top: '50%' },
+        up: { left: '50%', top: '10%' },
+        down: { left: '50%', top: '90%' }
+      };
+
+      const pos = positions[direction];
+      eyeDot.style.left = pos.left;
+      eyeDot.style.top = pos.top;
+    }
+
+    // Event listeners
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        stopBreathing();
+      } else {
+        startBreathing();
+      }
+    });
+
+    resetBtn.addEventListener('click', resetBreathing);
+
+    settingsBtn.addEventListener('click', () => {
+      alert('Settings: Adjust duration, sounds, haptic feedback');
+    });
+  </script>
+</body>
+</html>

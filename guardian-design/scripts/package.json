@@ -1,0 +1,28 @@
+{
+  "name": "guardian-voice-generation",
+  "version": "1.0.0",
+  "description": "Generate Guardian hypnosis scripts using Google Cloud TTS or ElevenLabs",
+  "main": "generate-voice-google.js",
+  "scripts": {
+    "generate:google": "node generate-voice-google.js",
+    "generate:elevenlabs": "node generate-voice-elevenlabs.js",
+    "test:google": "echo 'Testing Google Cloud TTS connection...' && node -e \"const tts = require('@google-cloud/text-to-speech'); const client = new tts.TextToSpeechClient(); console.log('✅ Google Cloud TTS client initialized successfully');\"",
+    "test:elevenlabs": "echo 'Testing ElevenLabs API connection...' && node -e \"if (!process.env.ELEVENLABS_API_KEY) { console.error('❌ ELEVENLABS_API_KEY not set'); process.exit(1); } else { console.log('✅ ElevenLabs API key found'); }\""
+  },
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "hypnosis",
+    "wellness",
+    "guardian"
+  ],
+  "author": "Guardian App",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/text-to-speech": "^5.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
